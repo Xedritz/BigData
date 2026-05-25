@@ -1,0 +1,3419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Elite Data & AI Career OS · Cristhian</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+/* =========================================================
+   ELITE DATA & AI CAREER OS · Design System
+   ========================================================= */
+:root{
+  --bg-0:#070912;
+  --bg-1:#0c1020;
+  --bg-2:#11162a;
+  --bg-3:#161c33;
+  --card:#0f1426cc;
+  --card-2:#141a30;
+  --border:rgba(255,255,255,.07);
+  --border-strong:rgba(255,255,255,.14);
+  --text:#e6ebf5;
+  --muted:#8a93ad;
+  --muted-2:#5b6480;
+  --accent:#7c5cff;
+  --accent-2:#22d3ee;
+  --accent-3:#10b981;
+  --warn:#f59e0b;
+  --danger:#ef4444;
+  --pink:#ec4899;
+  --grad-1:linear-gradient(135deg,#7c5cff 0%,#22d3ee 100%);
+  --grad-2:linear-gradient(135deg,#ec4899 0%,#7c5cff 100%);
+  --grad-3:linear-gradient(135deg,#10b981 0%,#22d3ee 100%);
+  --grad-4:linear-gradient(135deg,#f59e0b 0%,#ef4444 100%);
+  --radius:14px;
+  --radius-sm:8px;
+  --shadow:0 10px 40px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.2);
+  --shadow-strong:0 20px 60px rgba(124,92,255,.25);
+  --mono:"JetBrains Mono","Fira Code",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg-0);color:var(--text);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+body{
+  background:
+    radial-gradient(1200px 600px at 80% -10%,rgba(124,92,255,.18),transparent 60%),
+    radial-gradient(1000px 500px at -10% 30%,rgba(34,211,238,.12),transparent 60%),
+    radial-gradient(800px 400px at 60% 110%,rgba(236,72,153,.10),transparent 60%),
+    var(--bg-0);
+  min-height:100vh;
+}
+a{color:var(--accent-2);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{margin:0 0 .4em;font-weight:700;letter-spacing:-.01em}
+h1{font-size:2.1rem;line-height:1.15}
+h2{font-size:1.5rem}
+h3{font-size:1.1rem}
+p{margin:.4em 0}
+code{font-family:var(--mono);font-size:.85em;background:rgba(124,92,255,.12);
+  padding:2px 6px;border-radius:6px;color:#c9bfff;border:1px solid rgba(124,92,255,.2)}
+hr{border:none;border-top:1px solid var(--border);margin:24px 0}
+
+/* === Layout === */
+.app{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+.sidebar{
+  background:linear-gradient(180deg,#0a0e1c 0%,#0c1124 100%);
+  border-right:1px solid var(--border);
+  padding:22px 14px;position:sticky;top:0;height:100vh;overflow-y:auto;
+}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 8px 14px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.logo{width:36px;height:36px;border-radius:10px;background:var(--grad-1);
+  display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;
+  box-shadow:0 6px 20px rgba(124,92,255,.5)}
+.brand-name{font-weight:800;font-size:.95rem;letter-spacing:.02em}
+.brand-sub{font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.nav-section{margin:18px 0 6px;font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted-2);padding:0 8px}
+.nav-item{
+  display:flex;align-items:center;gap:10px;padding:8px 10px;margin:1px 0;
+  border-radius:9px;cursor:pointer;color:var(--muted);font-size:.88rem;
+  transition:all .15s ease;
+}
+.nav-item:hover{background:rgba(255,255,255,.04);color:var(--text)}
+.nav-item.active{background:linear-gradient(90deg,rgba(124,92,255,.18),rgba(34,211,238,.06));
+  color:#fff;border:1px solid rgba(124,92,255,.3)}
+.nav-item .ic{width:18px;text-align:center;opacity:.85}
+.main{padding:28px 36px 80px;max-width:1400px;margin:0 auto;width:100%}
+
+/* === Topbar === */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:16px;flex-wrap:wrap}
+.crumb{color:var(--muted);font-size:.85rem}
+.crumb b{color:var(--text)}
+.kbd{font-family:var(--mono);font-size:.75rem;background:#1a2040;border:1px solid var(--border-strong);
+  padding:2px 7px;border-radius:6px;color:var(--muted)}
+
+/* === Cards === */
+.grid{display:grid;gap:18px}
+.g-2{grid-template-columns:repeat(2,1fr)}
+.g-3{grid-template-columns:repeat(3,1fr)}
+.g-4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:1100px){.g-3,.g-4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:700px){.g-2,.g-3,.g-4{grid-template-columns:1fr}}
+
+.card{
+  background:linear-gradient(180deg,rgba(20,26,48,.85),rgba(15,20,38,.85));
+  border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  transition:transform .15s ease,border-color .15s ease;
+}
+.card:hover{border-color:var(--border-strong)}
+.card-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.card-title h3{margin:0}
+.card-glow::before{
+  content:"";position:absolute;inset:-1px;border-radius:var(--radius);padding:1px;
+  background:var(--grad-1);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.55;
+}
+
+/* === Badges & Pills === */
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:600;
+  padding:3px 9px;border-radius:999px;letter-spacing:.04em;text-transform:uppercase;
+  border:1px solid var(--border-strong);background:rgba(255,255,255,.03);color:var(--muted)}
+.b-easy{background:rgba(16,185,129,.12);color:#34d399;border-color:rgba(16,185,129,.35)}
+.b-mid{background:rgba(245,158,11,.12);color:#fbbf24;border-color:rgba(245,158,11,.35)}
+.b-hard{background:rgba(239,68,68,.12);color:#fb7185;border-color:rgba(239,68,68,.35)}
+.b-elite{background:rgba(124,92,255,.14);color:#c4b5fd;border-color:rgba(124,92,255,.4)}
+.b-roi-high{background:rgba(34,211,238,.12);color:#67e8f9;border-color:rgba(34,211,238,.35)}
+.b-priority{background:rgba(236,72,153,.12);color:#f9a8d4;border-color:rgba(236,72,153,.4)}
+.pill{display:inline-block;font-size:.72rem;padding:3px 9px;border-radius:999px;
+  background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border);margin:2px 4px 2px 0}
+
+/* === Stat KPI === */
+.kpi{padding:18px 18px 16px}
+.kpi .label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.14em}
+.kpi .value{font-size:1.9rem;font-weight:800;margin-top:4px;background:var(--grad-1);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.kpi .delta{font-size:.78rem;color:#34d399;margin-top:4px}
+.kpi.alt .value{background:var(--grad-2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kpi.alt3 .value{background:var(--grad-3);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kpi.alt4 .value{background:var(--grad-4);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* === Progress === */
+.bar{height:8px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden;margin-top:8px}
+.bar > span{display:block;height:100%;border-radius:99px;background:var(--grad-1)}
+.bar.alt > span{background:var(--grad-2)}
+.bar.alt3 > span{background:var(--grad-3)}
+.bar.alt4 > span{background:var(--grad-4)}
+
+/* === Tables === */
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.86rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
+tr:hover td{background:rgba(255,255,255,.02)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--card)}
+
+/* === Sections === */
+section{display:none;animation:fade .35s ease}
+section.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.section-header{margin-bottom:16px}
+.section-header h1{margin-bottom:6px}
+.section-header p{color:var(--muted);max-width:820px}
+
+/* === Expandable === */
+.expand{border:1px solid var(--border);border-radius:var(--radius);background:var(--card);margin-bottom:12px;overflow:hidden}
+.expand summary{padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;
+  list-style:none;font-weight:600}
+.expand summary::-webkit-details-marker{display:none}
+.expand summary::before{content:"▸";color:var(--accent-2);transition:transform .2s ease;display:inline-block}
+.expand[open] summary::before{transform:rotate(90deg)}
+.expand .body{padding:0 18px 18px;border-top:1px solid var(--border);padding-top:14px}
+
+/* === Checklist === */
+.check{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px dashed rgba(255,255,255,.05)}
+.check:last-child{border-bottom:none}
+.check input{appearance:none;width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border-strong);
+  background:transparent;cursor:pointer;flex-shrink:0;margin-top:2px;position:relative;transition:all .15s ease}
+.check input:checked{background:var(--grad-1);border-color:transparent}
+.check input:checked::after{content:"✓";position:absolute;color:#fff;font-size:12px;font-weight:800;
+  top:1px;left:4px}
+.check label{cursor:pointer;color:var(--text);font-size:.9rem}
+.check input:checked + label{color:var(--muted);text-decoration:line-through}
+
+/* === Roadmap timeline === */
+.timeline{position:relative;margin:20px 0;padding-left:30px;border-left:2px solid rgba(124,92,255,.25)}
+.tl-item{position:relative;margin-bottom:22px;padding:14px 18px;background:var(--card);
+  border:1px solid var(--border);border-radius:var(--radius)}
+.tl-item::before{content:"";position:absolute;left:-39px;top:18px;width:14px;height:14px;
+  border-radius:50%;background:var(--grad-1);box-shadow:0 0 0 4px var(--bg-0),0 0 18px rgba(124,92,255,.6)}
+.tl-item h4{margin:0 0 4px;color:#fff;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tl-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+
+/* === Phase card === */
+.phase{
+  background:linear-gradient(135deg,rgba(124,92,255,.08),rgba(34,211,238,.04));
+  border:1px solid rgba(124,92,255,.2);border-radius:var(--radius);padding:20px;
+  position:relative;overflow:hidden;
+}
+.phase .num{position:absolute;top:-18px;right:-10px;font-size:6rem;font-weight:900;
+  color:rgba(124,92,255,.08);letter-spacing:-.05em}
+.phase h3{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.phase .salary{display:inline-block;font-family:var(--mono);font-size:.8rem;color:#34d399;margin-top:4px}
+
+/* === Buttons === */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:9px;
+  background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.3);color:#fff;
+  font-size:.85rem;cursor:pointer;font-weight:600;transition:all .15s ease;font-family:inherit}
+.btn:hover{background:rgba(124,92,255,.25);transform:translateY(-1px)}
+.btn.ghost{background:transparent;border-color:var(--border-strong);color:var(--muted)}
+.btn.ghost:hover{color:#fff;border-color:var(--accent)}
+
+/* === Chart container === */
+.chart-wrap{position:relative;height:280px}
+.chart-wrap.tall{height:360px}
+
+/* === Misc === */
+.note{padding:12px 14px;border-left:3px solid var(--accent);background:rgba(124,92,255,.06);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--text);font-size:.88rem;margin:10px 0}
+.note.warn{border-left-color:var(--warn);background:rgba(245,158,11,.06)}
+.note.danger{border-left-color:var(--danger);background:rgba(239,68,68,.06)}
+.note.ok{border-left-color:var(--accent-3);background:rgba(16,185,129,.06)}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.muted{color:var(--muted)}
+.small{font-size:.82rem}
+.mono{font-family:var(--mono);font-size:.85em;color:#c9bfff}
+ul.tight{margin:.4em 0;padding-left:1.2em}
+ul.tight li{margin:3px 0}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-strong),transparent);margin:24px 0}
+.heatmap{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin:10px 0}
+.heatmap .cell{aspect-ratio:1;border-radius:4px;background:rgba(255,255,255,.04);position:relative}
+.heatmap .cell[data-lvl="1"]{background:rgba(124,92,255,.2)}
+.heatmap .cell[data-lvl="2"]{background:rgba(124,92,255,.45)}
+.heatmap .cell[data-lvl="3"]{background:rgba(124,92,255,.7)}
+.heatmap .cell[data-lvl="4"]{background:rgba(124,92,255,1)}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg-1)}
+::-webkit-scrollbar-thumb{background:#222a48;border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:#2e375e}
+
+/* =========================================================
+   INTERACTIVE PROGRESS TRACKING SYSTEM
+   ========================================================= */
+
+/* Convert <li> task items */
+.task{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:7px 4px;border-bottom:1px dashed rgba(255,255,255,.05);
+  cursor:pointer;list-style:none;margin:0;
+  border-radius:6px;transition:background .12s ease;
+}
+.task:hover{background:rgba(124,92,255,.05)}
+.task:last-child{border-bottom:none}
+.task input[type="checkbox"]{
+  appearance:none;width:18px;height:18px;border-radius:5px;
+  border:1.5px solid var(--border-strong);background:transparent;
+  cursor:pointer;flex-shrink:0;margin-top:2px;position:relative;
+  transition:all .15s ease;
+}
+.task input[type="checkbox"]:hover{border-color:var(--accent)}
+.task input[type="checkbox"]:checked{
+  background:var(--grad-1);border-color:transparent;
+}
+.task input[type="checkbox"]:checked::after{
+  content:"✓";position:absolute;color:#fff;font-size:12px;
+  font-weight:800;top:1px;left:4px;
+}
+.task .task-text{
+  flex:1;color:var(--text);font-size:.9rem;line-height:1.55;
+}
+.task input:checked ~ .task-text{
+  color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(124,92,255,.6);
+}
+ul.task-list{padding-left:0;list-style:none;margin:.4em 0}
+
+/* Make existing .check items persist visually too */
+.check input[data-task-id]{cursor:pointer}
+
+/* Per-section progress meter (auto-injected under each section header) */
+.section-progress{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 16px;
+  background:linear-gradient(135deg,rgba(124,92,255,.07),rgba(34,211,238,.03));
+  border:1px solid rgba(124,92,255,.18);border-radius:var(--radius);
+  margin:14px 0 22px;
+}
+.section-progress .sp-label{
+  font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--muted);font-weight:600;white-space:nowrap;
+}
+.section-progress .sp-bar{
+  flex:1;height:8px;background:rgba(255,255,255,.06);
+  border-radius:99px;overflow:hidden;
+}
+.section-progress .sp-bar > span{
+  display:block;height:100%;border-radius:99px;
+  background:var(--grad-1);transition:width .4s ease;
+  box-shadow:0 0 12px rgba(124,92,255,.35);
+}
+.section-progress .sp-value{
+  font-family:var(--mono);font-size:.82rem;
+  color:var(--text);font-weight:700;min-width:110px;text-align:right;
+}
+
+/* Nav item progress mini-bar */
+.nav-item{position:relative;padding-bottom:10px}
+.nav-item .nav-mini-bar{
+  position:absolute;bottom:3px;left:10px;right:10px;
+  height:2px;background:rgba(255,255,255,.05);
+  border-radius:99px;overflow:hidden;
+}
+.nav-item .nav-mini-bar > span{
+  display:block;height:100%;background:var(--grad-1);
+  border-radius:99px;transition:width .4s ease;
+}
+
+/* Global progress widget (in dashboard) */
+.global-progress-card{
+  background:linear-gradient(135deg,rgba(124,92,255,.10),rgba(34,211,238,.05));
+  border:1px solid rgba(124,92,255,.3);
+  border-radius:var(--radius);padding:24px;margin-bottom:22px;
+  box-shadow:0 12px 36px rgba(124,92,255,.12);
+}
+.global-progress-card .gpc-head{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;margin-bottom:14px;
+}
+.global-progress-card .gpc-title{margin:0;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+.global-progress-card .gpc-pct{
+  font-family:var(--mono);font-size:2.4rem;font-weight:800;
+  background:var(--grad-1);-webkit-background-clip:text;
+  background-clip:text;color:transparent;line-height:1;
+}
+.global-progress-card .gpc-bar{
+  height:14px;background:rgba(255,255,255,.06);
+  border-radius:99px;overflow:hidden;margin-bottom:18px;
+}
+.global-progress-card .gpc-bar > span{
+  display:block;height:100%;border-radius:99px;
+  background:var(--grad-1);transition:width .5s ease;
+  box-shadow:0 0 16px rgba(124,92,255,.5);
+}
+.global-progress-card .gpc-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+}
+@media (max-width:900px){.global-progress-card .gpc-grid{grid-template-columns:repeat(2,1fr)}}
+.global-progress-card .gpc-stat{
+  background:rgba(0,0,0,.25);border:1px solid var(--border);
+  border-radius:10px;padding:12px 14px;
+}
+.global-progress-card .gpc-stat .stat-label{
+  font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--muted);font-weight:600;
+}
+.global-progress-card .gpc-stat .stat-val{
+  font-size:1.35rem;font-weight:800;color:#fff;margin-top:4px;
+}
+.global-progress-card .gpc-actions{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;
+}
+.global-progress-card .gpc-actions .btn{
+  padding:6px 12px;font-size:.78rem;
+}
+
+/* Section progress list (per-area inside global card) */
+.section-progress-list{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px;
+}
+@media (max-width:700px){.section-progress-list{grid-template-columns:1fr}}
+.spl-row{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;background:rgba(0,0,0,.2);
+  border:1px solid var(--border);border-radius:9px;
+  cursor:pointer;transition:all .15s ease;
+}
+.spl-row:hover{border-color:rgba(124,92,255,.4);background:rgba(124,92,255,.06)}
+.spl-row .spl-name{font-size:.82rem;color:var(--text);flex:1;font-weight:500}
+.spl-row .spl-bar{
+  width:70px;height:6px;background:rgba(255,255,255,.06);
+  border-radius:99px;overflow:hidden;
+}
+.spl-row .spl-bar > span{
+  display:block;height:100%;background:var(--grad-1);
+  border-radius:99px;transition:width .4s ease;
+}
+.spl-row .spl-pct{
+  font-family:var(--mono);font-size:.76rem;
+  color:var(--muted);min-width:38px;text-align:right;font-weight:700;
+}
+
+/* Floating progress dock */
+.progress-dock{
+  position:fixed;bottom:18px;right:18px;z-index:50;
+  background:linear-gradient(135deg,#161c33,#0f1426);
+  border:1px solid rgba(124,92,255,.45);
+  box-shadow:0 12px 36px rgba(0,0,0,.5),0 0 24px rgba(124,92,255,.22);
+  border-radius:14px;padding:12px 16px 12px 14px;
+  display:flex;align-items:center;gap:12px;min-width:220px;
+  transition:transform .2s ease;cursor:pointer;
+  font-family:inherit;color:var(--text);
+}
+.progress-dock:hover{transform:translateY(-2px)}
+.progress-dock .ring{
+  position:relative;width:48px;height:48px;flex-shrink:0;
+}
+.progress-dock .ring svg{transform:rotate(-90deg)}
+.progress-dock .ring circle{fill:none;stroke-width:5}
+.progress-dock .ring .bg{stroke:rgba(255,255,255,.08)}
+.progress-dock .ring .fg{
+  stroke:url(#dockGrad);stroke-linecap:round;
+  transition:stroke-dashoffset .5s ease;
+}
+.progress-dock .ring-label{
+  position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-size:.72rem;font-weight:800;color:#fff;
+  font-family:var(--mono);
+}
+.progress-dock .dock-meta{display:flex;flex-direction:column;gap:2px}
+.progress-dock .dock-title{
+  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;
+}
+.progress-dock .dock-stats{font-size:.82rem;color:var(--text);font-weight:600}
+@media (max-width:700px){
+  .progress-dock{bottom:10px;right:10px;min-width:0;padding:10px}
+  .progress-dock .dock-meta{display:none}
+}
+
+/* Toast */
+.toast{
+  position:fixed;bottom:90px;left:50%;
+  transform:translateX(-50%) translateY(20px);
+  background:rgba(16,185,129,.95);color:#fff;font-weight:600;font-size:.85rem;
+  padding:10px 18px;border-radius:10px;z-index:100;
+  box-shadow:0 8px 24px rgba(16,185,129,.4);
+  transition:transform .3s ease,opacity .3s ease;
+  opacity:0;pointer-events:none;
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* Phase card: show progress overlay when started */
+.phase{position:relative}
+.phase .phase-progress{
+  position:absolute;top:14px;right:14px;
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  background:rgba(0,0,0,.3);border:1px solid rgba(124,92,255,.3);
+  padding:3px 8px;border-radius:99px;color:#c4b5fd;
+}
+.phase.completed{
+  background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(34,211,238,.05));
+  border-color:rgba(16,185,129,.4);
+}
+.phase.completed .phase-progress{
+  background:rgba(16,185,129,.2);border-color:rgba(16,185,129,.5);color:#6ee7b7;
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+<aside class="sidebar">
+  <div class="brand">
+    <div class="logo">CD</div>
+    <div>
+      <div class="brand-name">Career OS</div>
+      <div class="brand-sub">Data · AI · Elite</div>
+    </div>
+  </div>
+
+  <div class="nav-section">Visión</div>
+  <div class="nav-item active" data-target="dashboard"><span class="ic">◉</span> Dashboard</div>
+  <div class="nav-item" data-target="roadmap"><span class="ic">⛰</span> Roadmap Maestro</div>
+  <div class="nav-item" data-target="phases"><span class="ic">▤</span> 11 Fases</div>
+  <div class="nav-item" data-target="study"><span class="ic">▦</span> Plan de Estudio</div>
+
+  <div class="nav-section">Habilidades Core</div>
+  <div class="nav-item" data-target="python"><span class="ic">🐍</span> Python</div>
+  <div class="nav-item" data-target="sql"><span class="ic">◇</span> SQL</div>
+  <div class="nav-item" data-target="de"><span class="ic">⟁</span> Data Engineering</div>
+  <div class="nav-item" data-target="cloud"><span class="ic">☁</span> Cloud</div>
+  <div class="nav-item" data-target="bigdata"><span class="ic">∞</span> Big Data</div>
+  <div class="nav-item" data-target="ai"><span class="ic">✦</span> AI & ML</div>
+  <div class="nav-item" data-target="mlops"><span class="ic">⚙</span> MLOps & AI Infra</div>
+
+  <div class="nav-section">Soporte</div>
+  <div class="nav-item" data-target="git"><span class="ic">⎇</span> Git & GitHub</div>
+  <div class="nav-item" data-target="english"><span class="ic">🌐</span> Inglés</div>
+  <div class="nav-item" data-target="certs"><span class="ic">★</span> Certificaciones</div>
+  <div class="nav-item" data-target="portfolio"><span class="ic">▢</span> Portafolio</div>
+
+  <div class="nav-section">Estrategia</div>
+  <div class="nav-item" data-target="nodegree"><span class="ic">⚑</span> Sin Universidad</div>
+  <div class="nav-item" data-target="freelance"><span class="ic">$</span> Freelance / Remoto</div>
+  <div class="nav-item" data-target="bigtech"><span class="ic">▲</span> Big Tech</div>
+  <div class="nav-item" data-target="market"><span class="ic">📈</span> Mercado Laboral</div>
+
+  <div class="nav-section">Operación</div>
+  <div class="nav-item" data-target="tools"><span class="ic">⚒</span> Herramientas</div>
+  <div class="nav-item" data-target="resources"><span class="ic">▥</span> Recursos</div>
+  <div class="nav-item" data-target="plans"><span class="ic">⏱</span> Planes (6m/1a/2a)</div>
+  <div class="nav-item" data-target="master"><span class="ic">⬢</span> Master Action Plan</div>
+
+  <div style="margin-top:24px;padding:10px;font-size:.7rem;color:var(--muted);text-align:center;border-top:1px solid var(--border)">
+    v1.0 · Made for Cristhian<br>2026
+  </div>
+</aside>
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+<main class="main">
+
+<div class="topbar">
+  <div class="crumb">Career OS · <b id="crumb">Dashboard</b></div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <span class="badge b-elite">Modo Élite</span>
+    <span class="badge">Colombia 🇨🇴 → Remote 🌍</span>
+  </div>
+</div>
+
+<!-- ===================== DASHBOARD ===================== -->
+<section id="dashboard" class="active">
+  <div class="section-header">
+    <h1>Elite Data &amp; AI Career Operating System</h1>
+    <p>Una hoja de ruta brutalmente honesta para escalar de cero a perfil élite internacional en Data &amp; AI. Sin universidad, sin atajos falsos, con foco quirúrgico en habilidades de alto ROI y empleabilidad global.</p>
+  </div>
+
+  <!-- =========================================================
+       GLOBAL PROGRESS WIDGET
+  ========================================================= -->
+  <div class="global-progress-card">
+    <div class="gpc-head">
+      <div>
+        <h2 class="gpc-title">🎯 Tu Progreso Global</h2>
+        <p class="muted small" style="margin:4px 0 0">Marca las tareas a medida que las completes. Tu progreso se guarda automáticamente en este navegador.</p>
+      </div>
+      <div class="gpc-pct" id="globalPct">0%</div>
+    </div>
+    <div class="gpc-bar"><span id="globalBar" style="width:0%"></span></div>
+    <div class="gpc-grid">
+      <div class="gpc-stat">
+        <div class="stat-label">Tareas completadas</div>
+        <div class="stat-val"><span id="completedCount">0</span> <span style="color:var(--muted);font-weight:500">/ <span id="totalCount">0</span></span></div>
+      </div>
+      <div class="gpc-stat">
+        <div class="stat-label">Fases iniciadas</div>
+        <div class="stat-val"><span id="phasesInProgress">0</span> <span style="color:var(--muted);font-weight:500">/ 11</span></div>
+      </div>
+      <div class="gpc-stat">
+        <div class="stat-label">Última actualización</div>
+        <div class="stat-val" style="font-size:.95rem" id="lastUpdated">—</div>
+      </div>
+      <div class="gpc-stat">
+        <div class="stat-label">Backup / Reset</div>
+        <div class="gpc-actions">
+          <button class="btn ghost" onclick="exportProgress()" title="Descarga tu progreso como JSON">💾 Export</button>
+          <button class="btn ghost" onclick="importProgress()" title="Importa un backup">📂 Import</button>
+          <button class="btn ghost" onclick="resetProgress()" style="border-color:rgba(239,68,68,.3);color:#fb7185" title="Borra todo el progreso">🔄 Reset</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:20px">
+      <div class="stat-label" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600;margin-bottom:8px">📊 Progreso por área (haz clic para navegar)</div>
+      <div class="section-progress-list" id="sectionProgressList">
+        <div class="muted small" style="grid-column:1/-1;padding:8px">Aún no hay tareas marcadas. Empieza por cualquier sección 👇</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid g-4">
+    <div class="card kpi"><div class="label">Fases totales</div><div class="value">11</div><div class="delta">de Analyst a Staff/Principal</div></div>
+    <div class="card kpi alt"><div class="label">Horizonte realista</div><div class="value">5–8 años</div><div class="delta">para top-tier internacional</div></div>
+    <div class="card kpi alt3"><div class="label">Stack core</div><div class="value">SQL · Py · Cloud</div><div class="delta">+ Spark · dbt · AI</div></div>
+    <div class="card kpi alt4"><div class="label">Salario techo</div><div class="value">USD 250k+</div><div class="delta">Staff/Principal remoto</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="grid g-2">
+    <div class="card">
+      <h3>📊 Evolución salarial realista (USD anual · remoto LATAM→Global)</h3>
+      <p class="small muted">Estimaciones reales basadas en mercado 2024-2026. Varía por empresa, país de la empresa, y nivel de inglés.</p>
+      <div class="chart-wrap"><canvas id="salaryChart"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>🎯 Distribución de tiempo recomendada (Año 1)</h3>
+      <p class="small muted">Tu energía es finita. Esta es la asignación con mejor ROI para alguien sin universidad apuntando a roles internacionales.</p>
+      <div class="chart-wrap"><canvas id="timeChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>🧭 Tu situación, leída sin filtros</h2>
+  <div class="grid g-3">
+    <div class="card">
+      <div class="card-title"><h3>✅ Ventajas reales</h3><span class="badge b-easy">Aprovechar</span></div>
+      <ul class="tight">
+        <li>Vives en Colombia: costo de vida bajo, USD remoto = arbitraje brutal.</li>
+        <li>MacBook Air M4: hardware sobrado para todo lo no-GPU; lo demás se hace en cloud.</li>
+        <li>Te gusta el stack correcto (Python, SQL, Linux, cloud, APIs). Eso es 80% del trabajo real.</li>
+        <li>No tienes deuda académica ni inercia de carrera previa: puedes especializarte rápido.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><h3>⚠️ Riesgos a neutralizar</h3><span class="badge b-mid">Atacar ya</span></div>
+      <ul class="tight">
+        <li><b>Inglés.</b> Bloqueador #1 para Big Tech. Sin C1 conversacional, te tope quedas en LATAM.</li>
+        <li>No tener título te <i>cuesta cero</i> en startups de USA/EU y mucho en empresas tradicionales. Elige bien.</li>
+        <li>Tentación de saltar a “AI Engineer” sin fundamentos: morirás en la primera entrevista técnica.</li>
+        <li>Tutoriales infinitos sin construir: el mercado paga por <i>portafolio</i> y <i>experiencia</i>, no por horas viendo videos.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><h3>🎯 Apuestas estratégicas</h3><span class="badge b-elite">Decidir</span></div>
+      <ul class="tight">
+        <li>Especialización en <b>Data Engineering moderno</b> (dbt + Spark + Cloud) como columna vertebral.</li>
+        <li>Cloud principal: <b>AWS</b> primero (mayor mercado), GCP después si vas a ML/AI.</li>
+        <li>Capa AI/ML encima de DE: <b>AI Engineering</b> con LLMs/RAG es el área de mayor crecimiento 2025-2028.</li>
+        <li>Construir en público: GitHub + LinkedIn + 1 blog/portfolio. Tu currículum es tu repositorio.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>🔥 Verdades incómodas (léelas dos veces)</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <div class="note danger"><b>1.</b> Nadie te va a contratar como “Data Engineer Senior” en 6 meses. Si alguien te lo promete, te está vendiendo humo. Camino realista a DE empleable: 12–18 meses sólidos.</div>
+      <div class="note warn"><b>2.</b> Certificaciones <i>no</i> reemplazan portafolio. Una sola certificación + 3 proyectos sólidos pesa más que 5 certificaciones sin código.</div>
+      <div class="note"><b>3.</b> Tu inglés determinará tu techo salarial más que cualquier stack técnico. Habla en inglés desde el día 1, aunque te dé vergüenza.</div>
+    </div>
+    <div class="card">
+      <div class="note danger"><b>4.</b> “AI Engineer” sin fundamentos de Data Engineering es un castillo de naipes. Los modelos no sirven si tus datos están rotos.</div>
+      <div class="note warn"><b>5.</b> LeetCode no te hace Data Engineer, pero <i>sí</i> es la única forma de pasar entrevistas Big Tech. Acepta el juego.</div>
+      <div class="note ok"><b>6.</b> La consistencia diaria de 3–4h disciplinadas, vence a 10h fines de semana. Compounding is the only superpower.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>🗓️ Tu mapa de los próximos 24 meses</h2>
+  <div class="card">
+    <div class="grid g-4" style="margin-bottom:10px">
+      <div><div class="muted small">Q1 2026 (May–Jul)</div><b>Fundamentos brutales</b><div class="bar"><span style="width:100%"></span></div></div>
+      <div><div class="muted small">Q2 2026 (Ago–Oct)</div><b>Data Analyst técnico</b><div class="bar alt"><span style="width:80%"></span></div></div>
+      <div><div class="muted small">Q3 2026 (Nov–Ene)</div><b>Analytics Engineer + dbt</b><div class="bar alt3"><span style="width:65%"></span></div></div>
+      <div><div class="muted small">Q4 2026 (Feb–Abr)</div><b>Data Engineer Jr</b><div class="bar alt4"><span style="width:50%"></span></div></div>
+      <div><div class="muted small">Q5 2027 (May–Jul)</div><b>Cloud DE + AWS Cert</b><div class="bar"><span style="width:38%"></span></div></div>
+      <div><div class="muted small">Q6 2027 (Ago–Oct)</div><b>Spark + Streaming</b><div class="bar alt"><span style="width:30%"></span></div></div>
+      <div><div class="muted small">Q7 2027 (Nov–Ene)</div><b>MLOps + AI Infra</b><div class="bar alt3"><span style="width:22%"></span></div></div>
+      <div><div class="muted small">Q8 2028 (Feb–Abr)</div><b>AI Engineer (LLMs/RAG)</b><div class="bar alt4"><span style="width:15%"></span></div></div>
+    </div>
+    <p class="muted small">Cada barra representa el % de saturación esperada de esa habilidad al final del trimestre. Esto NO significa "dominio total" — significa "empleable a nivel junior/mid de ese rol".</p>
+  </div>
+</section>
+
+<!-- ===================== ROADMAP ===================== -->
+<section id="roadmap">
+  <div class="section-header">
+    <h1>Roadmap Maestro</h1>
+    <p>Una visión jerárquica de qué dominar y en qué orden. Las dependencias importan: saltarse niveles te dejará huecos que te tumbarán en entrevistas senior.</p>
+  </div>
+
+  <div class="card">
+    <h3>🌳 Árbol de dependencias (visual)</h3>
+    <pre style="font-family:var(--mono);font-size:.78rem;color:var(--muted);overflow-x:auto;line-height:1.5;background:transparent">
+[NIVEL 0 · Fundamentos Universales]
+  ├─ Linux / Bash / Terminal ─────────────────────────────┐
+  ├─ Git & GitHub ────────────────────────────────────────┤
+  ├─ Inglés técnico (B2 → C1) ────────────────────────────┤
+  └─ Pensamiento computacional ───────────────────────────┤
+                                                          ▼
+[NIVEL 1 · Lenguajes Núcleo]
+  ├─ SQL (básico → ventana, CTEs, optimización) ─────────┐
+  └─ Python (básico → OOP → APIs → async → testing) ─────┤
+                                                          ▼
+[NIVEL 2 · Datos Aplicados]
+  ├─ Pandas / NumPy / Polars                              │
+  ├─ Visualización (Matplotlib, Plotly, BI tools)         │
+  ├─ Estadística aplicada                                 │
+  └─ Modelado dimensional (star, snowflake)               │
+                                                          ▼
+[NIVEL 3 · Analytics Engineering]
+  ├─ dbt (modelos, tests, docs, lineage)                  │
+  ├─ Warehouses (Snowflake, BigQuery, Redshift)           │
+  └─ Data Modeling avanzado                               │
+                                                          ▼
+[NIVEL 4 · Data Engineering]
+  ├─ Orquestación (Airflow / Prefect / Dagster)           │
+  ├─ ETL/ELT patterns                                     │
+  ├─ Data Quality (Great Expectations, dbt tests)         │
+  ├─ Spark (PySpark, optimización)                        │
+  └─ Storage: Parquet, Delta, Iceberg                     │
+                                                          ▼
+[NIVEL 5 · Cloud Data Engineering]
+  ├─ AWS (S3, Glue, EMR, Redshift, Lambda, Step Funcs)    │
+  ├─ IAM / Networking básico                              │
+  ├─ Terraform (IaC)                                      │
+  └─ Cost optimization                                    │
+                                                          ▼
+[NIVEL 6 · Big Data / Streaming / Distributed]
+  ├─ Spark profundo (Catalyst, particionado, shuffle)     │
+  ├─ Kafka (productores, consumidores, schema registry)   │
+  ├─ Flink / Spark Streaming                              │
+  └─ Sistemas distribuidos (CAP, consensus, replication)  │
+                                                          ▼
+[NIVEL 7 · Data Architecture]
+  ├─ Lakehouse (Delta/Iceberg/Hudi)                       │
+  ├─ Medallion architecture                               │
+  ├─ Data Mesh / Data Contracts                           │
+  └─ Governance, lineage, observability                   │
+                                                          ▼
+[NIVEL 8 · ML Foundations]
+  ├─ Matemáticas aplicadas (álgebra lineal, calc, prob)   │
+  ├─ ML clásico (scikit-learn)                            │
+  ├─ Feature engineering                                  │
+  └─ Evaluación y validación                              │
+                                                          ▼
+[NIVEL 9 · MLOps & AI Infra]
+  ├─ MLflow / Weights & Biases                            │
+  ├─ Docker / Kubernetes                                  │
+  ├─ Model serving (FastAPI, BentoML, Triton)             │
+  └─ CI/CD para ML                                        │
+                                                          ▼
+[NIVEL 10 · AI Engineering Moderno]
+  ├─ LLMs (OpenAI, Anthropic, open-source)                │
+  ├─ RAG (vector DBs, embeddings, retrieval)              │
+  ├─ Agents (tool-use, orchestration)                     │
+  └─ Inference at scale                                   │
+                                                          ▼
+[NIVEL 11 · Staff/Principal]
+  ├─ System Design (data platforms)                       │
+  ├─ Tech leadership / mentoring                          │
+  ├─ Cross-functional influence                           │
+  └─ Architectural decision making (ADRs)
+    </pre>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>🎯 Matriz de priorización (qué aprender primero)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Habilidad</th><th>Impacto laboral</th><th>Dificultad</th><th>Tiempo</th><th>ROI</th><th>Cuándo</th></tr></thead>
+      <tbody>
+        <tr><td><b>SQL avanzado</b></td><td>★★★★★</td><td><span class="badge b-mid">Media</span></td><td>3–4 meses</td><td><span class="badge b-roi-high">Altísimo</span></td><td>Mes 1–4</td></tr>
+        <tr><td><b>Python para datos</b></td><td>★★★★★</td><td><span class="badge b-mid">Media</span></td><td>4–6 meses</td><td><span class="badge b-roi-high">Altísimo</span></td><td>Mes 1–6</td></tr>
+        <tr><td><b>Git + Linux</b></td><td>★★★★★</td><td><span class="badge b-easy">Baja</span></td><td>1 mes</td><td><span class="badge b-roi-high">Altísimo</span></td><td>Mes 1–2</td></tr>
+        <tr><td><b>dbt</b></td><td>★★★★★</td><td><span class="badge b-easy">Baja</span></td><td>1–2 meses</td><td><span class="badge b-roi-high">Altísimo</span></td><td>Mes 5–7</td></tr>
+        <tr><td><b>Airflow</b></td><td>★★★★☆</td><td><span class="badge b-mid">Media</span></td><td>2 meses</td><td><span class="badge b-roi-high">Alto</span></td><td>Mes 7–9</td></tr>
+        <tr><td><b>Spark (PySpark)</b></td><td>★★★★★</td><td><span class="badge b-hard">Alta</span></td><td>4–6 meses</td><td><span class="badge b-roi-high">Altísimo</span></td><td>Mes 10–15</td></tr>
+        <tr><td><b>AWS</b></td><td>★★★★★</td><td><span class="badge b-mid">Media</span></td><td>3–4 meses</td><td><span class="badge b-roi-high">Altísimo</span></td><td>Mes 8–12</td></tr>
+        <tr><td><b>Inglés C1</b></td><td>★★★★★</td><td><span class="badge b-hard">Alta</span></td><td>12–24 meses</td><td><span class="badge b-roi-high">Crítico</span></td><td>Día 1 → siempre</td></tr>
+        <tr><td><b>Docker</b></td><td>★★★★☆</td><td><span class="badge b-easy">Baja</span></td><td>2 semanas</td><td><span class="badge b-roi-high">Alto</span></td><td>Mes 6</td></tr>
+        <tr><td><b>Kubernetes básico</b></td><td>★★★☆☆</td><td><span class="badge b-hard">Alta</span></td><td>2 meses</td><td>Medio</td><td>Mes 18+</td></tr>
+        <tr><td><b>Kafka / streaming</b></td><td>★★★★☆</td><td><span class="badge b-hard">Alta</span></td><td>2–3 meses</td><td><span class="badge b-roi-high">Alto</span></td><td>Mes 14–18</td></tr>
+        <tr><td><b>Snowflake / BigQuery</b></td><td>★★★★★</td><td><span class="badge b-easy">Baja</span></td><td>1 mes</td><td><span class="badge b-roi-high">Altísimo</span></td><td>Mes 6–8</td></tr>
+        <tr><td><b>LLMs / RAG</b></td><td>★★★★★</td><td><span class="badge b-mid">Media</span></td><td>2–3 meses</td><td><span class="badge b-roi-high">Altísimo</span></td><td>Mes 18+</td></tr>
+        <tr><td><b>ML clásico</b></td><td>★★★☆☆</td><td><span class="badge b-hard">Alta</span></td><td>4–6 meses</td><td>Medio</td><td>Mes 16+</td></tr>
+        <tr><td><b>System Design</b></td><td>★★★★★</td><td><span class="badge b-hard">Alta</span></td><td>Continuo</td><td><span class="badge b-roi-high">Crítico</span></td><td>Mes 12+</td></tr>
+        <tr><td><b>LeetCode</b></td><td>★★★☆☆</td><td><span class="badge b-hard">Alta</span></td><td>Continuo</td><td>Medio (alto si Big Tech)</td><td>Mes 12+</td></tr>
+        <tr><td><b>Terraform</b></td><td>★★★☆☆</td><td><span class="badge b-mid">Media</span></td><td>3 semanas</td><td>Alto</td><td>Mes 14+</td></tr>
+        <tr><td><b>Tableau/Power BI</b></td><td>★★☆☆☆</td><td><span class="badge b-easy">Baja</span></td><td>1 mes</td><td>Bajo (saturado)</td><td>Opcional</td></tr>
+        <tr><td><b>Excel avanzado</b></td><td>★★☆☆☆</td><td><span class="badge b-easy">Baja</span></td><td>2 semanas</td><td>Bajo</td><td>Solo si lo pide el job</td></tr>
+        <tr><td><b>NoSQL (Mongo, DynamoDB)</b></td><td>★★★☆☆</td><td><span class="badge b-mid">Media</span></td><td>1 mes</td><td>Medio</td><td>Mes 16+</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note warn">⚠️ <b>Trampa común:</b> querer aprender todo en paralelo. Una habilidad bien aprendida en 8 semanas vale más que 5 habilidades aprendidas a medias. <b>Profundidad &gt; amplitud</b> hasta llegar a mid-level.</div>
+</section>
+
+<!-- ===================== PHASES ===================== -->
+<section id="phases">
+  <div class="section-header">
+    <h1>Las 11 Fases · De Cero a Élite</h1>
+    <p>Cada fase es un perfil profesional con su propio mercado, expectativas y stack. No saltes etapas: cada rol cierra brechas que el siguiente exigirá.</p>
+  </div>
+
+  <div class="grid g-2">
+    <div class="phase">
+      <div class="num">01</div>
+      <span class="badge b-easy">Entrada</span>
+      <h3>Data Analyst técnico avanzado</h3>
+      <div class="salary">USD 1.5k–3.5k/mes remoto LATAM</div>
+      <p class="small muted">Tiempo desde cero: 6–9 meses</p>
+      <p><b>Qué dominar:</b> SQL avanzado, Python para análisis (pandas, numpy), visualización (Matplotlib + un BI: Looker/Metabase), estadística aplicada, storytelling con datos.</p>
+      <p><b>Cómo demostrar:</b> 3 proyectos de análisis end-to-end (datos crudos → dashboard → insights). Datasets reales (Kaggle no cuenta como portfolio fuerte; usa datos de API pública).</p>
+      <p><b>Trampa:</b> quedarte en Excel/PowerBI sin tocar SQL y Python. No te paga el doble.</p>
+    </div>
+
+    <div class="phase">
+      <div class="num">02</div>
+      <span class="badge b-easy">Entrada+</span>
+      <h3>Analytics Engineer</h3>
+      <div class="salary">USD 3k–6k/mes remoto</div>
+      <p class="small muted">Tiempo desde Analyst: 3–6 meses</p>
+      <p><b>Qué dominar:</b> dbt (cor, tests, docs, snapshots, macros), modelado dimensional, warehouses (Snowflake/BigQuery), Git/CI-CD para data, data quality.</p>
+      <p><b>Cómo demostrar:</b> repo dbt completo con seeds, sources, modelos staging→intermediate→marts, tests, exposures, docs publicadas en GitHub Pages.</p>
+      <p><b>Por qué es el rol más subestimado:</b> alta demanda, baja barrera de entrada vs DE, sueldos casi iguales a DE junior.</p>
+    </div>
+
+    <div class="phase">
+      <div class="num">03</div>
+      <span class="badge b-mid">Mid</span>
+      <h3>Data Engineer</h3>
+      <div class="salary">USD 4k–8k/mes remoto</div>
+      <p class="small muted">Tiempo desde Analytics Eng: 6–12 meses</p>
+      <p><b>Qué dominar:</b> Python avanzado (OOP, async, testing, packaging), Airflow/Prefect, ETL/ELT patterns, Spark básico, Kafka básico, Docker, AWS o GCP.</p>
+      <p><b>Cómo demostrar:</b> 2 pipelines productivos end-to-end (ingesta → transform → almacenamiento → orquestación → monitoreo). Bonus: infra como código con Terraform.</p>
+    </div>
+
+    <div class="phase">
+      <div class="num">04</div>
+      <span class="badge b-mid">Senior</span>
+      <h3>Senior Data Engineer</h3>
+      <div class="salary">USD 7k–14k/mes remoto</div>
+      <p class="small muted">Tiempo desde DE: 18–24 meses</p>
+      <p><b>Qué dominar:</b> diseño de sistemas, optimización Spark profunda, manejo de incidentes en prod, mentoring, decisiones arquitectónicas, costos cloud, observabilidad.</p>
+      <p><b>Cómo demostrar:</b> caso de estudio de un sistema diseñado por ti (architectural decision records), métricas de impacto (latencia ↓, costo ↓, throughput ↑).</p>
+      <p><b>Diferencial:</b> capacidad de decir <i>no</i> y justificarlo con tradeoffs.</p>
+    </div>
+
+    <div class="phase">
+      <div class="num">05</div>
+      <span class="badge b-mid">Especialización</span>
+      <h3>Cloud Data Engineer</h3>
+      <div class="salary">USD 6k–13k/mes remoto</div>
+      <p class="small muted">Concurrente con DE/Sr DE</p>
+      <p><b>Qué dominar:</b> AWS profundo (S3, Glue, EMR, Athena, Lake Formation, Step Functions, MSK), IAM correcto, Terraform, cost optimization, multi-account architecture.</p>
+      <p><b>Cert sugerida:</b> AWS Data Engineer Associate (ex DA-C01) y luego AWS Solutions Architect Associate.</p>
+    </div>
+
+    <div class="phase">
+      <div class="num">06</div>
+      <span class="badge b-hard">Especialización</span>
+      <h3>Big Data Engineer</h3>
+      <div class="salary">USD 8k–15k/mes remoto</div>
+      <p class="small muted">Concurrente con Sr DE</p>
+      <p><b>Qué dominar:</b> Spark al nivel de leer planes de ejecución, particionado físico, shuffle, broadcast joins, Kafka end-to-end, Flink básico, sistemas distribuidos teóricos.</p>
+      <p><b>Cert sugerida:</b> Databricks Data Engineer Professional.</p>
+    </div>
+
+    <div class="phase">
+      <div class="num">07</div>
+      <span class="badge b-hard">Arquitecto</span>
+      <h3>Data Architect</h3>
+      <div class="salary">USD 10k–18k/mes remoto</div>
+      <p class="small muted">5–7 años de experiencia acumulada</p>
+      <p><b>Qué dominar:</b> patrones arquitectónicos (medallion, mesh, vault), trade-offs entre lakehouse vs warehouse, governance, data contracts, lineage, costos a escala.</p>
+      <p><b>Diferencial:</b> capacidad de comunicar con stakeholders no-técnicos y guiar decisiones de 7 cifras.</p>
+    </div>
+
+    <div class="phase">
+      <div class="num">08</div>
+      <span class="badge b-hard">Especialización</span>
+      <h3>AI / Data Infrastructure Engineer</h3>
+      <div class="salary">USD 10k–20k/mes remoto</div>
+      <p class="small muted">Puente entre DE y ML</p>
+      <p><b>Qué dominar:</b> feature stores (Feast, Tecton), MLOps, GPU infra, Kubernetes para ML, model registries, real-time inference, AI platform engineering.</p>
+    </div>
+
+    <div class="phase">
+      <div class="num">09</div>
+      <span class="badge b-hard">ML</span>
+      <h3>ML Engineer</h3>
+      <div class="salary">USD 9k–18k/mes remoto</div>
+      <p class="small muted">Tiempo desde DE Sr: 12–18 meses</p>
+      <p><b>Qué dominar:</b> ML clásico + DL fundamentos, PyTorch, training pipelines, hyperparameter tuning, model evaluation, deployment, monitoring (drift, decay).</p>
+      <p><b>Trampa:</b> creer que MLE = Data Scientist. MLE construye sistemas que sirven modelos en prod, no investiga modelos nuevos.</p>
+    </div>
+
+    <div class="phase">
+      <div class="num">10</div>
+      <span class="badge b-elite">Élite</span>
+      <h3>AI Engineer (LLMs, RAG, Agents)</h3>
+      <div class="salary">USD 10k–22k+/mes remoto</div>
+      <p class="small muted">Área de mayor crecimiento 2025-2028</p>
+      <p><b>Qué dominar:</b> APIs de LLM (OpenAI, Anthropic, Bedrock), embeddings, vector DBs (Pinecone, Weaviate, pgvector), RAG avanzado, agents (function calling, tool-use), eval frameworks, prompt engineering avanzado, fine-tuning.</p>
+      <p><b>Por qué élite:</b> conoces ambos mundos (data infra + AI). El 90% de "AI Engineers" en el mercado son full-stack devs disfrazados; tú serás el real.</p>
+    </div>
+
+    <div class="phase">
+      <div class="num">11</div>
+      <span class="badge b-elite">Top 1%</span>
+      <h3>Principal / Staff Data &amp; AI Engineer</h3>
+      <div class="salary">USD 200k–500k+/año</div>
+      <p class="small muted">7–10 años total · Big Tech o startups top</p>
+      <p><b>Qué dominar:</b> system design al nivel de mover el roadmap técnico de una empresa, mentoring, comunicación ejecutiva, decisiones de plataforma, influencia cross-team.</p>
+      <p><b>Cómo llegar:</b> resultados de impacto multimillonario documentados + presencia técnica pública (blog, charlas, OSS).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STUDY PLAN ===================== -->
+<section id="study">
+  <div class="section-header">
+    <h1>Plan de Estudio · Semanas, Meses, Trimestres, Años</h1>
+    <p>Estudiar sin sistema es entretenimiento. Con sistema, es palanca. Esto es lo que harías si tu carrera dependiera de ello (porque depende).</p>
+  </div>
+
+  <div class="grid g-3">
+    <div class="card kpi"><div class="label">Horas/día sostenidas</div><div class="value">3–4h</div><div class="delta">+ 6–8h fines de semana</div></div>
+    <div class="card kpi alt"><div class="label">Horas/semana objetivo</div><div class="value">28–35h</div><div class="delta">consistencia &gt; intensidad</div></div>
+    <div class="card kpi alt3"><div class="label">Proyectos/trimestre</div><div class="value">1–2</div><div class="delta">end-to-end, no toys</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>📅 Plantilla semanal recomendada</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Día</th><th>AM (1h)</th><th>Mañana fuerte (2h)</th><th>Tarde (1h)</th><th>Noche (30 min)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Lun</b></td><td>Inglés (input)</td><td>Skill principal (ej. SQL)</td><td>Proyecto activo</td><td>LinkedIn / lectura</td></tr>
+        <tr><td><b>Mar</b></td><td>Inglés (speaking)</td><td>Python para datos</td><td>Proyecto activo</td><td>GitHub commit log</td></tr>
+        <tr><td><b>Mié</b></td><td>Inglés (input)</td><td>Skill secundaria (Cloud)</td><td>Algoritmos / LeetCode</td><td>Notas / Anki</td></tr>
+        <tr><td><b>Jue</b></td><td>Inglés (speaking)</td><td>Skill principal</td><td>Proyecto activo</td><td>LinkedIn / lectura</td></tr>
+        <tr><td><b>Vie</b></td><td>Inglés (input)</td><td>Skill secundaria</td><td>Proyecto activo</td><td>Demo / pruebas</td></tr>
+        <tr><td><b>Sáb</b></td><td colspan="3"><b>4–6h:</b> sprint de proyecto end-to-end (pipeline, dashboard, deploy). Revisión semanal.</td><td>Retro semanal</td></tr>
+        <tr><td><b>Dom</b></td><td colspan="3"><b>2–3h:</b> repaso, planning de la próxima semana, escribir 1 post LinkedIn/blog corto.</td><td>Off</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">📌 <b>Regla de oro:</b> 60% construir, 30% aprender teoría, 10% socializar/publicar. Si pasas más del 50% mirando cursos, lo estás haciendo mal.</div>
+
+  <div class="divider"></div>
+
+  <h2>🎯 Niveles de dominio · Cómo evaluarte sin engañarte</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Escala de dominio (sé brutalmente honesto)</h3>
+      <ul class="tight">
+        <li><b>Nivel 1 · Reconozco:</b> entiendo el concepto cuando lo veo. <span class="muted">(No cuenta como skill.)</span></li>
+        <li><b>Nivel 2 · Imito:</b> sigo tutoriales sin errores. <span class="muted">(No cuenta para CV.)</span></li>
+        <li><b>Nivel 3 · Aplico:</b> resuelvo problemas reales sin guía paso a paso. <span class="muted">(Ya puedes listarlo en CV.)</span></li>
+        <li><b>Nivel 4 · Construyo:</b> diseño desde cero soluciones para un problema definido por mí. <span class="muted">(Te contratan.)</span></li>
+        <li><b>Nivel 5 · Domino:</b> sé los trade-offs, los antipatrones, sé cuándo NO usarlo. Puedo enseñar. <span class="muted">(Eres senior.)</span></li>
+        <li><b>Nivel 6 · Innovo:</b> contribuyo a OSS, escribo, doy charlas. <span class="muted">(Eres referente.)</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Checkpoints trimestrales obligatorios</h3>
+      <div class="check"><input type="checkbox" id="cp1"><label for="cp1">¿Puedo resolver un problema real <i>sin Google</i>?</label></div>
+      <div class="check"><input type="checkbox" id="cp2"><label for="cp2">¿Tengo un proyecto en GitHub que demuestre esta skill?</label></div>
+      <div class="check"><input type="checkbox" id="cp3"><label for="cp3">¿Puedo explicarlo en inglés en 3 minutos sin tartamudear?</label></div>
+      <div class="check"><input type="checkbox" id="cp4"><label for="cp4">¿He recibido feedback externo (PR review, mentor, comunidad)?</label></div>
+      <div class="check"><input type="checkbox" id="cp5"><label for="cp5">¿Conozco al menos 2 trade-offs/limitaciones de la herramienta?</label></div>
+      <div class="check"><input type="checkbox" id="cp6"><label for="cp6">¿Lo he aplicado en un proyecto fuera del tutorial original?</label></div>
+      <div class="check"><input type="checkbox" id="cp7"><label for="cp7">¿He fallado al usarlo y entiendo por qué fallé?</label></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>📆 Plan por trimestre (los primeros 24 meses)</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <h4>Trimestre 1 · Fundamentos brutales <span class="badge b-easy">Mes 1-3</span></h4>
+      <p><b>Objetivo:</b> SQL sólido (joins, CTEs, window functions), Python básico-intermedio, Git, Linux, primer proyecto pequeño.</p>
+      <div class="tl-meta">
+        <span class="pill">~360h totales</span><span class="pill">2 proyectos pequeños</span><span class="pill">SQL daily</span><span class="pill">Inglés daily</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <h4>Trimestre 2 · Data Analyst empleable <span class="badge b-easy">Mes 4-6</span></h4>
+      <p><b>Objetivo:</b> Pandas, NumPy, visualización, estadística aplicada, primer proyecto end-to-end (ingesta API → SQL → dashboard).</p>
+      <div class="tl-meta">
+        <span class="pill">2 proyectos completos</span><span class="pill">Empezar LinkedIn técnico</span><span class="pill">Primera aplicación a freelance</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <h4>Trimestre 3 · Analytics Engineer <span class="badge b-mid">Mes 7-9</span></h4>
+      <p><b>Objetivo:</b> dbt completo, Snowflake o BigQuery, modelado dimensional, CI/CD básico para data, segundo proyecto serio.</p>
+      <div class="tl-meta">
+        <span class="pill">dbt-fundamentals cert</span><span class="pill">3 modelos dbt en repo público</span><span class="pill">Empezar aplicaciones serias</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <h4>Trimestre 4 · Data Engineer Jr <span class="badge b-mid">Mes 10-12</span></h4>
+      <p><b>Objetivo:</b> Airflow, Docker, pipelines orquestados, AWS básico (S3, Lambda, RDS, IAM), primera certificación cloud.</p>
+      <div class="tl-meta">
+        <span class="pill">AWS Cloud Practitioner</span><span class="pill">Proyecto enterprise-style</span><span class="pill">Entrevistas activas</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <h4>Trimestre 5 · Cloud DE <span class="badge b-mid">Mes 13-15</span></h4>
+      <p><b>Objetivo:</b> AWS profundo (Glue, EMR, Step Functions), Terraform, primer trabajo formal o freelance grande.</p>
+      <div class="tl-meta">
+        <span class="pill">AWS Data Engineer Associate</span><span class="pill">Pipeline en AWS prod-like</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <h4>Trimestre 6 · Spark + Streaming <span class="badge b-hard">Mes 16-18</span></h4>
+      <p><b>Objetivo:</b> PySpark profundo, Kafka, Databricks, streaming básico, optimización de pipelines.</p>
+      <div class="tl-meta">
+        <span class="pill">Databricks DE Associate</span><span class="pill">Proyecto streaming end-to-end</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <h4>Trimestre 7 · MLOps + AI Infra <span class="badge b-hard">Mes 19-21</span></h4>
+      <p><b>Objetivo:</b> Docker avanzado, Kubernetes básico, MLflow, model serving, FastAPI, CI/CD para ML.</p>
+      <div class="tl-meta">
+        <span class="pill">Modelo en prod con monitoring</span><span class="pill">Stack MLOps completo</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <h4>Trimestre 8 · AI Engineering moderno <span class="badge b-elite">Mes 22-24</span></h4>
+      <p><b>Objetivo:</b> LLMs APIs, RAG completo, vector DBs, agents, primer producto AI en producción.</p>
+      <div class="tl-meta">
+        <span class="pill">RAG app pública</span><span class="pill">Blog técnico activo</span><span class="pill">Mid-Senior offers</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PYTHON ===================== -->
+<section id="python">
+  <div class="section-header">
+    <h1>🐍 Python para Data &amp; AI · Ruta Profunda</h1>
+    <p>Python es tu lenguaje de oficio. No el de "scripts cortos" — el de pipelines de producción que mueven millones de filas. Aquí no aprendes Python: lo dominas para datos.</p>
+  </div>
+
+  <details class="expand" open>
+    <summary>Nivel 1 · Fundamentos sólidos (4–6 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Sintaxis, tipos, control de flujo, funciones, comprensiones (list/dict/set comprehension).</li>
+        <li>Manejo de errores y excepciones <i>correcto</i> (no <code>except: pass</code>).</li>
+        <li>Manejo de archivos (text, JSON, CSV), context managers (<code>with</code>).</li>
+        <li>Módulos y paquetes, estructura de proyecto, <code>__init__.py</code>, imports relativos vs absolutos.</li>
+        <li>Type hints (PEP 484) desde el día 1.</li>
+        <li>Entornos virtuales con <code>venv</code> + <code>pip</code>, luego migrar a <code>uv</code> o <code>poetry</code>.</li>
+      </ul>
+      <div class="note">📚 Recurso clave: <b>"Python Crash Course"</b> (Eric Matthes) + <b>Real Python</b> (artículos avanzados).</div>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 2 · OOP, módulos y arquitectura limpia (3–4 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Clases, herencia, composición (prefiere composición).</li>
+        <li>Métodos mágicos (<code>__init__</code>, <code>__repr__</code>, <code>__eq__</code>, <code>__enter__/__exit__</code>).</li>
+        <li>Properties, <code>@classmethod</code>, <code>@staticmethod</code>.</li>
+        <li>Dataclasses y <code>pydantic</code> para data validation.</li>
+        <li>Principios SOLID aplicados a Python (sin sobre-ingeniería).</li>
+        <li>Patrones útiles: Factory, Strategy, Repository (para data layers).</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 3 · Data processing (pandas, numpy, polars) (4–6 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li><b>Pandas:</b> DataFrames, indexado, groupby, merge/join, pivot, time series, optimizaciones (categoricals, dtypes).</li>
+        <li><b>NumPy:</b> arrays, broadcasting, vectorización, álgebra lineal básica.</li>
+        <li><b>Polars:</b> el sustituto moderno de pandas (más rápido, lazy evaluation). Apréndelo en paralelo desde el mes 4.</li>
+        <li>Lectura/escritura de Parquet, ORC, Avro.</li>
+        <li>Profiling con <code>cProfile</code>, <code>line_profiler</code>, <code>memory_profiler</code>.</li>
+      </ul>
+      <div class="note warn">⚠️ Polars está reemplazando pandas en pipelines productivos. Aprende ambos, pero prioriza polars para nuevos proyectos.</div>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 4 · APIs y servicios (FastAPI) (2–3 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>HTTP fundamentals (verbos, status codes, headers).</li>
+        <li>Requests (consumir APIs), <code>httpx</code> (async).</li>
+        <li><b>FastAPI:</b> rutas, validación con Pydantic, dependency injection, docs auto-generadas, autenticación básica.</li>
+        <li>WebSockets básico, background tasks, file uploads.</li>
+        <li>Empaquetar y desplegar APIs con Docker + Uvicorn + Gunicorn.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 5 · Testing, logging, observabilidad (2–3 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li><code>pytest</code> profundo: fixtures, parametrize, markers, mocking con <code>monkeypatch</code> y <code>pytest-mock</code>.</li>
+        <li>Cobertura con <code>coverage.py</code>.</li>
+        <li>Logging estructurado (no <code>print</code>), <code>structlog</code> o <code>loguru</code>.</li>
+        <li>Métricas con Prometheus/OpenTelemetry básico.</li>
+        <li>TDD aplicado a un módulo de data ingestion.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 6 · Async, concurrencia y performance (2–3 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li><code>asyncio</code>, <code>async/await</code>, event loop.</li>
+        <li>Threading vs multiprocessing vs async — cuándo usar cada uno.</li>
+        <li>Concurrency patterns: producer-consumer, worker pools.</li>
+        <li>Optimización: vectorización, numba para hot loops, joblib para paralelismo.</li>
+        <li>Caching con <code>functools.lru_cache</code>, Redis básico.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 7 · Python para Data Engineering (continuo)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>SQLAlchemy (Core + ORM) para interactuar con DBs.</li>
+        <li>Conectores: <code>psycopg2</code>, <code>pymysql</code>, <code>snowflake-connector-python</code>, <code>boto3</code>.</li>
+        <li>Construir un ETL framework propio (ingesta → transform → load → audit).</li>
+        <li>Patrón Repository + Service para separar lógica de IO.</li>
+        <li>Empaquetar y publicar tu propio package en PyPI (test, al menos).</li>
+        <li>CLI tools con <code>typer</code> o <code>click</code>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 8 · Spark con Python (PySpark) (4–6 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>RDDs vs DataFrames vs Datasets (en Python solo DF).</li>
+        <li>Lazy evaluation, planes de ejecución, Catalyst optimizer.</li>
+        <li>Particionado, shuffle, broadcast joins, AQE.</li>
+        <li>UDFs (evita), Pandas UDFs (sí), Arrow integration.</li>
+        <li>Spark Structured Streaming básico.</li>
+        <li>Optimización: skew handling, salting, partition pruning.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 9 · Python para AI/ML workflows</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>scikit-learn: pipelines, ColumnTransformer, cross-validation.</li>
+        <li>PyTorch fundamentos para AI/DL.</li>
+        <li>HuggingFace Transformers para usar/fine-tunear modelos.</li>
+        <li>LangChain / LlamaIndex (con criterio — no son religión).</li>
+        <li>OpenAI SDK, Anthropic SDK, integraciones LLM.</li>
+        <li>Vector DB clients (Pinecone, Weaviate, Qdrant, pgvector).</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="note ok">✅ <b>Proyectos obligatorios en Python:</b> (1) ETL desde 3 APIs públicas a Postgres con Airflow; (2) API REST + dashboard con FastAPI + visualización; (3) Pipeline streaming Kafka→Spark→Iceberg; (4) RAG app completo con FastAPI + Pinecone + OpenAI.</div>
+</section>
+
+<!-- ===================== SQL ===================== -->
+<section id="sql">
+  <div class="section-header">
+    <h1>◇ SQL Avanzado · El idioma universal</h1>
+    <p>SQL no muere. Cada herramienta nueva (Spark, dbt, lakehouse) lo usa o lo emula. Si tu SQL no es excelente, todo lo demás es decoración.</p>
+  </div>
+
+  <div class="grid g-3">
+    <div class="card kpi"><div class="label">Skill</div><div class="value">SQL</div><div class="delta">Skill #1 en demanda data</div></div>
+    <div class="card kpi alt"><div class="label">Horas para dominio</div><div class="value">300+</div><div class="delta">Distribuidas en 6 meses</div></div>
+    <div class="card kpi alt3"><div class="label">Plataformas práctica</div><div class="value">4</div><div class="delta">DataLemur · StrataScratch · LeetCode · HackerRank</div></div>
+  </div>
+
+  <details class="expand" open>
+    <summary>Nivel 1 · Básico empleable (Semana 1–4)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>SELECT, WHERE, ORDER BY, LIMIT.</li>
+        <li>Aggregations: COUNT, SUM, AVG, MIN, MAX, GROUP BY, HAVING.</li>
+        <li>Joins: INNER, LEFT, RIGHT, FULL, CROSS, SELF JOIN.</li>
+        <li>Subqueries (correlated y no correlated).</li>
+        <li>Filtros con IN, BETWEEN, LIKE, IS NULL.</li>
+        <li>Manejo de NULL (COALESCE, NULLIF).</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 2 · CTEs y Window Functions (Semana 5–8) <span class="badge b-priority">Crítico</span></summary>
+    <div class="body">
+      <ul class="tight">
+        <li>CTEs: <code>WITH ... AS</code>, CTEs anidadas, CTEs recursivas (jerarquías).</li>
+        <li>Window functions: <b>ROW_NUMBER, RANK, DENSE_RANK, NTILE</b>.</li>
+        <li><b>LAG, LEAD</b> (comparar filas), <b>FIRST_VALUE, LAST_VALUE</b>.</li>
+        <li>SUM/AVG OVER (PARTITION BY ... ORDER BY ... ROWS BETWEEN ...).</li>
+        <li>Running totals, moving averages, cumulative percentages.</li>
+        <li>Patrón "top N por grupo" con window functions.</li>
+      </ul>
+      <div class="note warn">⚠️ Si no dominas window functions, NO te llamas "avanzado en SQL". Esto es el filtro mínimo para entrevistas data.</div>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 3 · Modelado dimensional (Semana 9–12)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>OLTP vs OLAP — diferencias estructurales y de uso.</li>
+        <li>Modelado dimensional Kimball: facts y dimensions.</li>
+        <li><b>Star schema</b> vs <b>Snowflake schema</b> — cuándo usar cada uno.</li>
+        <li>SCD (Slowly Changing Dimensions): tipos 1, 2, 3, 4, 6.</li>
+        <li>Fact tables: transactional, periodic snapshot, accumulating snapshot.</li>
+        <li>Surrogate keys vs natural keys.</li>
+        <li>Data Vault 2.0 (conocer, no necesariamente dominar).</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 4 · Performance, índices y tuning (Semana 13–16)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Índices: B-tree, hash, GIN/GiST (Postgres), bitmap.</li>
+        <li>EXPLAIN / EXPLAIN ANALYZE — leer planes de ejecución.</li>
+        <li>Costo de joins, scan vs index scan vs index-only scan.</li>
+        <li>Statistics, vacuum, analyze (Postgres).</li>
+        <li>Particionado de tablas (range, hash, list).</li>
+        <li>Materializadas views vs views regulares.</li>
+        <li>Query rewriting para performance.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 5 · Warehouses modernos y lakehouse</summary>
+    <div class="body">
+      <ul class="tight">
+        <li><b>Snowflake:</b> warehouses, time travel, zero-copy clone, streams, tasks.</li>
+        <li><b>BigQuery:</b> slots, partitioning, clustering, BI Engine.</li>
+        <li><b>Redshift:</b> distribution keys, sort keys, RA3 nodes.</li>
+        <li><b>Databricks SQL:</b> Photon engine, Unity Catalog.</li>
+        <li><b>DuckDB:</b> para análisis local serio (no es juguete).</li>
+        <li>Lakehouse SQL: querying Iceberg/Delta tables.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel 6 · SQL para entrevistas Big Tech</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Plataformas: <b>DataLemur</b> (Nick Singh), <b>StrataScratch</b>, <b>LeetCode Database</b>.</li>
+        <li>Tipos de problemas: top-N, running totals, gaps and islands, sessionization, churn cohorts, retention.</li>
+        <li>Construye un cuaderno con 100+ problemas resueltos por ti, organizados por patrón.</li>
+        <li>Entrevistas reales preguntan: explicar plan de ejecución, optimizar query lento, diseñar schema dado un caso.</li>
+        <li>Practica en voz alta en inglés (mock interviews en Pramp / interviewing.io).</li>
+      </ul>
+      <div class="note">🎯 Meta: 200+ problemas medium/hard resueltos antes de aplicar a Big Tech.</div>
+    </div>
+  </details>
+
+  <div class="divider"></div>
+
+  <h2>📚 Recursos SQL prioritarios</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Recurso</th><th>Tipo</th><th>Nivel</th><th>Costo</th><th>ROI</th></tr></thead>
+    <tbody>
+      <tr><td>Mode Analytics SQL Tutorial</td><td>Tutorial gratis</td><td>Inicial</td><td>$0</td><td>★★★★★</td></tr>
+      <tr><td>SQLBolt + SQLZoo</td><td>Práctica</td><td>Inicial</td><td>$0</td><td>★★★★☆</td></tr>
+      <tr><td>DataLemur</td><td>Plataforma problemas</td><td>Mid-Senior</td><td>Freemium</td><td>★★★★★</td></tr>
+      <tr><td>StrataScratch</td><td>Plataforma problemas</td><td>Mid-Senior</td><td>Freemium</td><td>★★★★★</td></tr>
+      <tr><td>"SQL for Data Analysis" (Cathy Tanimura)</td><td>Libro</td><td>Mid</td><td>~$40</td><td>★★★★★</td></tr>
+      <tr><td>"The Data Warehouse Toolkit" (Kimball)</td><td>Libro</td><td>Senior</td><td>~$50</td><td>★★★★★</td></tr>
+      <tr><td>Use The Index Luke</td><td>Web gratis</td><td>Avanzado</td><td>$0</td><td>★★★★★</td></tr>
+      <tr><td>"Designing Data-Intensive Applications" (Kleppmann)</td><td>Libro</td><td>Senior+</td><td>~$50</td><td>★★★★★★</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ===================== DATA ENGINEERING ===================== -->
+<section id="de">
+  <div class="section-header">
+    <h1>⟁ Data Engineering · Stack moderno</h1>
+    <p>Data Engineering es plomería de alto nivel: extraer, transformar, mover y servir datos confiables. El stack cambió radicalmente entre 2018 y 2025 — aprende el moderno, no el de hace 7 años.</p>
+  </div>
+
+  <h2>🧩 Stack moderno recomendado (2026)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Capa</th><th>Open-source</th><th>Managed</th><th>Aprender primero</th></tr></thead>
+    <tbody>
+      <tr><td>Ingesta</td><td>Airbyte, Meltano, Singer</td><td>Fivetran, Stitch</td><td>Airbyte (OSS)</td></tr>
+      <tr><td>Storage</td><td>MinIO, HDFS</td><td>S3, GCS, ADLS</td><td><b>S3 (AWS)</b></td></tr>
+      <tr><td>Table format</td><td>Iceberg, Delta, Hudi</td><td>Snowflake, BigQuery</td><td><b>Delta + Iceberg</b></td></tr>
+      <tr><td>Compute batch</td><td>Spark, DuckDB</td><td>Databricks, BigQuery, Athena</td><td><b>Spark (PySpark)</b></td></tr>
+      <tr><td>Compute streaming</td><td>Spark Streaming, Flink, Kafka Streams</td><td>Kinesis Analytics, Confluent</td><td><b>Spark Streaming → Flink</b></td></tr>
+      <tr><td>Orquestación</td><td>Airflow, Dagster, Prefect</td><td>Astronomer, Prefect Cloud</td><td><b>Airflow (más demanda)</b></td></tr>
+      <tr><td>Transformación</td><td>dbt-core, SQLMesh</td><td>dbt Cloud</td><td><b>dbt</b></td></tr>
+      <tr><td>Calidad</td><td>Great Expectations, Soda, dbt tests</td><td>Monte Carlo, Bigeye</td><td><b>dbt tests + Great Exp.</b></td></tr>
+      <tr><td>Catálogo</td><td>DataHub, Amundsen, OpenMetadata</td><td>Unity Catalog, Atlan</td><td>OpenMetadata u Unity</td></tr>
+      <tr><td>Observabilidad</td><td>OpenLineage, Marquez</td><td>Monte Carlo</td><td>OpenLineage</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="divider"></div>
+
+  <details class="expand" open>
+    <summary>Etapa 1 · ETL vs ELT — entender bien el cambio (semana 1)</summary>
+    <div class="body">
+      <p><b>ETL (clásico):</b> Extract → Transform → Load. Transformación fuera del warehouse. Usado con on-prem y warehouses caros.</p>
+      <p><b>ELT (moderno):</b> Extract → Load → Transform. Cargas crudo al warehouse/lakehouse y transformas con SQL/dbt allí. Esto es el estándar 2020+.</p>
+      <div class="note">📌 Hoy "Data Engineer moderno" hace principalmente ELT con dbt + warehouse, no ETL clásico con Informatica/SSIS.</div>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Etapa 2 · Airflow profundo (4 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>DAGs, tasks, operators (PythonOperator, BashOperator, KubernetesPodOperator).</li>
+        <li>TaskFlow API (decoradores @task) — el nuevo estándar.</li>
+        <li>Variables, Connections, XComs.</li>
+        <li>Sensors (poke vs reschedule), TriggerRules.</li>
+        <li>Backfills, catchup, max_active_runs.</li>
+        <li>Custom operators, hooks, plugins.</li>
+        <li>Deployment con Astronomer o MWAA (AWS).</li>
+        <li>Alternativas modernas: <b>Dagster</b> (asset-based, mejor DX) y <b>Prefect</b> (más Pythonic). Aprende Airflow primero porque es el del mercado.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Etapa 3 · dbt — Analytics Engineering (3 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Setup: profiles.yml, project structure, sources, seeds.</li>
+        <li>Modelos: staging, intermediate, marts (medallion para SQL).</li>
+        <li>Materialization: view, table, incremental, ephemeral.</li>
+        <li>Tests genéricos (not_null, unique, accepted_values, relationships) + singular tests.</li>
+        <li>Macros, Jinja, ref() y source().</li>
+        <li>Documentation, exposures, snapshots (SCD type 2).</li>
+        <li>dbt Cloud vs dbt Core — usa core con CI/CD propio.</li>
+        <li>Patrones: insertonly, merge, snapshot.</li>
+        <li>dbt + Airflow: orquestar dbt runs.</li>
+      </ul>
+      <div class="note ok">✅ <b>Cert recomendada:</b> dbt Fundamentals (gratis, alta señal en CV).</div>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Etapa 4 · Spark (PySpark) profundo (6 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Arquitectura: driver, executors, cluster manager (YARN, K8s, standalone).</li>
+        <li>DataFrames API, lazy evaluation, Catalyst optimizer.</li>
+        <li>Lectura/escritura: Parquet, ORC, Delta, Iceberg, JDBC.</li>
+        <li>Particionado físico (write) vs lógico (compute).</li>
+        <li>Shuffle: cuándo ocurre, cómo evitarlo, broadcast joins.</li>
+        <li>Skew handling: salting, AQE skew join optimization.</li>
+        <li>Spark UI: leer DAG, stages, tasks.</li>
+        <li>Tuning: <code>spark.sql.shuffle.partitions</code>, executor memory, cores, off-heap.</li>
+        <li>UDFs vs Pandas UDFs (Arrow) — preferir built-ins siempre.</li>
+        <li>Spark Structured Streaming: micro-batch, triggers, watermarks, state.</li>
+      </ul>
+      <div class="note warn">⚠️ El 80% de problemas de Spark en prod son por particionado mal pensado y shuffles innecesarios. Domina eso antes que técnicas avanzadas.</div>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Etapa 5 · Kafka y streaming (4 semanas)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Conceptos: topics, partitions, offsets, consumer groups, brokers.</li>
+        <li>Producer/Consumer en Python (<code>confluent-kafka</code>).</li>
+        <li>Schema Registry + Avro/Protobuf.</li>
+        <li>Kafka Connect (source/sink connectors).</li>
+        <li>Delivery semantics: at-most-once, at-least-once, exactly-once.</li>
+        <li>Streaming patterns: CDC con Debezium, event sourcing, CQRS.</li>
+        <li>Alternativas: <b>Redpanda</b> (Kafka-compatible, más rápido), <b>Pulsar</b>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Etapa 6 · Data Lakes, Lakehouse y Medallion</summary>
+    <div class="body">
+      <ul class="tight">
+        <li><b>Data Lake clásico:</b> S3 + Parquet + Hive Metastore. Problemas: no ACID, schema evolution dolorosa.</li>
+        <li><b>Lakehouse:</b> Lake + ACID + schema evolution + time travel. Es el estándar 2024+.</li>
+        <li><b>Delta Lake</b> (Databricks-origin, OSS): el más maduro, mejor en Spark.</li>
+        <li><b>Apache Iceberg</b> (Netflix-origin): el ganador del estándar industria 2024-2025. AWS, Snowflake, BigQuery lo soportan.</li>
+        <li><b>Apache Hudi:</b> Uber-origin, fuerte en upserts/CDC.</li>
+        <li><b>Medallion Architecture:</b> Bronze (raw) → Silver (cleaned) → Gold (business-ready). El patrón de oro para lakehouse.</li>
+      </ul>
+      <div class="note">📌 <b>2026 prediction:</b> Iceberg será el estándar dominante. Prioriza aprenderlo, sin abandonar Delta.</div>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Etapa 7 · Calidad, lineage, observabilidad</summary>
+    <div class="body">
+      <ul class="tight">
+        <li><b>Data quality tests:</b> dbt tests + Great Expectations / Soda.</li>
+        <li><b>Data contracts:</b> definir schema y SLA entre productores y consumidores.</li>
+        <li><b>Lineage:</b> OpenLineage como estándar emergente; Marquez como UI.</li>
+        <li><b>Catálogos:</b> OpenMetadata, DataHub, Unity Catalog.</li>
+        <li><b>SLA / SLO / SLI</b> aplicados a pipelines: ¿qué significa "frescura"?</li>
+        <li>Alerting con Datadog, Grafana, o stack propio.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Etapa 8 · Databricks &amp; Snowflake (paralelo)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li><b>Databricks:</b> notebooks, Repos, jobs, DLT (Delta Live Tables), Unity Catalog, Workflows, Photon. Cert: DE Associate → Professional.</li>
+        <li><b>Snowflake:</b> virtual warehouses, time travel, streams, tasks, Snowpark, dynamic tables, Iceberg tables. Cert: SnowPro Core → Advanced.</li>
+        <li>Cuándo elegir cada uno: Databricks gana en compute pesado y ML; Snowflake gana en simplicidad, multi-cloud y SQL puro.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="note ok">✅ <b>Proyectos canónicos:</b> (1) Pipeline batch con Airflow + dbt + Snowflake; (2) Pipeline streaming Kafka → Spark Streaming → Iceberg; (3) Lakehouse medallion completo en AWS (S3 + Glue + EMR + Iceberg); (4) Plataforma con observabilidad (OpenLineage + Datadog).</div>
+</section>
+
+<!-- ===================== CLOUD ===================== -->
+<section id="cloud">
+  <div class="section-header">
+    <h1>☁ Cloud Data Engineering</h1>
+    <p>La nube ya no es opcional. La pregunta no es "si aprender cloud" sino "cuál primero" y "cuáles servicios realmente importan para data". Spoiler: muchos menos de los que crees.</p>
+  </div>
+
+  <h2>⚔️ AWS vs GCP vs Azure · Cuál primero</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Cloud</th><th>Cuota de mercado data</th><th>Pros</th><th>Contras</th><th>Aprender</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>AWS</b></td>
+        <td>~50% (líder)</td>
+        <td>Mayor mercado laboral, ecosistema maduro, S3 + Glue + EMR + Athena son standard.</td>
+        <td>Servicios redundantes, UX inconsistente, IAM complejo.</td>
+        <td><span class="badge b-priority">PRIMERO</span></td>
+      </tr>
+      <tr>
+        <td><b>GCP</b></td>
+        <td>~25%</td>
+        <td>BigQuery es el mejor warehouse del mercado, Vertex AI fuerte para ML, mejor UX.</td>
+        <td>Menos mercado en LATAM, menos jobs en empresas tradicionales.</td>
+        <td>Segundo, si vas a ML/AI</td>
+      </tr>
+      <tr>
+        <td><b>Azure</b></td>
+        <td>~25%</td>
+        <td>Fuerte en enterprise (Microsoft shops), Databricks-on-Azure muy común, Fabric.</td>
+        <td>Synapse ha sido inestable; menos comunidad data abierta.</td>
+        <td>Tercero, solo si lo pide tu empleo</td>
+      </tr>
+    </tbody>
+  </table></div>
+
+  <div class="note">🎯 <b>Estrategia recomendada:</b> AWS profundo (12 meses) → GCP a nivel funcional (3 meses) → Azure solo si lo necesitas. Multi-cloud verdadero llega después de 3 años.</div>
+
+  <div class="divider"></div>
+
+  <h2>🧱 Servicios AWS que SÍ importan para Data</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Core obligatorio</h3>
+      <ul class="tight">
+        <li><b>S3</b> — el "disco duro" de la nube. Estándares de bucket, lifecycle, versioning, intelligent tiering.</li>
+        <li><b>IAM</b> — usuarios, roles, policies, STS, principle of least privilege. <b>Domina esto o sufrirás.</b></li>
+        <li><b>VPC básico</b> — subnets, security groups, NAT, endpoints. Lo justo para que tus servicios hablen.</li>
+        <li><b>EC2</b> — entender, no abusar. Casi todo lo serio se hace serverless o managed.</li>
+        <li><b>Lambda</b> — funciones serverless, triggers desde S3/EventBridge/Kinesis.</li>
+        <li><b>CloudWatch</b> — logs y métricas, alarms.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Data-specific</h3>
+      <ul class="tight">
+        <li><b>Glue</b> — ETL serverless basado en Spark, Glue Catalog, Crawlers.</li>
+        <li><b>Athena</b> — Presto/Trino managed, SQL sobre S3.</li>
+        <li><b>EMR</b> — Spark/Hadoop managed para workloads grandes.</li>
+        <li><b>Redshift</b> — warehouse columnar, RA3, Spectrum, Serverless.</li>
+        <li><b>Lake Formation</b> — governance sobre el lake.</li>
+        <li><b>Kinesis</b> — streaming (Data Streams, Firehose, Analytics).</li>
+        <li><b>MSK</b> — Kafka managed.</li>
+        <li><b>Step Functions</b> — orquestación serverless (alternativa a Airflow para pipelines simples).</li>
+        <li><b>SageMaker</b> — todo lo ML/AI (no necesario hasta fase 8).</li>
+        <li><b>Bedrock</b> — LLMs managed (Claude, Llama, Titan).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note warn">⚠️ <b>NO aprendas:</b> Glue DataBrew (poco usado), Lake Formation profundo (déjalo a Sr+), QuickSight (mediocre), Kendra (nicho).</div>
+
+  <div class="divider"></div>
+
+  <h2>🧱 Servicios GCP que SÍ importan</h2>
+  <ul class="tight">
+    <li><b>BigQuery</b> — el mejor warehouse serverless. Particionado, clustering, BI Engine, BQML.</li>
+    <li><b>Cloud Storage</b> (GCS) — análogo de S3.</li>
+    <li><b>Dataflow</b> — Apache Beam managed (batch + stream).</li>
+    <li><b>Dataproc</b> — Spark/Hadoop managed.</li>
+    <li><b>Pub/Sub</b> — messaging (análogo a Kinesis/Kafka simple).</li>
+    <li><b>Composer</b> — Airflow managed.</li>
+    <li><b>Vertex AI</b> — plataforma ML/AI integral.</li>
+    <li><b>Cloud Run</b> — containers serverless, brutalmente fácil.</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <h2>💰 Cost Optimization (el skill secreto de Sr+)</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Trucos que ahorran 30-70%</h3>
+      <ul class="tight">
+        <li>Spot/Preemptible instances para batch jobs.</li>
+        <li>S3 Intelligent Tiering, lifecycle policies a Glacier para datos viejos.</li>
+        <li>Reservas (Savings Plans, Reserved Instances) para workloads constantes.</li>
+        <li>Particionado correcto en Athena/BigQuery (evita full scans).</li>
+        <li>Compresión: Parquet con Snappy/ZSTD &gt;&gt; CSV.</li>
+        <li>Auto-suspend en Snowflake/Databricks warehouses.</li>
+        <li>Right-sizing de clusters con métricas reales.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Antipatrones caros</h3>
+      <ul class="tight">
+        <li>Dejar clusters Databricks/EMR encendidos 24/7 sin uso.</li>
+        <li>Hacer SELECT * en BigQuery sobre tablas particionadas (cobra por bytes).</li>
+        <li>Cross-region data transfer constante.</li>
+        <li>Logs sin retención (CloudWatch crece sin tope).</li>
+        <li>SageMaker endpoints siempre on para inferencia esporádica.</li>
+        <li>Snowflake X-Small para todo: a veces L sale más barato (más rápido = menos minutos).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BIG DATA ===================== -->
+<section id="bigdata">
+  <div class="section-header">
+    <h1>∞ Big Data &amp; Sistemas Distribuidos</h1>
+    <p>"Big Data" no es buzzword, es una clase de problemas: cuando los datos no caben en una sola máquina y necesitas paralelismo + tolerancia a fallos. Si entiendes los principios, las herramientas son intercambiables.</p>
+  </div>
+
+  <h2>🧠 Fundamentos teóricos (no opcional para Sr+)</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Conceptos que <i>debes</i> saber explicar</h3>
+      <ul class="tight">
+        <li><b>Teorema CAP:</b> Consistencia, Disponibilidad, Tolerancia a particiones — solo 2.</li>
+        <li><b>BASE vs ACID:</b> trade-offs entre disponibilidad y consistencia.</li>
+        <li><b>Consensus:</b> Paxos, Raft (a nivel conceptual).</li>
+        <li><b>Replication:</b> leader-follower, multi-leader, leaderless.</li>
+        <li><b>Sharding / partitioning:</b> hash, range, lookup.</li>
+        <li><b>Eventual consistency, causal consistency, linearizability.</b></li>
+        <li><b>Idempotencia</b> y <b>exactly-once semantics</b>.</li>
+        <li><b>Backpressure</b> en sistemas streaming.</li>
+      </ul>
+      <div class="note">📚 Lectura obligatoria: <b>"Designing Data-Intensive Applications"</b> de Martin Kleppmann. El único libro de sistemas distribuidos que no es académico inútil.</div>
+    </div>
+    <div class="card">
+      <h3>MapReduce → Spark → Lakehouse · evolución</h3>
+      <ul class="tight">
+        <li><b>2004-2014:</b> MapReduce (Hadoop) — escribir a disco entre stages.</li>
+        <li><b>2014-2020:</b> Spark — in-memory, lazy, mejor API.</li>
+        <li><b>2017+:</b> Flink — streaming-first con semánticas exactly-once nativas.</li>
+        <li><b>2019+:</b> Delta/Iceberg/Hudi — ACID sobre object storage.</li>
+        <li><b>2022+:</b> Photon, DuckDB, Velox — vectorización a nivel CPU SIMD.</li>
+        <li><b>2024+:</b> Lakehouse unifica batch+stream+ML sobre Iceberg.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <details class="expand" open>
+    <summary>Spark profundo · Catalyst, planning, tuning</summary>
+    <div class="body">
+      <p><b>Catalyst optimizer:</b> entiende cómo Spark transforma tu query en un plan físico. Lee <code>EXPLAIN EXTENDED</code> de tus queries.</p>
+      <p><b>Adaptive Query Execution (AQE):</b> ajusta el plan en runtime. Activado por defecto en 3.x. Skew join optimization y dynamic partition pruning son tus amigos.</p>
+      <p><b>Particionado físico vs in-memory:</b> aprenderás esto fallando. Particiona por columna de filtro frecuente, no por la del join.</p>
+      <p><b>Shuffle dolor:</b> reduce <code>spark.sql.shuffle.partitions</code> de 200 default a algo razonable para tu volumen. Broadcast joins para tablas pequeñas (&lt;100MB).</p>
+      <p><b>Memory tuning:</b> <code>executor.memory</code>, <code>executor.memoryOverhead</code>, <code>off-heap</code>. Errores OOM en executors suelen ser por colocar datos demasiado grandes en variables Python.</p>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Kafka · arquitectura y patrones</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Replication factor (típico 3), min ISR, acks (0, 1, all).</li>
+        <li>Particiones determinan paralelismo máximo de consumo.</li>
+        <li>Consumer groups, rebalance, cooperative sticky.</li>
+        <li>Compactación de topics (changelog pattern).</li>
+        <li>Kafka Connect: source/sink connectors sin código.</li>
+        <li>KSQL/ksqlDB para SQL sobre streams (revisar, no esencial).</li>
+        <li>Kafka Streams (JVM) — alternativa a Flink para casos simples.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Flink · streaming verdadero</summary>
+    <div class="body">
+      <p>Flink es el <i>real deal</i> de streaming: exactly-once nativo, event-time vs processing-time, watermarks, state management profundo. Aprende los conceptos incluso si en tu trabajo usan Spark Streaming.</p>
+      <ul class="tight">
+        <li>DataStream API vs Table API.</li>
+        <li>Windowing: tumbling, sliding, session, global.</li>
+        <li>State backends (memory, RocksDB), checkpointing.</li>
+        <li>Late events handling, allowed lateness.</li>
+        <li>Flink SQL — productividad seria.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Escalabilidad y tolerancia a fallos</summary>
+    <div class="body">
+      <ul class="tight">
+        <li><b>Scaling vertical vs horizontal:</b> límites prácticos del vertical.</li>
+        <li><b>Stateless vs stateful:</b> los servicios stateless escalan trivialmente.</li>
+        <li><b>Idempotencia:</b> diseña operaciones que se puedan reintentar sin daño.</li>
+        <li><b>Dead-letter queues</b> para eventos malos.</li>
+        <li><b>Circuit breakers, retries con backoff exponencial.</b></li>
+        <li><b>Chaos engineering</b> básico — fail intentionally para encontrar bugs.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ===================== AI & ML ===================== -->
+<section id="ai">
+  <div class="section-header">
+    <h1>✦ AI &amp; Machine Learning</h1>
+    <p>El campo se dividió: <b>ML clásico</b> (sklearn, predicciones tabulares) sigue importando para la mayoría de negocios, y <b>AI moderno</b> (LLMs, RAG, agents) es la frontera caliente. Necesitas ambos a nivel funcional.</p>
+  </div>
+
+  <h2>📐 Matemáticas necesarias (la dosis correcta)</h2>
+  <div class="note">📌 <b>Verdad incómoda:</b> NO necesitas un máster en matemáticas para ser ML/AI Engineer. Necesitas: álgebra lineal a nivel "entiendo vectores, matrices, eigenvalores", cálculo a nivel "entiendo gradientes y backprop conceptualmente", y estadística aplicada (distribuciones, hipótesis, regresión).</div>
+  <ul class="tight">
+    <li><b>Álgebra lineal:</b> 3Blue1Brown "Essence of Linear Algebra" (YouTube) + ejercicios prácticos.</li>
+    <li><b>Cálculo:</b> 3Blue1Brown "Essence of Calculus" + derivadas parciales y chain rule.</li>
+    <li><b>Probabilidad y estadística:</b> Bayes, distribuciones, intervalos de confianza, A/B testing.</li>
+    <li><b>Optimización:</b> gradiente descendiente y variantes a nivel intuitivo.</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <details class="expand" open>
+    <summary>Camino 1 · ML Fundamentals (3–4 meses)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Regresión lineal, logística — entender la math, no solo llamar fit().</li>
+        <li>Árboles, random forests, gradient boosting (XGBoost, LightGBM, CatBoost).</li>
+        <li>Clustering (k-means, DBSCAN, hierarchical).</li>
+        <li>Dimensionality reduction (PCA, t-SNE, UMAP).</li>
+        <li>Feature engineering serio: encoding, scaling, target encoding, time features.</li>
+        <li>Validation: train/val/test, cross-validation, time-series CV.</li>
+        <li>Métricas: AUC, F1, precision/recall, RMSE, MAE — y cuándo importan cuáles.</li>
+        <li>Class imbalance: SMOTE, class weights, threshold tuning.</li>
+      </ul>
+      <div class="note">📚 Recurso top: <b>"Hands-On Machine Learning"</b> de Aurélien Géron (3a edición). Best price-quality ratio del mundo ML.</div>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Camino 2 · Deep Learning básico (2–3 meses)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>PyTorch (no TensorFlow en 2026 — la industria migró).</li>
+        <li>Redes feedforward, CNN, RNN/LSTM (entender histórico).</li>
+        <li>Transformers — la arquitectura que cambió todo (attention is all you need).</li>
+        <li>Transfer learning, fine-tuning, LoRA, QLoRA.</li>
+        <li>HuggingFace ecosystem: transformers, datasets, accelerate, peft.</li>
+        <li>Training loops, callbacks, logging con W&amp;B o MLflow.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Camino 3 · ML Pipelines y producción</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>scikit-learn Pipelines + ColumnTransformer.</li>
+        <li>Feature stores: Feast (OSS), Tecton, Vertex Feature Store.</li>
+        <li>Experiment tracking: MLflow, W&amp;B (W&amp;B es superior para ML moderno).</li>
+        <li>Model registry: MLflow Registry, SageMaker Model Registry.</li>
+        <li>Hyperparameter tuning: Optuna (preferido), Ray Tune.</li>
+        <li>Reproducibilidad: seeds, versionado de datos (DVC), versionado de configs (Hydra).</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Camino 4 · LLMs y AI Engineering moderno <span class="badge b-elite">Caliente</span></summary>
+    <div class="body">
+      <ul class="tight">
+        <li><b>APIs de LLM:</b> OpenAI, Anthropic, Bedrock, Vertex AI, Groq, Together.</li>
+        <li><b>Prompt engineering:</b> few-shot, chain-of-thought, system prompts, structured outputs (JSON schema).</li>
+        <li><b>Embeddings:</b> OpenAI embeddings, sentence-transformers, Voyage AI.</li>
+        <li><b>Vector DBs:</b> Pinecone, Weaviate, Qdrant, Milvus, pgvector (¡el más subestimado!).</li>
+        <li><b>RAG:</b> chunking strategies, hybrid search (BM25 + vector), reranking (Cohere, cross-encoders).</li>
+        <li><b>Agents:</b> function calling, tool-use, ReAct, LangGraph, OpenAI Assistants API.</li>
+        <li><b>Evaluation:</b> LangSmith, Phoenix, custom eval frameworks, LLM-as-a-judge.</li>
+        <li><b>Fine-tuning:</b> cuándo SÍ (dominios específicos) y cuándo NO (la mayoría de casos).</li>
+        <li><b>Multimodal:</b> vision (Claude, GPT-4V), audio (Whisper), generación.</li>
+      </ul>
+      <div class="note warn">⚠️ <b>Trampa LangChain:</b> es útil para prototipos, frágil para producción. Aprende los conceptos, no la API. En prod, muchos equipos escriben sus propios "frameworks" minimalistas.</div>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Camino 5 · Inference at scale</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Self-hosted LLMs: vLLM, TGI, llama.cpp, MLX (Mac).</li>
+        <li>Quantization: GGUF, AWQ, GPTQ — cuándo te conviene.</li>
+        <li>Batching, streaming responses, KV cache.</li>
+        <li>Serving frameworks: BentoML, Triton, KServe, Ray Serve.</li>
+        <li>Cost: tokens, prompt caching, semantic caching.</li>
+        <li>Latency vs throughput trade-offs.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="note ok">✅ <b>Proyectos AI a construir:</b> (1) RAG sobre documentación interna con Pinecone + GPT-4 + reranking; (2) Agent multi-step con tools (búsqueda web, calculadora, base de datos); (3) Fine-tuning de un modelo open-source para un task específico; (4) Evaluación cuantitativa de un RAG con LangSmith.</div>
+</section>
+
+<!-- ===================== MLOPS ===================== -->
+<section id="mlops">
+  <div class="section-header">
+    <h1>⚙ MLOps &amp; AI Infrastructure</h1>
+    <p>MLOps es a ML lo que DevOps es a software. La diferencia: tu artefacto no es solo código, es código + datos + modelo + métricas. Aquí mueres si no entiendes el ciclo completo.</p>
+  </div>
+
+  <div class="grid g-3">
+    <div class="card kpi"><div class="label">Triada artefactos ML</div><div class="value">3</div><div class="delta">Datos · Modelo · Config</div></div>
+    <div class="card kpi alt"><div class="label">Componentes mínimos</div><div class="value">6</div><div class="delta">Track · Reg · CI · Serve · Mon · Retrain</div></div>
+    <div class="card kpi alt3"><div class="label">Skill must-have</div><div class="value">Docker</div><div class="delta">+ K8s básico</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>🧬 Anatomía de un sistema MLOps moderno</h2>
+  <pre style="font-family:var(--mono);font-size:.8rem;color:var(--muted);overflow-x:auto;line-height:1.5;background:var(--card);padding:18px;border-radius:var(--radius);border:1px solid var(--border)">
+[Source data]
+     │
+     ▼
+[Feature store / Feature pipelines]   ◄── monitoring de drift en features
+     │
+     ▼
+[Training pipeline (orchestrated)] ──► [Experiment tracking: MLflow/W&B]
+     │
+     ▼
+[Model registry] ──► [CI/CD: tests, validación, gate de promoción]
+     │
+     ▼
+[Model serving (REST/gRPC/batch)] ──► [Inference monitoring]
+     │                                       │
+     │ ◄── [Drift detection / decay] ────────┘
+     │
+     ▼
+[Feedback loop: ground truth] ──► [Re-training trigger]
+  </pre>
+
+  <details class="expand" open>
+    <summary>Bloque 1 · Containerización (Docker)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Dockerfile fundamentals, multi-stage builds, layers, caching.</li>
+        <li>Imágenes ligeras: <code>python:3.11-slim</code>, distroless.</li>
+        <li>docker-compose para stacks locales (Postgres + Redis + tu app).</li>
+        <li>Best practices: non-root user, .dockerignore, healthchecks.</li>
+        <li>Registry: Docker Hub, ECR, Artifact Registry.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Bloque 2 · Kubernetes básico (lo justo)</summary>
+    <div class="body">
+      <p>NO necesitas ser experto K8s para ser Data/AI Engineer. SÍ necesitas entender los conceptos para colaborar con SRE/Platform y leer YAMLs.</p>
+      <ul class="tight">
+        <li>Pods, Deployments, Services, Ingress.</li>
+        <li>ConfigMaps, Secrets.</li>
+        <li>Persistent Volumes, StatefulSets (para Spark on K8s).</li>
+        <li>Helm charts (instalar Airflow, Spark Operator, etc.).</li>
+        <li>kubectl daily: get, describe, logs, exec, port-forward.</li>
+        <li>K8s on cloud: EKS, GKE, AKS.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Bloque 3 · Experiment tracking y model registry</summary>
+    <div class="body">
+      <ul class="tight">
+        <li><b>MLflow:</b> tracking, registry, model serving, projects. Open-source y standard de facto.</li>
+        <li><b>Weights &amp; Biases:</b> superior UX, mejor para DL. Pago para teams.</li>
+        <li><b>Neptune.ai:</b> alternativa fuerte.</li>
+        <li><b>SageMaker Experiments / Vertex Experiments:</b> si estás en AWS/GCP.</li>
+        <li>Esquema típico: experimento → run → métricas + artefactos + modelo → registro versionado.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Bloque 4 · CI/CD para ML</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Tests unitarios + integración (sí, también para ML).</li>
+        <li>Data validation tests (Great Expectations, Pandera).</li>
+        <li>Model validation: métricas mínimas para promover.</li>
+        <li>GitHub Actions / GitLab CI / Jenkins.</li>
+        <li>Trunk-based development, feature branches cortas.</li>
+        <li>Pre-commit hooks: ruff, black, mypy, isort.</li>
+        <li>Patrón: PR con código + métricas del nuevo modelo + comparación con champion.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Bloque 5 · Model serving</summary>
+    <div class="body">
+      <ul class="tight">
+        <li><b>FastAPI</b> + uvicorn + Docker para casos simples.</li>
+        <li><b>BentoML</b> para empaquetar modelo + dependencias.</li>
+        <li><b>Triton Inference Server</b> para casos pesados, multi-modelo, GPU.</li>
+        <li><b>Ray Serve</b> para autoscaling + batching dinámico.</li>
+        <li><b>KServe</b> sobre K8s para casos enterprise.</li>
+        <li>Batch inference vs real-time: cuándo cada uno.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Bloque 6 · Monitoring y drift</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>Prediction monitoring (volumen, latencia, errores).</li>
+        <li>Data drift detection: PSI, KS test, KL divergence.</li>
+        <li>Concept drift: degradación de métricas con el tiempo.</li>
+        <li>Tools: Evidently (OSS, top), Arize, WhyLabs, Fiddler.</li>
+        <li>Re-training triggers basados en drift o calendario.</li>
+        <li>Shadow deployments, canary, A/B testing de modelos.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Bloque 7 · AI Infrastructure (LLM-era)</summary>
+    <div class="body">
+      <ul class="tight">
+        <li>GPU infra: AWS p4d/p5, GCP A100/H100, on-demand vs spot.</li>
+        <li>vLLM, TGI para serving optimizado.</li>
+        <li>Caching: prompt caching (Anthropic, OpenAI), semantic caching.</li>
+        <li>Rate limiting, request queueing.</li>
+        <li>Multi-tenancy: aislamiento de prompts, observabilidad por tenant.</li>
+        <li>Cost tracking por feature/usuario.</li>
+        <li>Guardrails: prompt injection, output validation (Guardrails AI, NeMo).</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ===================== GIT ===================== -->
+<section id="git">
+  <div class="section-header">
+    <h1>⎇ Git &amp; GitHub · Tu CV es tu repositorio</h1>
+    <p>Reclutadores y tech leads miran tu GitHub antes que tu CV. Tu repositorio cuenta una historia: ¿eres alguien que <i>termina cosas</i> o que <i>colecciona inicios</i>?</p>
+  </div>
+
+  <h2>📋 Git command essentials (sin BS)</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Comandos diarios</h3>
+      <ul class="tight">
+        <li><code>git status</code> · <code>git diff</code> · <code>git log --oneline --graph</code></li>
+        <li><code>git add -p</code> (interactive, mejor que add .)</li>
+        <li><code>git commit -m "tipo: mensaje"</code> (Conventional Commits)</li>
+        <li><code>git branch</code> · <code>git checkout -b</code> · <code>git switch</code></li>
+        <li><code>git fetch</code> · <code>git pull --rebase</code></li>
+        <li><code>git push -u origin nombre-rama</code></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Comandos avanzados (no opcionales)</h3>
+      <ul class="tight">
+        <li><code>git rebase -i</code> (interactivo, limpia historia antes de PR)</li>
+        <li><code>git cherry-pick</code> (mover commits)</li>
+        <li><code>git stash</code> + <code>git stash pop</code></li>
+        <li><code>git reset --soft/mixed/hard HEAD~N</code></li>
+        <li><code>git reflog</code> (recuperar commits "perdidos")</li>
+        <li><code>git bisect</code> (encontrar commit que rompió algo)</li>
+        <li><code>git revert</code> (deshacer en main sin reescribir historia)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>🌿 Flujo profesional (Git Flow simplificado / Trunk-based)</h2>
+  <div class="note"><b>Recomendado para Data/AI:</b> trunk-based con feature branches cortas (1–3 días vida), PRs pequeños (&lt;400 líneas), squash and merge.</div>
+
+  <h2>🏆 Cómo hacer un GitHub impresionante</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>SÍ haz</h3>
+      <ul class="tight">
+        <li><b>README estelar</b> en cada proyecto: problema, arquitectura, demo, cómo correrlo, decisiones técnicas.</li>
+        <li>Diagramas de arquitectura (Excalidraw, Mermaid).</li>
+        <li>GIFs/screenshots de la solución funcionando.</li>
+        <li>Commits semánticos (Conventional Commits).</li>
+        <li>Branches limpios, PRs con descripciones serias.</li>
+        <li>Tests + CI badges visibles.</li>
+        <li>Un README de perfil con tu stack y enlaces.</li>
+        <li>Contribuciones a OSS reales (incluso typo fixes cuentan al inicio).</li>
+        <li>Streak de commits razonable (no obsesión, pero visible).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>NO hagas</h3>
+      <ul class="tight">
+        <li>50 repos forkeados sin valor.</li>
+        <li>Proyectos sin README o con README de plantilla.</li>
+        <li>"<i>final_v2_definitivo.ipynb</i>" en root.</li>
+        <li>Notebooks gigantes con outputs commiteados (usa nbstripout).</li>
+        <li>Repos privados o sin actividad por 6 meses sin razón.</li>
+        <li>Mensajes de commit tipo "stuff" o "fixes".</li>
+        <li>Credenciales/keys en commits (usa <code>git-secrets</code> o detect-secrets).</li>
+        <li>Repos con .ipynb_checkpoints o __pycache__ commiteados.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note ok">🎯 <b>Meta:</b> 5-8 proyectos sólidos, no 50 mediocres. Calidad &gt; cantidad SIEMPRE.</div>
+</section>
+
+<!-- ===================== ENGLISH ===================== -->
+<section id="english">
+  <div class="section-header">
+    <h1>🌐 Inglés · Tu Multiplicador #1</h1>
+    <p>Sin inglés conversacional fluido, tu techo es $4-5k/mes. Con C1 sólido, te abre Big Tech a $15k+/mes. Es el ROI más alto que existe. Trátalo como skill técnico, no como "complemento".</p>
+  </div>
+
+  <div class="grid g-4">
+    <div class="card kpi"><div class="label">Nivel mínimo remoto LATAM</div><div class="value">B2</div><div class="delta">~$3-5k/mes</div></div>
+    <div class="card kpi alt"><div class="label">Nivel mínimo USA/UK startups</div><div class="value">B2+/C1</div><div class="delta">~$6-10k/mes</div></div>
+    <div class="card kpi alt3"><div class="label">Nivel para Big Tech</div><div class="value">C1+</div><div class="delta">~$10-25k/mes</div></div>
+    <div class="card kpi alt4"><div class="label">Tiempo realista B1→C1</div><div class="value">12–24m</div><div class="delta">con 1h/día disciplinada</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>🎧 Plan diario de inglés (60–90 min)</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Input (40 min)</h3>
+      <ul class="tight">
+        <li>30 min: podcast técnico (Data Engineering Podcast, Practical AI, Latent Space).</li>
+        <li>10 min: lectura técnica (blogs de Netflix, Uber, Airbnb engineering).</li>
+        <li>Subtítulos en inglés (no español). YouTube técnico en inglés.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Output (20–50 min)</h3>
+      <ul class="tight">
+        <li>15 min daily shadowing (repetir lo que escuchas a velocidad real).</li>
+        <li>1–2 sesiones/semana con tutor (Cambly, italki) — pide enfoque en tech vocabulary.</li>
+        <li>Sesiones de "explicar conceptos" a la cámara, sin audiencia, en inglés. 5 min.</li>
+        <li>Mock interviews en inglés (Pramp, interviewing.io) — desde mes 3.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>📚 Recursos enfocados a tech</h2>
+  <ul class="tight">
+    <li><b>BBC Learning English / VOA Learning English</b> — para básico.</li>
+    <li><b>Podcasts:</b> Practical AI, Data Engineering Podcast, Software Engineering Daily, Latent Space, Lex Fridman (técnico).</li>
+    <li><b>YouTube:</b> Fireship (rápido), ThePrimeTime (largo), Continuous Delivery, ByteByteGo.</li>
+    <li><b>Lectura:</b> Hacker News daily, blogs de engineering de Big Tech.</li>
+    <li><b>Apps:</b> Anki para vocabulario técnico, Speak (AI para conversación), Boldvoice (pronunciación).</li>
+    <li><b>Conversación:</b> Cambly, italki, Preply. ~$8-15/clase. Mínimo 2/semana.</li>
+  </ul>
+
+  <h2>🎤 Para entrevistas técnicas en inglés</h2>
+  <div class="note">📌 Practica explicar en voz alta: tu CV, tus proyectos (STAR: Situation, Task, Action, Result), system design walkthroughs, comportamentales (tell me about a time...).</div>
+
+  <h3>Vocabulario técnico que debes saber decir, no solo escribir:</h3>
+  <div class="tag-row">
+    <span class="pill">Idempotent</span><span class="pill">Cardinality</span><span class="pill">Throughput</span>
+    <span class="pill">Latency</span><span class="pill">Skew</span><span class="pill">Shuffle</span>
+    <span class="pill">Backpressure</span><span class="pill">Eventual consistency</span><span class="pill">Lineage</span>
+    <span class="pill">Schema evolution</span><span class="pill">Slowly changing dimension</span><span class="pill">Materialized view</span>
+    <span class="pill">Watermark</span><span class="pill">Embedding</span><span class="pill">Inference</span>
+    <span class="pill">Hyperparameter</span><span class="pill">Overfitting</span><span class="pill">Drift</span>
+  </div>
+
+  <div class="note warn">⚠️ <b>Trampa común:</b> tener vocabulario pasivo de C1 y speaking de A2. Si te pones rojo al hablar inglés con un nativo, no estás listo para entrevistas. Habla con humanos reales.</div>
+</section>
+
+<!-- ===================== CERTIFICATIONS ===================== -->
+<section id="certs">
+  <div class="section-header">
+    <h1>★ Certificaciones · ROI Real, Sin Humo</h1>
+    <p>Las certificaciones son <i>señales</i>, no <i>habilidades</i>. Importan cuando: (a) cubres gap de "no tengo título", (b) filtran ATS, (c) confirman conocimiento ya adquirido. No reemplazan portafolio.</p>
+  </div>
+
+  <div class="note danger">🚫 <b>Verdad:</b> NO te pagan por tener 10 certificaciones. Te pagan por <i>poder demostrar</i> lo que sabes. 2-3 certs estratégicas + portafolio sólido &gt;&gt; 10 certs sin código.</div>
+
+  <h2>🏆 Certificaciones que SÍ valen la pena (ranking ROI)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Cert</th><th>Vendor</th><th>Costo</th><th>Dificultad</th><th>Impacto laboral</th><th>ROI</th><th>Cuándo</th></tr></thead>
+    <tbody>
+      <tr><td><b>AWS Cloud Practitioner</b></td><td>AWS</td><td>$100</td><td><span class="badge b-easy">Baja</span></td><td>★★☆☆☆</td><td>Alto (señal inicial)</td><td>Mes 6-9</td></tr>
+      <tr><td><b>AWS Solutions Architect Associate</b></td><td>AWS</td><td>$150</td><td><span class="badge b-mid">Media</span></td><td>★★★★☆</td><td><span class="badge b-roi-high">Muy alto</span></td><td>Mes 10-14</td></tr>
+      <tr><td><b>AWS Data Engineer Associate</b></td><td>AWS</td><td>$150</td><td><span class="badge b-mid">Media</span></td><td>★★★★★</td><td><span class="badge b-roi-high">Altísimo</span></td><td>Mes 14-18</td></tr>
+      <tr><td><b>dbt Fundamentals</b></td><td>dbt Labs</td><td><b>$0</b></td><td><span class="badge b-easy">Baja</span></td><td>★★★★☆</td><td><span class="badge b-roi-high">Altísimo</span></td><td>Mes 7-8</td></tr>
+      <tr><td><b>Databricks DE Associate</b></td><td>Databricks</td><td>$200</td><td><span class="badge b-mid">Media</span></td><td>★★★★★</td><td><span class="badge b-roi-high">Muy alto</span></td><td>Mes 16-20</td></tr>
+      <tr><td><b>Databricks DE Professional</b></td><td>Databricks</td><td>$200</td><td><span class="badge b-hard">Alta</span></td><td>★★★★★</td><td><span class="badge b-roi-high">Muy alto</span></td><td>Mes 24+</td></tr>
+      <tr><td><b>SnowPro Core</b></td><td>Snowflake</td><td>$175</td><td><span class="badge b-mid">Media</span></td><td>★★★★☆</td><td><span class="badge b-roi-high">Alto</span></td><td>Mes 12-16</td></tr>
+      <tr><td><b>GCP Professional Data Engineer</b></td><td>Google</td><td>$200</td><td><span class="badge b-hard">Alta</span></td><td>★★★★★</td><td><span class="badge b-roi-high">Muy alto</span></td><td>Mes 20+</td></tr>
+      <tr><td><b>Azure DP-203 (Data Engineer)</b></td><td>Microsoft</td><td>$165</td><td><span class="badge b-mid">Media</span></td><td>★★★☆☆</td><td>Alto si Azure shop</td><td>Solo si lo necesitas</td></tr>
+      <tr><td><b>CKA (Certified Kubernetes Admin)</b></td><td>Linux Found.</td><td>$395</td><td><span class="badge b-hard">Alta</span></td><td>★★★☆☆</td><td>Medio (alto para platform)</td><td>Mes 24+</td></tr>
+      <tr><td><b>Terraform Associate</b></td><td>HashiCorp</td><td>$70</td><td><span class="badge b-mid">Media</span></td><td>★★★☆☆</td><td>Alto</td><td>Mes 14-18</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>❌ Certificaciones que NO valen la pena (o son trampa)</h2>
+  <ul class="tight">
+    <li><b>IBM Data Engineering Professional Certificate (Coursera)</b> — buen contenido, mala señal de mercado.</li>
+    <li><b>Google Data Analytics Certificate</b> — sirve para entrar SOLO si vienes de cero absoluto. Otros lo verán como "starter".</li>
+    <li><b>Cloudera certifications</b> — la empresa está en declive, su ecosistema también.</li>
+    <li><b>Cualquier "certificación" de Udemy/plataformas no oficiales</b> — son completion certificates, no acreditaciones.</li>
+    <li><b>Microsoft DA-100 (Power BI)</b> — útil solo si vas a ser BI dev. Para DE/AI, irrelevante.</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <h2>🗺️ Roadmap de certificaciones recomendado</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <h4>Mes 6 · dbt Fundamentals <span class="badge b-easy">$0</span></h4>
+      <p>Empieza por la más fácil y útil. Gratis. Alta señal para Analytics Eng / DE.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Mes 9 · AWS Cloud Practitioner <span class="badge b-easy">$100</span></h4>
+      <p>Quita el miedo a la nube. No es alta señal, pero te abre la puerta a las siguientes.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Mes 14 · AWS Data Engineer Associate <span class="badge b-mid">$150</span></h4>
+      <p>Aquí empieza el ROI serio. Cubre S3, Glue, Redshift, EMR, Kinesis, Lake Formation, Step Functions.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Mes 18 · Databricks DE Associate <span class="badge b-mid">$200</span></h4>
+      <p>Cubre Spark + Delta Lake + DLT + Unity Catalog. Databricks es ubicuo en empresas grandes.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Mes 22 · SnowPro Core <span class="badge b-mid">$175</span></h4>
+      <p>Snowflake aparece en 60%+ de jobs de DE moderno. Cert relativamente fácil con experiencia.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Mes 26+ · GCP Professional Data Engineer <span class="badge b-hard">$200</span></h4>
+      <p>Multi-cloud te abre Big Tech. Esta cert es percibida como difícil = alta señal.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Mes 30+ · Databricks DE Professional <span class="badge b-hard">$200</span></h4>
+      <p>Para roles Senior/Lead. Filtra a quienes pueden diseñar plataformas, no solo usarlas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PORTFOLIO ===================== -->
+<section id="portfolio">
+  <div class="section-header">
+    <h1>▢ Portafolio · Tu carta de presentación</h1>
+    <p>Sin título universitario, tu portafolio es el filtro #1. No necesitas 20 proyectos: necesitas <b>5 que demuestren progresión clara</b> desde Analyst hasta AI Engineer.</p>
+  </div>
+
+  <h2>🎯 Reglas para que un proyecto cuente como "portfolio-grade"</h2>
+  <div class="note">📌 Si un proyecto no cumple <b>al menos 5 de 7</b> de estos criterios, NO va en tu CV: (1) usa datos reales (API pública, scraping legal, dataset enterprise), (2) tiene README serio con diagrama, (3) está orquestado/desplegado (no solo notebook), (4) tiene tests, (5) usa al menos 3 herramientas del stack moderno, (6) resuelve un problema concreto (no "exploración general"), (7) tiene un demo accesible (deployed, video, o screenshots).</div>
+
+  <h2>📦 Proyectos escalonados (por nivel)</h2>
+
+  <details class="expand" open>
+    <summary>Nivel Junior · Data Analyst (3 proyectos)</summary>
+    <div class="body">
+      <h4>P1 · Análisis de cohortes desde una API pública</h4>
+      <p><b>Stack:</b> Python + Pandas + SQL (DuckDB) + Matplotlib/Plotly + GitHub Pages para publicar.</p>
+      <p><b>Demuestra:</b> SQL, Python, storytelling, ingestion básica.</p>
+      <p><b>Ejemplo:</b> análisis de retención de Stack Overflow developers (API), o análisis de precios de criptomonedas con CoinGecko API.</p>
+
+      <h4>P2 · Dashboard ejecutivo end-to-end</h4>
+      <p><b>Stack:</b> Python (ingest) + Postgres + dbt-core + Metabase o Streamlit.</p>
+      <p><b>Demuestra:</b> SQL serio, modelado, viz, decisiones de negocio.</p>
+      <p><b>Ejemplo:</b> dashboard de KPIs de un e-commerce ficticio con datos sintéticos realistas.</p>
+
+      <h4>P3 · A/B test simulado con análisis estadístico</h4>
+      <p><b>Stack:</b> Python + scipy + Streamlit.</p>
+      <p><b>Demuestra:</b> estadística aplicada, comunicación de resultados.</p>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel Mid · Analytics / Data Engineer (3 proyectos)</summary>
+    <div class="body">
+      <h4>P4 · ELT moderno con Airflow + dbt + Snowflake/BigQuery</h4>
+      <p><b>Stack:</b> Airflow (Astronomer local) + dbt-core + Snowflake free trial o BigQuery sandbox + Great Expectations.</p>
+      <p><b>Demuestra:</b> orquestación, transformación, calidad, modelado dimensional.</p>
+      <p><b>Bonus:</b> publica dbt docs en GitHub Pages.</p>
+
+      <h4>P5 · Lakehouse en AWS con Iceberg/Delta</h4>
+      <p><b>Stack:</b> S3 + Glue + Athena + Iceberg (o EMR + Delta) + Step Functions + Terraform.</p>
+      <p><b>Demuestra:</b> cloud nativo, table formats modernos, IaC.</p>
+
+      <h4>P6 · Pipeline de streaming Kafka → Spark → Iceberg</h4>
+      <p><b>Stack:</b> Kafka local (Docker) + Spark Structured Streaming + Iceberg + Grafana.</p>
+      <p><b>Demuestra:</b> streaming, sistemas distribuidos, observabilidad.</p>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel Senior · Enterprise-style (2 proyectos)</summary>
+    <div class="body">
+      <h4>P7 · Plataforma de datos completa (multi-tenant)</h4>
+      <p><b>Stack:</b> AWS (S3, Glue, Redshift, MWAA) + dbt + Terraform + OpenLineage + CI/CD con GitHub Actions.</p>
+      <p><b>Demuestra:</b> arquitectura completa, governance, lineage, costos.</p>
+      <p><b>Entregable:</b> repo + ADRs (Architecture Decision Records) + diagrama C4.</p>
+
+      <h4>P8 · MLOps pipeline completo</h4>
+      <p><b>Stack:</b> MLflow + FastAPI + Docker + GitHub Actions + Evidently + SageMaker o Vertex.</p>
+      <p><b>Demuestra:</b> CI/CD ML, monitoring, drift detection, re-training.</p>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>Nivel Élite · Big Tech / AI Engineering (2 proyectos)</summary>
+    <div class="body">
+      <h4>P9 · RAG en producción con evaluación cuantitativa</h4>
+      <p><b>Stack:</b> FastAPI + Pinecone o pgvector + OpenAI/Anthropic + reranker (Cohere) + LangSmith para eval + observabilidad (PostHog o custom).</p>
+      <p><b>Demuestra:</b> AI Engineering moderno, eval real (no hand-wavy), deployment.</p>
+      <p><b>Diferencial:</b> métricas de calidad (faithfulness, answer relevancy, context precision) y costos por query.</p>
+
+      <h4>P10 · Agent multi-step para un dominio real</h4>
+      <p><b>Stack:</b> OpenAI Assistants o LangGraph custom + function calling + DB tool + web search tool + guardrails.</p>
+      <p><b>Demuestra:</b> arquitectura de agentes, eval, manejo de errores, guardrails.</p>
+      <p><b>Ejemplo:</b> agente que analiza estados financieros desde APIs y genera reportes.</p>
+    </div>
+  </details>
+
+  <div class="divider"></div>
+
+  <h2>📐 Estructura de README que impresiona</h2>
+  <pre style="font-family:var(--mono);font-size:.78rem;color:var(--muted);overflow-x:auto;line-height:1.5;background:var(--card);padding:18px;border-radius:var(--radius);border:1px solid var(--border)">
+# Project Name · One-liner que explica el valor
+
+[badges: build · tests · coverage · license]
+
+## 📌 Problem
+Qué problema resuelve. 2-3 frases. Contexto de negocio si aplica.
+
+## 🏗️ Architecture
+[Diagrama: Excalidraw export, Mermaid, o draw.io]
+Descripción breve de los componentes y flujo de datos.
+
+## 🚀 Demo
+Link en vivo / video / screenshots.
+
+## 🛠️ Stack
+- Lista del stack con versiones (Python 3.11, dbt 1.7, Airflow 2.8...)
+
+## ⚙️ How to run locally
+```bash
+git clone ...
+make setup
+make run
+```
+
+## 📊 Results / Impact
+Métricas medibles si las hay (latencia, throughput, costo).
+
+## 🧪 Tests
+Cómo correr los tests. Cobertura.
+
+## 📝 Design decisions
+Por qué elegiste X sobre Y. Trade-offs.
+
+## 📚 References
+Papers, blog posts, docs que usaste.
+  </pre>
+</section>
+
+<!-- ===================== NO DEGREE STRATEGY ===================== -->
+<section id="nodegree">
+  <div class="section-header">
+    <h1>⚑ Estrategia Sin Universidad</h1>
+    <p>No tener título universitario te elimina del 30% del mercado (corporativo tradicional, gobierno, banca conservadora). El otro 70% — startups, tech companies modernas, freelance global — no le importa. Apunta ahí.</p>
+  </div>
+
+  <h2>💡 Cómo compensar sin título</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Tu plan de credibilidad</h3>
+      <ul class="tight">
+        <li><b>Portfolio público</b> superior al promedio (GitHub limpio + 5-8 proyectos sólidos).</li>
+        <li><b>2-3 certificaciones cloud/data</b> (AWS DEA, Databricks, Snowflake).</li>
+        <li><b>Presencia técnica:</b> 1 post LinkedIn/semana, 1 blog post/mes.</li>
+        <li><b>Contribuciones OSS:</b> aunque sean pequeñas (docs, tests, bug fixes).</li>
+        <li><b>Referidos:</b> cultivar red interna en empresas objetivo (los referidos saltan filtros).</li>
+        <li><b>Storytelling:</b> tener una narrativa coherente de tu camino, no "soy autodidacta sin más".</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Filtros ATS y cómo pasarlos</h3>
+      <ul class="tight">
+        <li>CV con keywords del job description (literalmente las palabras).</li>
+        <li>Formato simple PDF, sin gráficos raros que rompen el parser.</li>
+        <li>Sección "Education": pon certificaciones como "Continuous Education" o "Professional Development".</li>
+        <li>Cover letter corta (4 párrafos) que explique <i>por qué tú</i>, no <i>qué eres</i>.</li>
+        <li>LinkedIn público con stack en headline.</li>
+        <li>GitHub link en CV (y que sea bueno).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>🎯 Empresas que NO requieren título (mapa por tier)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Tier</th><th>Tipo</th><th>Ejemplos</th><th>Skill bar</th><th>Salario USD</th></tr></thead>
+    <tbody>
+      <tr><td>S</td><td>Big Tech sin requisito formal</td><td>Apple, Meta, Google, Amazon, Microsoft, Stripe, Anthropic, OpenAI</td><td>Brutal</td><td>$150k–$500k</td></tr>
+      <tr><td>A</td><td>Tech companies top no-Big-Tech</td><td>Databricks, Snowflake, Datadog, Confluent, dbt Labs, Hex, Fivetran</td><td>Alto</td><td>$100k–$250k</td></tr>
+      <tr><td>A</td><td>Top startups con funding serio</td><td>Airbyte, Dagster, Astronomer, LangChain, Weaviate, Pinecone</td><td>Alto</td><td>$80k–$180k</td></tr>
+      <tr><td>B</td><td>Scale-ups remote-first</td><td>GitLab, Buffer, Doist, Toptal staff, Posthog</td><td>Medio-alto</td><td>$60k–$140k</td></tr>
+      <tr><td>B</td><td>Agencias remote LATAM-friendly</td><td>Toptal, Crossover, Andela, Turing, Lemon.io</td><td>Medio</td><td>$40k–$120k</td></tr>
+      <tr><td>C</td><td>Empresas LATAM con jobs USD</td><td>Rappi, Mercado Libre, Nubank, Globant, Encora</td><td>Medio</td><td>$25k–$70k</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note ok">🎯 <b>Estrategia:</b> empieza por B/C para construir experiencia formal (1-2 años) → salta a A → considera S después de 3-5 años con track record sólido.</div>
+
+  <h2>📝 Cómo construir reputación técnica desde cero</h2>
+  <ul class="tight">
+    <li><b>Mes 1-6:</b> publica tu aprendizaje, no como flex sino como notas (mini-blog en GitHub Pages).</li>
+    <li><b>Mes 6-12:</b> escribe 1 post LinkedIn/semana sobre algo técnico que aprendiste. Estructura: problema → solución → lección.</li>
+    <li><b>Mes 12-18:</b> charlas en meetups locales (PyCon Colombia, Big Data Bogotá, AWS UG).</li>
+    <li><b>Mes 18-24:</b> contribuye a OSS, escribe en Medium/dev.to, considera lanzar un side-project con uso real.</li>
+    <li><b>Mes 24+:</b> conferencias regionales como speaker, podcast como invitado, mentoring público.</li>
+  </ul>
+</section>
+
+<!-- ===================== FREELANCE ===================== -->
+<section id="freelance">
+  <div class="section-header">
+    <h1>$ Freelance &amp; Trabajo Remoto</h1>
+    <p>Freelance es excelente para: (1) ganar experiencia formal mientras estudias, (2) ingreso paralelo, (3) construir portafolio con datos reales. Pero NO es el destino final — el camino élite es trabajo de tiempo completo en buenas empresas + opcionalmente consultoría premium.</p>
+  </div>
+
+  <h2>💰 Servicios de datos con mayor margen</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Servicio</th><th>Tarifa USD/hr (LATAM remoto)</th><th>Demanda</th><th>Competencia</th><th>ROI</th></tr></thead>
+    <tbody>
+      <tr><td>Dashboards en Power BI / Tableau</td><td>$15–$40</td><td>Alta</td><td>Brutal</td><td>Bajo</td></tr>
+      <tr><td>Análisis de datos ad-hoc</td><td>$20–$50</td><td>Alta</td><td>Alta</td><td>Bajo-medio</td></tr>
+      <tr><td>Pipelines ETL con Python + DB</td><td>$30–$80</td><td>Alta</td><td>Media</td><td>Medio-alto</td></tr>
+      <tr><td>dbt + warehouse setup</td><td>$50–$120</td><td>Alta</td><td>Baja</td><td><span class="badge b-roi-high">Alto</span></td></tr>
+      <tr><td>Migración legacy → cloud data stack</td><td>$60–$150</td><td>Muy alta</td><td>Baja</td><td><span class="badge b-roi-high">Muy alto</span></td></tr>
+      <tr><td>Diseño/setup de Lakehouse</td><td>$80–$200</td><td>Creciente</td><td>Muy baja</td><td><span class="badge b-roi-high">Muy alto</span></td></tr>
+      <tr><td>RAG / LLM apps custom</td><td>$80–$250</td><td>Explosiva</td><td>Baja-media</td><td><span class="badge b-roi-high">Brutal</span></td></tr>
+      <tr><td>MLOps pipeline setup</td><td>$80–$200</td><td>Alta</td><td>Baja</td><td><span class="badge b-roi-high">Muy alto</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>🎯 Nichos rentables con baja competencia</h2>
+  <ul class="tight">
+    <li><b>Migración Excel/Access → modern data stack</b> para pymes USA/UK.</li>
+    <li><b>Setup de dbt + Snowflake/BigQuery</b> para scale-ups (jobs de 4-8 semanas, $5-15k cada uno).</li>
+    <li><b>RAG sobre documentación interna</b> para empresas medianas. Brutalmente demandado 2025-2027.</li>
+    <li><b>Pipelines de scraping legal/compliance</b> (legalmente complejo, técnicamente alto valor).</li>
+    <li><b>Data infra para startups Y Combinator</b> (red densa, recomendaciones rápidas).</li>
+  </ul>
+
+  <h2>🌐 Plataformas (ordenadas por ROI/tiempo)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Plataforma</th><th>Tipo</th><th>Pros</th><th>Contras</th></tr></thead>
+    <tbody>
+      <tr><td><b>Toptal</b></td><td>Premium gated</td><td>Tarifas altas ($60-150/hr), clientes serios</td><td>Filtro muy duro de entrada (5 etapas)</td></tr>
+      <tr><td><b>Arc.dev</b></td><td>Premium</td><td>Roles full-time remotos, tarifas USD</td><td>Highly curated, espera larga</td></tr>
+      <tr><td><b>Braintrust</b></td><td>Marketplace técnico</td><td>Sin comisión, modelo cripto-token</td><td>Demanda variable</td></tr>
+      <tr><td><b>Lemon.io</b></td><td>Premium devs LATAM</td><td>Especializado en LATAM ↔ US/EU</td><td>Tarifas medias</td></tr>
+      <tr><td><b>Turing</b></td><td>Mid-tier</td><td>Volumen, contratos estables</td><td>Comisión alta, tarifas medias</td></tr>
+      <tr><td><b>Upwork</b></td><td>Marketplace abierto</td><td>Empezar fácil, build portfolio</td><td>Race to the bottom; tarifas bajas</td></tr>
+      <tr><td><b>LinkedIn outreach directo</b></td><td>Self-driven</td><td>Sin intermediarios, máximo margen</td><td>Requiere personal brand</td></tr>
+      <tr><td><b>Cal.com + landing propia</b></td><td>Self-driven premium</td><td>Total control, autoridad</td><td>Necesitas autoridad ya construida</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note">🎯 <b>Camino sugerido:</b> Upwork (mes 6-12 para portafolio + reviews) → Toptal/Arc (mes 12+) → outreach LinkedIn directo (mes 18+) → marca propia con landing (mes 24+).</div>
+
+  <h2>💼 Cómo vender soluciones data/AI</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Mentalidad correcta</h3>
+      <ul class="tight">
+        <li>Vendes <b>resultados de negocio</b>, no horas ni tecnologías.</li>
+        <li>"Reduzco tu costo de reportes en 60% migrando de Excel a dbt+BigQuery" &gt;&gt; "Hago dbt".</li>
+        <li>Cobra por <b>proyecto fijo</b> cuando puedes (más margen, no penalizas tu velocidad).</li>
+        <li>Sube tarifas cada 6 meses, incluso 10%.</li>
+        <li>Documenta cada proyecto como case study (anonimizado si necesario).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Trampas comunes</h3>
+      <ul class="tight">
+        <li>Cobrar por horas indefinidas en proyectos sin scope claro → te exprimen.</li>
+        <li>Aceptar el primer cliente que te pague poco → ancla tu tarifa.</li>
+        <li>No tener contrato escrito (usa plantillas SPP — Statement of Work).</li>
+        <li>No facturar / no llevar contabilidad → drama en la DIAN.</li>
+        <li>Mezclar moneda local con USD sin estrategia (abre cuenta Wise/Payoneer).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BIG TECH ===================== -->
+<section id="bigtech">
+  <div class="section-header">
+    <h1>▲ Big Tech · El Juego Final</h1>
+    <p>Google, Meta, Apple, Amazon, Microsoft, OpenAI, Anthropic. No tienes que pasar por ahí — muchos staff-level ganan más en scale-ups. Pero si quieres jugar ahí, las reglas son específicas y no negociables.</p>
+  </div>
+
+  <div class="note danger">🎯 <b>Realidad:</b> Big Tech contratan en LATAM cada vez más (Google en Bogotá/CDMX, Microsoft remoto), pero el bar técnico es global. Tu inglés debe ser nativo-like en lo conversacional, tu CS theory debe estar a nivel CMU undergrad senior.</div>
+
+  <h2>📚 Lo que debes dominar para Big Tech</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Algoritmos y Estructuras de Datos</h3>
+      <ul class="tight">
+        <li>Arrays, strings, hash maps, linked lists, stacks, queues, heaps, trees, tries, graphs.</li>
+        <li>Algoritmos: sorting, BFS/DFS, dynamic programming, greedy, two pointers, sliding window.</li>
+        <li>Big-O analysis en cada problema.</li>
+        <li><b>Meta de LeetCode:</b> 250-400 problemas (mezcla easy/medium/hard 30/50/20).</li>
+        <li><b>Patrones &gt; problemas individuales:</b> aprende los 20-25 patrones canónicos.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>System Design</h3>
+      <ul class="tight">
+        <li>Trade-offs: consistency vs availability, latency vs throughput, cost vs perf.</li>
+        <li>Componentes: load balancers, caches, CDNs, queues, DBs (SQL/NoSQL), object storage, search.</li>
+        <li>Casos canónicos: URL shortener, Twitter feed, rate limiter, chat system, recommendation system.</li>
+        <li><b>Para Data Eng:</b> diseña un data lake/warehouse, sistema de ingest a 1M events/s, lineage tracker.</li>
+        <li><b>Para ML Eng:</b> diseña sistema de recomendación a escala, feature store, real-time inference.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>📅 Plan de preparación Big Tech (6 meses dedicados)</h2>
+  <div class="timeline">
+    <div class="tl-item"><h4>Mes 1-2 · Fundamentos DS&amp;A <span class="badge b-mid">Mid</span></h4><p>NeetCode 150 + "Cracking the Coding Interview". 1 problema/día primero, luego 2.</p></div>
+    <div class="tl-item"><h4>Mes 3-4 · Patrones avanzados</h4><p>Grokking the Coding Interview + topic-by-topic mastery. Empezar mock interviews semanales.</p></div>
+    <div class="tl-item"><h4>Mes 5 · System Design</h4><p>"Designing Data-Intensive Applications" + ByteByteGo + Alex Xu books. 1 system design/semana documentado.</p></div>
+    <div class="tl-item"><h4>Mes 6 · Mocks intensivos + behavioral</h4><p>3-4 mock interviews/semana (interviewing.io, Pramp). Práctica STAR para behavioral.</p></div>
+  </div>
+
+  <h2>🎯 Entrevistas Big Tech para Data/AI roles</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Etapa</th><th>Tipo</th><th>Duración</th><th>Foco</th></tr></thead>
+    <tbody>
+      <tr><td>Recruiter screen</td><td>Conversacional</td><td>30 min</td><td>Compensación, motivación, fit cultural</td></tr>
+      <tr><td>Phone tech screen</td><td>1-2 problemas codingen Codility/CoderPad</td><td>45-60 min</td><td>DS&amp;A medium, comunicación</td></tr>
+      <tr><td>Onsite · Coding 1</td><td>2 problemas medium-hard</td><td>45 min</td><td>Algoritmos, edge cases</td></tr>
+      <tr><td>Onsite · Coding 2</td><td>1 problema hard o sistema</td><td>45 min</td><td>Optimización, trade-offs</td></tr>
+      <tr><td>Onsite · System Design (Data)</td><td>Diseña un sistema completo</td><td>45-60 min</td><td>Arquitectura, escalabilidad, trade-offs</td></tr>
+      <tr><td>Onsite · Domain (DE/ML)</td><td>Profundo en tu stack</td><td>45 min</td><td>Spark internals, dbt patterns, ML pipelines</td></tr>
+      <tr><td>Onsite · Behavioral</td><td>Conversación STAR</td><td>45 min</td><td>Leadership principles, situaciones reales</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>📚 Recursos top para Big Tech</h2>
+  <ul class="tight">
+    <li><b>NeetCode.io</b> — el mejor curador de LeetCode (150 problemas core).</li>
+    <li><b>"Cracking the Coding Interview"</b> (Gayle Laakmann) — clásico, sigue vigente.</li>
+    <li><b>"Designing Data-Intensive Applications"</b> — Bible para Data Eng interviews.</li>
+    <li><b>ByteByteGo</b> (Alex Xu) — system design moderno.</li>
+    <li><b>"System Design Interview" Vol 1 &amp; 2</b> — Alex Xu.</li>
+    <li><b>Pramp / interviewing.io</b> — mocks gratis/baratos.</li>
+    <li><b>levels.fyi</b> — compensación real por nivel y empresa.</li>
+  </ul>
+
+  <div class="note">📌 <b>Truth bomb:</b> el camino realista a Big Tech sin universidad es 4-6 años de experiencia sólida + 6 meses de prep dedicada. No hay shortcuts. Pero el ROI lifetime es brutal.</div>
+</section>
+
+<!-- ===================== MARKET ===================== -->
+<section id="market">
+  <div class="section-header">
+    <h1>📈 Mercado Laboral Real · 2026</h1>
+    <p>Análisis honesto del mercado: qué paga, qué crece, qué muere, qué evitar. Sin marketing de cursos.</p>
+  </div>
+
+  <h2>💸 Skills mejor pagadas (LATAM remoto, 2026)</h2>
+  <div class="card">
+    <div class="chart-wrap tall"><canvas id="skillsPay"></canvas></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>📊 Tendencias 2026-2030 (basado en señales reales)</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3 style="color:#34d399">🚀 En crecimiento brutal</h3>
+      <ul class="tight">
+        <li><b>AI Engineering (LLMs/RAG/Agents):</b> demanda explosiva, oferta limitada, salarios premium.</li>
+        <li><b>Data Platform Engineering:</b> el rol que une DE + DevOps. Sub-especialidad caliente.</li>
+        <li><b>Lakehouse architects:</b> Iceberg/Delta everywhere; especialistas escasean.</li>
+        <li><b>Real-time analytics:</b> Flink, Pinot, ClickHouse, Materialize.</li>
+        <li><b>Vector DB engineers:</b> sub-nicho hyper-rentable.</li>
+        <li><b>MLOps con foco LLMs (LLMOps):</b> sub-disciplina emergente.</li>
+        <li><b>Data Governance / Privacy Eng:</b> regulación creciente = jobs.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="color:#fb7185">🪦 En declive / saturados</h3>
+      <ul class="tight">
+        <li><b>Data Analyst genérico (solo Excel/SQL básico/Power BI):</b> mercado inundado, salarios estancados.</li>
+        <li><b>Hadoop ecosystem (Hive, HBase, Pig):</b> migración masiva a cloud-native.</li>
+        <li><b>SAS, SPSS:</b> solo banca/gobierno legacy. Sin futuro.</li>
+        <li><b>Tableau-only specialists:</b> commoditizado; valor solo si combinas con SQL/Python.</li>
+        <li><b>Junior Data Scientists genéricos:</b> oferta masiva sin demanda equivalente. Pivotea a MLE/AI Eng.</li>
+        <li><b>"Big Data engineers" puros (sin cloud / SQL moderno):</b> el perfil 2015 ya no existe.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>🌍 Mejores geografías para apuntar (remoto)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Región</th><th>Pros para LATAM</th><th>Salarios</th><th>Estrategia</th></tr></thead>
+    <tbody>
+      <tr><td><b>USA (West Coast)</b></td><td>Mejor pagador absoluto, time zone amigable</td><td>$80k–$300k+</td><td>Foco aquí desde mes 12+</td></tr>
+      <tr><td><b>USA (East Coast)</b></td><td>Más fintech/health/finance</td><td>$70k–$250k</td><td>Secundario</td></tr>
+      <tr><td><b>Canadá</b></td><td>Visado más fácil, cultura inclusiva</td><td>$60k–$150k CAD</td><td>Opción B</td></tr>
+      <tr><td><b>UK</b></td><td>Buen mercado tech, time zone difícil</td><td>£50k–£150k</td><td>Solo si te ofrecen</td></tr>
+      <tr><td><b>Europa (NL, DE, ES remoto)</b></td><td>Estabilidad, work-life balance</td><td>€45k–€120k</td><td>Buena alternativa</td></tr>
+      <tr><td><b>LATAM-grandes (BR, MX, AR)</b></td><td>Tarjeta de entrada, time zone perfecta</td><td>$25k–$70k USD</td><td>Stepping stone</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>🚨 Qué evitar a toda costa</h2>
+  <ul class="tight">
+    <li><b>Boot camps caros sin selección estricta</b> ($10k+ por algo que está en YouTube gratis).</li>
+    <li><b>Especializarte en SAS, MicroStrategy, Cognos, Informatica PowerCenter</b> antes de tener stack moderno.</li>
+    <li><b>"Data Science" como label genérico</b> sin pivote a MLE o AI Eng.</li>
+    <li><b>Roles "Full-stack data scientist" en startups pre-seed</b> donde haces de todo y aprendes nada bien.</li>
+    <li><b>Quedarte en empresa que no usa cloud moderno</b> por más de 18 meses (decae tu stack).</li>
+    <li><b>Negociar salario sin levels.fyi data</b> en mano.</li>
+  </ul>
+</section>
+
+<!-- ===================== TOOLS ===================== -->
+<section id="tools">
+  <div class="section-header">
+    <h1>⚒ Herramientas · Tu Mesa de Trabajo</h1>
+    <p>Set up the right tools once, save thousands of hours. Aquí la stack que un Data/AI Engineer élite usa día a día.</p>
+  </div>
+
+  <div class="grid g-2">
+    <div class="card">
+      <h3>💻 IDE y editores</h3>
+      <ul class="tight">
+        <li><b>VS Code</b> + extensions: Python, Pylance, Ruff, Docker, GitLens, Remote SSH, dbt Power User, REST Client.</li>
+        <li><b>Cursor</b> (fork de VS Code con AI integrado) — productividad +30% real.</li>
+        <li><b>Zed</b> — alternativa moderna ultra-rápida.</li>
+        <li><b>Jupyter</b> + JupyterLab para exploración (no para código de producción).</li>
+        <li><b>DataGrip / DBeaver</b> para SQL queries serias.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🖥️ Terminal y shell</h3>
+      <ul class="tight">
+        <li><b>Warp</b> o <b>Ghostty</b> — terminales modernos con AI/multiplex.</li>
+        <li><b>iTerm2</b> + <b>oh-my-zsh</b> + <b>Powerlevel10k</b> — clásico sólido.</li>
+        <li><b>tmux</b> para sesiones persistentes / múltiples panes.</li>
+        <li>CLI tools: <code>fzf</code>, <code>ripgrep</code>, <code>bat</code>, <code>fd</code>, <code>jq</code>, <code>yq</code>, <code>httpie</code>, <code>direnv</code>.</li>
+        <li><b>uv</b> (Astral) — Python package manager que reemplaza pip/pip-tools/venv.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📓 Notebooks y exploración</h3>
+      <ul class="tight">
+        <li><b>Jupyter Lab</b> local + <b>nbstripout</b> para git limpio.</li>
+        <li><b>VS Code Notebooks</b> — preferible para casos integrados.</li>
+        <li><b>Marimo</b> — reactive notebooks, alternativa moderna.</li>
+        <li><b>Hex / Deepnote</b> — colaborativos, parecidos a Google Docs.</li>
+        <li><b>DuckDB</b> en notebook para análisis local rapidísimo.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📊 Visualización y BI</h3>
+      <ul class="tight">
+        <li><b>Plotly</b> (interactivo) + <b>Matplotlib</b> (estático).</li>
+        <li><b>Streamlit</b> para dashboards Python rápidos.</li>
+        <li><b>Evidence</b> / <b>Observable Framework</b> — markdown + SQL → web.</li>
+        <li><b>Metabase</b> / <b>Apache Superset</b> — open-source BI.</li>
+        <li><b>Looker Studio</b> / <b>Power BI</b> / <b>Tableau</b> — enterprise (aprende uno, no todos).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>☁️ Cloud y orquestación</h3>
+      <ul class="tight">
+        <li><b>AWS CLI</b>, <b>aws-vault</b> para credentials.</li>
+        <li><b>gcloud</b>, <b>Azure CLI</b> según cloud.</li>
+        <li><b>Terraform</b> + <b>tflint</b> + <b>tfsec</b> para IaC.</li>
+        <li><b>Pulumi</b> (alternativa moderna, Python-first).</li>
+        <li><b>kubectl</b>, <b>k9s</b>, <b>Lens</b> para Kubernetes.</li>
+        <li><b>Astronomer CLI</b> para Airflow local.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🧠 Productividad y notas</h3>
+      <ul class="tight">
+        <li><b>Obsidian</b> — Zettelkasten para notas técnicas. Plain markdown, sin lock-in.</li>
+        <li><b>Notion</b> — para gestión de proyectos / portfolio público.</li>
+        <li><b>Linear</b> — task management de nivel profesional.</li>
+        <li><b>Raycast</b> — productividad macOS bestial.</li>
+        <li><b>Excalidraw</b> — diagramas técnicos rápidos.</li>
+        <li><b>Mermaid</b> — diagramas en markdown / docs.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🤖 AI assistants</h3>
+      <ul class="tight">
+        <li><b>Claude</b> — pair programmer + reasoning.</li>
+        <li><b>Cursor / Windsurf</b> — IDE con AI integrada.</li>
+        <li><b>Claude Code / Cowork</b> — agentic coding.</li>
+        <li><b>GitHub Copilot</b> — autocompletion en código.</li>
+        <li><b>Perplexity</b> — research técnico con citas.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🔐 Seguridad básica</h3>
+      <ul class="tight">
+        <li><b>1Password</b> o <b>Bitwarden</b> — password manager.</li>
+        <li><b>YubiKey</b> hardware 2FA para cuentas importantes.</li>
+        <li><b>git-secrets</b> / <b>detect-secrets</b> — pre-commit hooks.</li>
+        <li><b>sops</b> o <b>Doppler</b> para secrets en código.</li>
+        <li>Mantén tu MacBook con FileVault on, firmware password, backups encriptados.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESOURCES ===================== -->
+<section id="resources">
+  <div class="section-header">
+    <h1>▥ Recursos · Curados, sin paja</h1>
+    <p>Curé esta lista quitando 90% de lo que está "trending" pero no sirve. Lo que queda es lo que un Data/AI Engineer élite consume.</p>
+  </div>
+
+  <h2>📚 Libros que valen cada peso</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Libro</th><th>Autor</th><th>Tema</th><th>Nivel</th><th>Prioridad</th></tr></thead>
+    <tbody>
+      <tr><td><b>Designing Data-Intensive Applications</b></td><td>Martin Kleppmann</td><td>Sistemas distribuidos</td><td>Mid–Senior</td><td>🔥 Obligatorio</td></tr>
+      <tr><td><b>Fundamentals of Data Engineering</b></td><td>Joe Reis, Matt Housley</td><td>DE end-to-end</td><td>Junior–Mid</td><td>🔥 Obligatorio</td></tr>
+      <tr><td><b>The Data Warehouse Toolkit</b></td><td>Ralph Kimball</td><td>Modelado dimensional</td><td>Mid</td><td>🔥 Obligatorio</td></tr>
+      <tr><td><b>Hands-On Machine Learning</b> (3ª ed.)</td><td>Aurélien Géron</td><td>ML + DL</td><td>Junior–Mid</td><td>🔥 Obligatorio</td></tr>
+      <tr><td><b>Designing Machine Learning Systems</b></td><td>Chip Huyen</td><td>MLOps real</td><td>Mid–Senior</td><td>🔥 Obligatorio</td></tr>
+      <tr><td><b>SQL for Data Analysis</b></td><td>Cathy Tanimura</td><td>SQL aplicado</td><td>Junior–Mid</td><td>Alta</td></tr>
+      <tr><td><b>Learning Spark</b> (2ª ed.)</td><td>Damji et al.</td><td>Spark</td><td>Mid</td><td>Alta</td></tr>
+      <tr><td><b>Streaming Systems</b></td><td>Tyler Akidau</td><td>Streaming</td><td>Senior</td><td>Alta</td></tr>
+      <tr><td><b>System Design Interview</b> v1+v2</td><td>Alex Xu</td><td>System design</td><td>Mid–Senior</td><td>Alta</td></tr>
+      <tr><td><b>The Pragmatic Programmer</b></td><td>Hunt, Thomas</td><td>Mindset SWE</td><td>Todos</td><td>Alta</td></tr>
+      <tr><td><b>AI Engineering</b></td><td>Chip Huyen</td><td>AI Engineering 2025</td><td>Mid–Senior</td><td>🔥 Obligatorio</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>📺 Canales y plataformas</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>YouTube (gratis, oro)</h3>
+      <ul class="tight">
+        <li><b>Andrej Karpathy</b> — fundamentos profundos de DL.</li>
+        <li><b>3Blue1Brown</b> — matemáticas visuales.</li>
+        <li><b>ByteByteGo (Alex Xu)</b> — system design.</li>
+        <li><b>Seattle Data Guy</b> — DE prácticas.</li>
+        <li><b>StatQuest</b> — estadística clara.</li>
+        <li><b>Fireship</b> — actualidad tech rápida.</li>
+        <li><b>ThePrimeagen</b> — opiniones y deep dives.</li>
+        <li><b>Stanford CS25</b> — Transformers United.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Cursos premium (pagos pero ROI)</h3>
+      <ul class="tight">
+        <li><b>DeepLearning.AI</b> (Andrew Ng) — todo lo de Coursera vale.</li>
+        <li><b>Maven · Data Engineering Zoomcamp</b> (DataTalksClub, gratis) — top.</li>
+        <li><b>Maven · MLOps Zoomcamp</b> (gratis) — excelente.</li>
+        <li><b>Maven · LLM Zoomcamp</b> (gratis) — AI Engineering practical.</li>
+        <li><b>Udacity Data Engineer Nanodegree</b> — caro, contenido medio.</li>
+        <li><b>A Cloud Guru / Cloud Academy</b> — para AWS/GCP certs.</li>
+        <li><b>Bree</b> (Big Data Engineering) — newsletter + curso.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>📰 Newsletters que leer semanalmente</h2>
+  <ul class="tight">
+    <li><b>Data Engineering Weekly</b> (Ananth Packkildurai) — agregador top.</li>
+    <li><b>Joe Reis Newsletter</b> — opinión sin filtro, valioso.</li>
+    <li><b>Seattle Data Guy</b> newsletter.</li>
+    <li><b>Tristan Handy (dbt)</b> — futuro de analytics engineering.</li>
+    <li><b>Latent Space</b> — AI Engineering moderno.</li>
+    <li><b>Eugene Yan</b> — ML ops y systems applied.</li>
+    <li><b>Chip Huyen blog</b> — AI/MLOps profundo.</li>
+    <li><b>The Pragmatic Engineer</b> (Gergely Orosz) — carrera técnica.</li>
+  </ul>
+
+  <h2>📦 Repos / docs que debes conocer</h2>
+  <ul class="tight">
+    <li><b>awesome-data-engineering</b> (igorbarinov/awesome-data-engineering en GitHub).</li>
+    <li><b>data-engineering-zoomcamp</b> (DataTalksClub) — proyecto end-to-end gratis.</li>
+    <li><b>mlops-zoomcamp</b> (DataTalksClub).</li>
+    <li><b>llm-zoomcamp</b> (DataTalksClub).</li>
+    <li><b>dbt-labs/jaffle-shop</b> — proyecto canónico dbt.</li>
+    <li>Docs oficiales: dbt, Airflow, Spark, AWS, Snowflake, Iceberg, Delta, LangChain.</li>
+  </ul>
+
+  <h2>📊 Datasets reales (no Kaggle Titanic)</h2>
+  <ul class="tight">
+    <li><b>NYC Taxi data</b> — clásico para volumen.</li>
+    <li><b>OpenSky Network</b> — vuelos en tiempo real.</li>
+    <li><b>Common Crawl</b> — web data masiva.</li>
+    <li><b>GitHub Archive</b> (GHArchive) — eventos GitHub.</li>
+    <li><b>Wikipedia dumps</b> — texto a escala.</li>
+    <li><b>Open Library</b> / <b>OpenAlex</b> — academic data.</li>
+    <li><b>Reddit / Hacker News APIs</b> — texto + eventos.</li>
+    <li><b>data.gov</b> / <b>datos.gov.co</b> — gobierno.</li>
+  </ul>
+</section>
+
+<!-- ===================== PLANS ===================== -->
+<section id="plans">
+  <div class="section-header">
+    <h1>⏱ Planes Realistas · 6m / 1a / 2a / Intensivo</h1>
+    <p>Mismo destino, diferentes velocidades. Elige el que cuadra con tu vida actual. Cambia entre ellos según cambien tus circunstancias.</p>
+  </div>
+
+  <div class="grid g-2">
+    <div class="card card-glow">
+      <h3>🏃 PLAN INTENSIVO · 6 meses</h3>
+      <p class="muted small">35-45 h/semana · sin distracciones · objetivo: Data Analyst técnico + primera oferta</p>
+      <ul class="tight">
+        <li><b>Mes 1:</b> SQL (4h/día) + Python básico (2h/día) + Git/Linux (30min/día) + Inglés (1h/día).</li>
+        <li><b>Mes 2:</b> SQL avanzado + Python intermedio (Pandas) + primer mini-proyecto + LinkedIn técnico.</li>
+        <li><b>Mes 3:</b> Estadística aplicada + visualización + segundo proyecto end-to-end + empezar dbt.</li>
+        <li><b>Mes 4:</b> dbt + Snowflake/BQ trial + tercer proyecto (con dbt) + dbt Fundamentals cert.</li>
+        <li><b>Mes 5:</b> Airflow + Docker básico + cuarto proyecto (orquestado) + cleanup GitHub.</li>
+        <li><b>Mes 6:</b> AWS Cloud Practitioner + aplicaciones masivas (Upwork + LinkedIn) + entrevistas.</li>
+      </ul>
+      <p class="small muted">Resultado realista: oferta freelance USD$1.5-3k/mes O empleo formal junior LATAM/remoto.</p>
+    </div>
+
+    <div class="card">
+      <h3>🏃‍♂️ PLAN 1 AÑO (balanceado)</h3>
+      <p class="muted small">20-25 h/semana · ritmo sostenible · objetivo: Analytics/Data Eng Jr empleable</p>
+      <ul class="tight">
+        <li><b>Q1:</b> Fundamentos (SQL + Python + Git + Linux) + 2 proyectos pequeños.</li>
+        <li><b>Q2:</b> Data Analyst empleable (Pandas, viz, estadística) + 2 proyectos sólidos + freelance básico.</li>
+        <li><b>Q3:</b> Analytics Eng (dbt + warehouse) + 1 proyecto serio + dbt Fundamentals + empezar AWS.</li>
+        <li><b>Q4:</b> Data Engineer Jr (Airflow + Docker + AWS) + AWS Practitioner + aplicaciones formales.</li>
+      </ul>
+      <p class="small muted">Resultado realista: primera oferta DE Jr (USD$2.5-5k/mes remoto).</p>
+    </div>
+
+    <div class="card">
+      <h3>📅 PLAN 2 AÑOS · Estratégico</h3>
+      <p class="muted small">15-20 h/semana · sostenible mientras trabajas en otra cosa · objetivo: Mid Data Eng</p>
+      <ul class="tight">
+        <li><b>Año 1 H1:</b> Fundamentos + Analyst + primer freelance.</li>
+        <li><b>Año 1 H2:</b> Analytics Eng + dbt cert + portfolio sólido.</li>
+        <li><b>Año 2 H1:</b> Data Eng + AWS DEA + primer trabajo formal o cliente recurrente.</li>
+        <li><b>Año 2 H2:</b> Spark + Databricks + Sr-track + aplicaciones a empresas A-tier.</li>
+      </ul>
+      <p class="small muted">Resultado realista: rol Mid DE remoto USD$5-10k/mes.</p>
+    </div>
+
+    <div class="card">
+      <h3>💼 PLAN MIENTRAS TRABAJAS</h3>
+      <p class="muted small">10-15 h/semana · sostenible largo plazo · objetivo: transición gradual</p>
+      <ul class="tight">
+        <li><b>Mañana (5:30-7am):</b> 1h estudio core (SQL/Python).</li>
+        <li><b>Almuerzo (45 min):</b> inglés (input) o leetcode.</li>
+        <li><b>Noche (1h):</b> proyecto activo, 3 noches/semana.</li>
+        <li><b>Sábado (4-6h):</b> sprint de proyecto + revisión semanal.</li>
+        <li><b>Domingo (1-2h):</b> planning + lectura.</li>
+        <li><b>Trimestres:</b> mismos hitos que plan 2 años, pero estirados +20-30%.</li>
+      </ul>
+      <p class="small muted">Resultado realista: transición en 30-36 meses, pero sin romperte. Sostenibilidad &gt; velocidad.</p>
+    </div>
+  </div>
+
+  <div class="note">📌 <b>Reglas universales para todos los planes:</b> (1) construir &gt; consumir contenido, (2) inglés DAILY no negociable, (3) GitHub commits regulares, (4) 1 publicación pública/semana, (5) retro semanal y trimestral honesta.</div>
+</section>
+
+<!-- ===================== MASTER ACTION PLAN ===================== -->
+<section id="master">
+  <div class="section-header">
+    <h1>⬢ Master Action Plan · Tu Sistema Operativo de Carrera</h1>
+    <p>Todo lo anterior es contexto. Esto es la <b>ejecución</b>. Aquí están tus OKRs trimestrales, sistema de seguimiento y la ruta definitiva.</p>
+  </div>
+
+  <h2>🎯 Estrategia de ejecución en 5 principios</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <ol style="padding-left:1.2em">
+        <li><b>Profundidad sobre amplitud</b> hasta llegar a Mid. Un proyecto excelente vale 10 mediocres.</li>
+        <li><b>Construir en público.</b> GitHub + LinkedIn + 1 publicación corta/semana. Sin presencia = sin ofertas.</li>
+        <li><b>Inglés diario.</b> 60-90 min innegociables. Es tu multiplicador #1.</li>
+        <li><b>1 entrega cada 2 semanas.</b> Algo terminado: PR merged, post publicado, problema cerrado.</li>
+        <li><b>Retro semanal honesta.</b> ¿Qué moví? ¿Qué procrastiné? ¿Qué cambia?</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>KPIs para medirte (no engañarte)</h3>
+      <ul class="tight">
+        <li>📈 <b>Commits/semana:</b> mínimo 5, ideal 15+.</li>
+        <li>📈 <b>Horas estudio efectivas:</b> tracked en Toggl/RescueTime, no estimadas.</li>
+        <li>📈 <b>Problemas SQL/LeetCode resueltos:</b> 3-5/semana.</li>
+        <li>📈 <b>Publicaciones (post/blog):</b> mínimo 1/semana.</li>
+        <li>📈 <b>Conversaciones inglés:</b> 2+ sesiones de tutor/semana.</li>
+        <li>📈 <b>Aplicaciones a jobs:</b> desde mes 9, 10+/semana.</li>
+        <li>📈 <b>Net Promoter de proyectos:</b> ¿alguien externo lo elogió esta semana?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>🗓️ OKRs Trimestrales (los primeros 8)</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Q1 · Fundamentos brutales (Mes 1-3)</h3>
+      <p><b>Objetivo:</b> Dominar SQL intermedio, Python básico, Git/Linux. Empezar inglés disciplinado.</p>
+      <ul class="tight">
+        <li>KR1: Resolver 60 problemas SQL (DataLemur/StrataScratch).</li>
+        <li>KR2: Completar 2 proyectos pequeños (CSV→análisis→visualización).</li>
+        <li>KR3: 50+ commits en GitHub, README mínimo viable en cada proyecto.</li>
+        <li>KR4: 60h+ de inglés (track con app).</li>
+        <li>KR5: LinkedIn refrescado con primer post técnico.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Q2 · Data Analyst empleable (Mes 4-6)</h3>
+      <p><b>Objetivo:</b> Pandas, estadística, viz; primer proyecto end-to-end "shareable".</p>
+      <ul class="tight">
+        <li>KR1: Dominar Pandas + NumPy (track con 30 ejercicios documentados).</li>
+        <li>KR2: 1 proyecto end-to-end con datos de API real + dashboard publicado.</li>
+        <li>KR3: 40 problemas más SQL avanzados (window functions, CTEs).</li>
+        <li>KR4: Primera aplicación a Upwork + 1 propuesta enviada.</li>
+        <li>KR5: 8 posts LinkedIn técnicos publicados.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Q3 · Analytics Engineer (Mes 7-9)</h3>
+      <p><b>Objetivo:</b> dbt fluido, warehouse, modelado dimensional.</p>
+      <ul class="tight">
+        <li>KR1: dbt Fundamentals cert obtenida.</li>
+        <li>KR2: 1 repo dbt completo (sources → marts) en GitHub con docs publicadas.</li>
+        <li>KR3: 1 proyecto integrando ingesta + dbt + warehouse (Snowflake trial o BQ).</li>
+        <li>KR4: Inglés a B2 funcional medido (Cambridge mock o equivalente).</li>
+        <li>KR5: Primer freelance gig pequeño cerrado (incluso $200 USD cuenta).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Q4 · Data Engineer Jr (Mes 10-12)</h3>
+      <p><b>Objetivo:</b> Airflow + Docker + AWS básico; primera oferta formal o freelance grande.</p>
+      <ul class="tight">
+        <li>KR1: AWS Cloud Practitioner cert.</li>
+        <li>KR2: 1 proyecto con Airflow + Docker + AWS (S3 + Lambda + Postgres RDS).</li>
+        <li>KR3: 50+ aplicaciones serias a jobs DE Jr.</li>
+        <li>KR4: 2-3 entrevistas técnicas cerradas (incluso si no ofertas, feedback).</li>
+        <li>KR5: Network: 10 conversaciones reales con DE/AE seniors (LinkedIn).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Q5 · Cloud Data Engineer (Mes 13-15)</h3>
+      <p><b>Objetivo:</b> AWS profundo, Terraform, pipelines productivos.</p>
+      <ul class="tight">
+        <li>KR1: AWS Data Engineer Associate cert.</li>
+        <li>KR2: 1 proyecto AWS multi-service (Glue + S3 + Athena + Step Functions + Terraform).</li>
+        <li>KR3: Primer empleo formal CERRADO O cliente recurrente USD$3k+/mes.</li>
+        <li>KR4: Inglés B2+ confirmado, conversación fluida.</li>
+        <li>KR5: 1 charla en meetup local o post largo viralizado.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Q6 · Spark + Streaming (Mes 16-18)</h3>
+      <p><b>Objetivo:</b> Spark profundo + Kafka + Databricks.</p>
+      <ul class="tight">
+        <li>KR1: Databricks DE Associate cert.</li>
+        <li>KR2: 1 proyecto streaming completo (Kafka → Spark Streaming → Iceberg).</li>
+        <li>KR3: PR aceptado en al menos 1 OSS (dbt-utils, Airflow providers, etc.).</li>
+        <li>KR4: Subir tarifa freelance o cambiar empleo (+25-50%).</li>
+        <li>KR5: 24 posts técnicos publicados (~2/semana).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Q7 · MLOps + AI Infra (Mes 19-21)</h3>
+      <p><b>Objetivo:</b> Docker avanzado, K8s básico, MLflow, serving.</p>
+      <ul class="tight">
+        <li>KR1: 1 sistema MLOps end-to-end (train → registry → serve → monitor).</li>
+        <li>KR2: SnowPro Core o Terraform Associate cert.</li>
+        <li>KR3: Inglés C1 sostenido en conversación técnica.</li>
+        <li>KR4: Aplicaciones a roles A-tier (Databricks, Snowflake, dbt Labs, scale-ups).</li>
+        <li>KR5: System Design — completar 10 diseños documentados.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Q8 · AI Engineer moderno (Mes 22-24)</h3>
+      <p><b>Objetivo:</b> LLMs, RAG, agents, primer producto AI.</p>
+      <ul class="tight">
+        <li>KR1: 1 RAG app pública con evaluación cuantitativa real.</li>
+        <li>KR2: 1 agent multi-tool funcional para dominio real.</li>
+        <li>KR3: Salario actual &gt;= USD$6k/mes (full-time o freelance).</li>
+        <li>KR4: 3 charlas técnicas (meetups, webinars, podcast como invitado).</li>
+        <li>KR5: Plan de los siguientes 24 meses → Sr DE / ML Eng / AI Eng.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>📋 Sistema de seguimiento (semanal)</h2>
+  <div class="grid g-2">
+    <div class="card">
+      <h3>Plantilla retro semanal (cópiala a Notion/Obsidian)</h3>
+      <pre style="font-family:var(--mono);font-size:.78rem;color:var(--muted);overflow-x:auto;line-height:1.6;background:transparent;border:none;padding:0">
+## Semana del [fecha]
+
+### 🎯 OKR trimestral
+- [ ] KR1: ...
+- [ ] KR2: ...
+
+### 📊 KPIs de la semana
+- Horas estudio efectivas: __ h
+- Commits: __
+- Problemas SQL/LeetCode: __
+- Posts publicados: __
+- Sesiones inglés: __
+- Aplicaciones jobs: __
+
+### ✅ Wins
+- ...
+
+### 🐛 Stuck / blockers
+- ...
+
+### 🧠 Aprendizajes clave
+- ...
+
+### 🗓️ Próxima semana · 3 priorities
+1. ...
+2. ...
+3. ...
+      </pre>
+    </div>
+    <div class="card">
+      <h3>Checklist diaria (cópiala al inicio del día)</h3>
+      <div class="check"><input type="checkbox" id="d1"><label for="d1">⏰ Bloque AM (1h): inglés (input o speaking)</label></div>
+      <div class="check"><input type="checkbox" id="d2"><label for="d2">🎯 Bloque core (2h): skill principal del mes</label></div>
+      <div class="check"><input type="checkbox" id="d3"><label for="d3">🛠️ Bloque PM (1h): proyecto activo, commit al menos 1 cosa</label></div>
+      <div class="check"><input type="checkbox" id="d4"><label for="d4">🧠 30 min: lectura técnica o problema SQL/LeetCode</label></div>
+      <div class="check"><input type="checkbox" id="d5"><label for="d5">📱 5 min: 1 interacción en LinkedIn (comentario, post)</label></div>
+      <div class="check"><input type="checkbox" id="d6"><label for="d6">📝 Anotar 1 cosa aprendida hoy en Obsidian</label></div>
+      <div class="check"><input type="checkbox" id="d7"><label for="d7">😴 Cierre del día: no más pantallas 30 min antes de dormir</label></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>🌟 La ruta definitiva, en 7 líneas</h2>
+  <div class="card card-glow" style="padding:28px">
+    <ol style="padding-left:1.4em;font-size:1.05rem;line-height:1.9">
+      <li><b>Semilla:</b> SQL + Python + Git + Linux + inglés daily. 3 meses brutales.</li>
+      <li><b>Brote:</b> Analytics Engineer con dbt + warehouse. Primer proyecto serio. 6 meses.</li>
+      <li><b>Tallo:</b> Data Engineer con Airflow + AWS + Spark. Primer empleo formal. 12-18 meses.</li>
+      <li><b>Tronco:</b> Senior Data Engineer / Cloud DE / Big Data. Stack maduro, system design. 24-36 meses.</li>
+      <li><b>Ramas:</b> Especialización: AI Infra, MLOps, AI Engineering moderno. 36-48 meses.</li>
+      <li><b>Copa:</b> Staff/Principal level — sistemas grandes, mentor, presencia técnica. 60-84 meses.</li>
+      <li><b>Bosque:</b> Influencia industria (charlas, OSS, libros, asesoría a empresas). 84+ meses.</li>
+    </ol>
+    <p class="muted" style="margin-top:14px">Cada nivel se gana, no se compra. Cada decisión técnica que tomes se compone. Cada día que estudies con foco, te alejas exponencialmente del 95% que solo "está aprendiendo Python".</p>
+  </div>
+
+  <div class="note ok" style="margin-top:24px;font-size:.95rem">
+    <b>📌 Última verdad:</b> nadie te va a dar permiso para ser élite. No esperas a tener título, edad, contexto o "el momento perfecto". Empiezas hoy con lo que tienes — un MacBook M4, conexión a internet, ganas — y compones consistencia durante años. La diferencia entre quienes llegan y quienes no, NO es talento. Es <b>continuar después del mes 6</b>, cuando ya no es novedad y todavía no es resultado.
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- =========================================================
+     FLOATING PROGRESS DOCK (always visible)
+========================================================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="dockGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c5cff"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="progress-dock" id="progressDock" title="Tu progreso global · clic para ir al dashboard">
+  <div class="ring">
+    <svg width="48" height="48" viewBox="0 0 48 48">
+      <circle class="bg" cx="24" cy="24" r="20"/>
+      <circle class="fg" cx="24" cy="24" r="20" id="dockRing"
+        stroke-dasharray="125.66" stroke-dashoffset="125.66"/>
+    </svg>
+    <div class="ring-label" id="dockPct">0%</div>
+  </div>
+  <div class="dock-meta">
+    <div class="dock-title">Career OS</div>
+    <div class="dock-stats" id="dockStats">0 / 0 tareas</div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Progreso guardado ✓</div>
+
+<script>
+// === Navegación ===
+const navItems=document.querySelectorAll('.nav-item');
+const sections=document.querySelectorAll('section');
+const crumb=document.getElementById('crumb');
+navItems.forEach(n=>{
+  n.addEventListener('click',(e)=>{
+    // Ignore clicks on the mini progress bar
+    if(e.target.closest('.nav-mini-bar')) return;
+    navItems.forEach(x=>x.classList.remove('active'));
+    n.classList.add('active');
+    const tgt=n.dataset.target;
+    sections.forEach(s=>s.classList.toggle('active',s.id===tgt));
+    crumb.textContent=n.textContent.trim().replace(/\s+/g,' ');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+/* =========================================================
+   PROGRESS TRACKING SYSTEM
+   ========================================================= */
+const STORAGE_KEY = 'careerOS_v1_progress';
+const SECTION_META = {
+  dashboard:'Dashboard', roadmap:'Roadmap Maestro', phases:'11 Fases',
+  study:'Plan de Estudio', python:'Python', sql:'SQL',
+  de:'Data Engineering', cloud:'Cloud', bigdata:'Big Data',
+  ai:'AI & ML', mlops:'MLOps & AI Infra', git:'Git & GitHub',
+  english:'Inglés', certs:'Certificaciones', portfolio:'Portafolio',
+  nodegree:'Sin Universidad', freelance:'Freelance / Remoto',
+  bigtech:'Big Tech', market:'Mercado Laboral',
+  tools:'Herramientas', resources:'Recursos',
+  plans:'Planes (6m/1a/2a)', master:'Master Action Plan'
+};
+
+let progressState = {};
+let saveTimer = null;
+
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) progressState = JSON.parse(raw);
+  }catch(e){
+    console.warn('Could not load progress', e);
+    progressState = {};
+  }
+}
+
+function persistNow(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progressState));
+  }catch(e){
+    console.warn('Could not save progress', e);
+    showToast('⚠️ No se pudo guardar (almacenamiento bloqueado)', true);
+  }
+}
+
+function saveProgress(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{
+    progressState.__lastUpdated = new Date().toISOString();
+    persistNow();
+    showToast('Progreso guardado ✓');
+    updateUI();
+  }, 200);
+}
+
+function showToast(msg, isWarn){
+  const t = document.getElementById('toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.style.background = isWarn ? 'rgba(245,158,11,.95)' : 'rgba(16,185,129,.95)';
+  t.classList.add('show');
+  clearTimeout(t._tt);
+  t._tt = setTimeout(()=>t.classList.remove('show'), 1600);
+}
+
+function slug(s){
+  return (s||'').toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')
+    .slice(0,70);
+}
+
+function sectionOf(el){
+  const sec = el.closest('section');
+  return sec ? sec.id : 'global';
+}
+
+// Convert <ul class="tight"> items in trackable containers to checkboxes
+function convertTrackableLists(){
+  const trackableSelectors = [
+    'details.expand',
+    '.tl-item',
+    '.phase',
+    '#plans .card',
+    '#master .card',
+    '#certs .card',
+    '#portfolio .card',
+    '#tools .card',
+    '#resources .card',
+    '#freelance .card',
+    '#bigtech .card',
+    '#nodegree .card',
+    '#english .card'
+  ];
+
+  trackableSelectors.forEach(sel=>{
+    document.querySelectorAll(sel).forEach(container=>{
+      container.querySelectorAll('ul.tight').forEach((ul, ulIdx)=>{
+        if(ul.dataset.tracked) return;
+        ul.dataset.tracked = '1';
+        ul.classList.add('task-list');
+
+        const items = Array.from(ul.querySelectorAll(':scope > li'));
+        items.forEach((li, idx)=>{
+          const html = li.innerHTML;
+          const text = li.textContent.trim();
+          if(!text) return;
+
+          const sectionId = sectionOf(li);
+          const taskId = `${sectionId}--${slug(text)}--u${ulIdx}-i${idx}`;
+
+          const cb = document.createElement('input');
+          cb.type = 'checkbox';
+          cb.dataset.taskId = taskId;
+          cb.checked = !!progressState[taskId];
+
+          const span = document.createElement('span');
+          span.className = 'task-text';
+          span.innerHTML = html;
+
+          li.innerHTML = '';
+          li.className = 'task';
+          li.appendChild(cb);
+          li.appendChild(span);
+
+          cb.addEventListener('change', ()=>{
+            if(cb.checked) progressState[taskId] = true;
+            else delete progressState[taskId];
+            saveProgress();
+          });
+
+          li.addEventListener('click', (e)=>{
+            if(e.target.closest('a,input,button')) return;
+            cb.checked = !cb.checked;
+            cb.dispatchEvent(new Event('change'));
+          });
+        });
+      });
+    });
+  });
+}
+
+// Hook existing .check items (the ones already in the HTML with IDs)
+function hookExistingChecks(){
+  document.querySelectorAll('.check input[type="checkbox"]').forEach(cb=>{
+    const id = cb.id;
+    if(!id) return;
+    const sectionId = sectionOf(cb);
+    const taskId = `${sectionId}--existing--${id}`;
+    cb.dataset.taskId = taskId;
+    cb.checked = !!progressState[taskId];
+    cb.addEventListener('change', ()=>{
+      if(cb.checked) progressState[taskId] = true;
+      else delete progressState[taskId];
+      saveProgress();
+    });
+  });
+}
+
+function calculateProgress(){
+  const allCbs = document.querySelectorAll('[data-task-id]');
+  const total = allCbs.length;
+  let completed = 0;
+  const bySection = {};
+  allCbs.forEach(cb=>{
+    const sec = sectionOf(cb);
+    if(!bySection[sec]) bySection[sec] = {total:0, done:0};
+    bySection[sec].total++;
+    if(cb.checked){ completed++; bySection[sec].done++; }
+  });
+  return {total, completed, bySection};
+}
+
+function injectSectionMeters(){
+  document.querySelectorAll('section').forEach(sec=>{
+    if(sec.id === 'dashboard') return; // dashboard has its own widget
+    const header = sec.querySelector('.section-header');
+    if(!header) return;
+    if(sec.querySelector('.section-progress')) return;
+
+    const meter = document.createElement('div');
+    meter.className = 'section-progress';
+    meter.dataset.section = sec.id;
+    meter.innerHTML = `
+      <span class="sp-label">📊 Progreso de esta sección</span>
+      <div class="sp-bar"><span style="width:0%"></span></div>
+      <span class="sp-value">0 / 0 · 0%</span>
+    `;
+    header.after(meter);
+  });
+}
+
+function injectPhaseBadges(){
+  document.querySelectorAll('#phases .phase').forEach(phase=>{
+    if(phase.querySelector('.phase-progress')) return;
+    const badge = document.createElement('div');
+    badge.className = 'phase-progress';
+    badge.textContent = '0%';
+    phase.appendChild(badge);
+  });
+}
+
+function updateUI(){
+  const {total, completed, bySection} = calculateProgress();
+  const pct = total ? Math.round((completed / total) * 100) : 0;
+
+  // Global widget
+  const gPct = document.getElementById('globalPct');
+  const gBar = document.getElementById('globalBar');
+  const cCount = document.getElementById('completedCount');
+  const tCount = document.getElementById('totalCount');
+  if(gPct) gPct.textContent = pct + '%';
+  if(gBar) gBar.style.width = pct + '%';
+  if(cCount) cCount.textContent = completed;
+  if(tCount) tCount.textContent = total;
+
+  // Last updated
+  const lu = document.getElementById('lastUpdated');
+  if(lu){
+    if(progressState.__lastUpdated){
+      const d = new Date(progressState.__lastUpdated);
+      lu.textContent = d.toLocaleDateString('es', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
+    } else {
+      lu.textContent = '—';
+    }
+  }
+
+  // Phases in progress
+  const phasesEl = document.getElementById('phasesInProgress');
+  if(phasesEl){
+    let inProgress = 0;
+    document.querySelectorAll('#phases .phase').forEach(phase=>{
+      const cbs = phase.querySelectorAll('[data-task-id]');
+      let done = 0, tot = cbs.length;
+      cbs.forEach(c=>{ if(c.checked) done++; });
+      if(done > 0) inProgress++;
+      // Update phase badge
+      const badge = phase.querySelector('.phase-progress');
+      if(badge && tot > 0){
+        const pp = Math.round((done/tot)*100);
+        badge.textContent = pp + '%';
+        phase.classList.toggle('completed', pp === 100);
+      }
+    });
+    phasesEl.textContent = inProgress;
+  }
+
+  // Floating dock
+  const dPct = document.getElementById('dockPct');
+  const dStats = document.getElementById('dockStats');
+  const dRing = document.getElementById('dockRing');
+  if(dPct) dPct.textContent = pct + '%';
+  if(dStats) dStats.textContent = `${completed} / ${total} tareas`;
+  if(dRing){
+    const C = 2 * Math.PI * 20; // r=20
+    dRing.setAttribute('stroke-dashoffset', C * (1 - pct/100));
+  }
+
+  // Nav mini-bars
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    const tgt = n.dataset.target;
+    if(!tgt) return;
+    const sec = bySection[tgt];
+    let bar = n.querySelector('.nav-mini-bar');
+    if(sec && sec.total > 0){
+      const np = (sec.done / sec.total) * 100;
+      if(!bar){
+        bar = document.createElement('div');
+        bar.className = 'nav-mini-bar';
+        bar.innerHTML = '<span></span>';
+        n.appendChild(bar);
+      }
+      bar.querySelector('span').style.width = np + '%';
+    } else if(bar){
+      bar.remove();
+    }
+  });
+
+  // Section progress list (dashboard)
+  const spl = document.getElementById('sectionProgressList');
+  if(spl){
+    const sectionsWithTasks = Object.keys(SECTION_META).filter(sid=>{
+      const sec = bySection[sid];
+      return sec && sec.total > 0;
+    });
+    if(sectionsWithTasks.length === 0){
+      spl.innerHTML = '<div class="muted small" style="grid-column:1/-1;padding:8px">Aún no hay tareas marcadas. Empieza por cualquier sección 👇</div>';
+    } else {
+      spl.innerHTML = '';
+      sectionsWithTasks.forEach(sid=>{
+        const sec = bySection[sid];
+        const pp = Math.round((sec.done / sec.total) * 100);
+        const row = document.createElement('div');
+        row.className = 'spl-row';
+        row.innerHTML = `
+          <span class="spl-name">${SECTION_META[sid]}</span>
+          <div class="spl-bar"><span style="width:${pp}%"></span></div>
+          <span class="spl-pct">${pp}%</span>
+        `;
+        row.addEventListener('click', ()=>{
+          const nav = document.querySelector(`.nav-item[data-target="${sid}"]`);
+          if(nav) nav.click();
+        });
+        spl.appendChild(row);
+      });
+    }
+  }
+
+  // Per-section progress meters
+  document.querySelectorAll('.section-progress[data-section]').forEach(meter=>{
+    const sid = meter.dataset.section;
+    const sec = bySection[sid];
+    if(!sec || sec.total === 0){
+      meter.style.display = 'none';
+      return;
+    }
+    meter.style.display = '';
+    const pp = Math.round((sec.done / sec.total) * 100);
+    meter.querySelector('.sp-bar > span').style.width = pp + '%';
+    meter.querySelector('.sp-value').textContent = `${sec.done} / ${sec.total} · ${pp}%`;
+  });
+}
+
+// Reset
+function resetProgress(){
+  if(!confirm('¿Seguro que quieres BORRAR todo tu progreso?\n\nEsto no se puede deshacer.\nTip: usa "Export" antes para guardar un backup.')) return;
+  progressState = {};
+  try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+  document.querySelectorAll('[data-task-id]').forEach(cb=>cb.checked = false);
+  updateUI();
+  showToast('Progreso reseteado');
+}
+
+// Export
+function exportProgress(){
+  try{
+    const data = JSON.stringify(progressState, null, 2);
+    const blob = new Blob([data], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `career-os-progress-${new Date().toISOString().slice(0,10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('Backup descargado 💾');
+  }catch(e){
+    alert('Error al exportar: ' + e.message);
+  }
+}
+
+// Import
+function importProgress(){
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json,application/json';
+  input.onchange = (e)=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev)=>{
+      try{
+        const imported = JSON.parse(ev.target.result);
+        if(typeof imported !== 'object' || imported === null) throw new Error('JSON inválido');
+        progressState = imported;
+        persistNow();
+        document.querySelectorAll('[data-task-id]').forEach(cb=>{
+          cb.checked = !!progressState[cb.dataset.taskId];
+        });
+        updateUI();
+        showToast('Progreso importado ✓');
+      }catch(err){
+        alert('Error al importar: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+// Dock click → go to dashboard
+document.addEventListener('click', (e)=>{
+  if(e.target.closest('#progressDock')){
+    const nav = document.querySelector('.nav-item[data-target="dashboard"]');
+    if(nav) nav.click();
+  }
+});
+
+// Init
+function initProgressTracker(){
+  loadProgress();
+  convertTrackableLists();
+  hookExistingChecks();
+  injectSectionMeters();
+  injectPhaseBadges();
+  updateUI();
+}
+
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initProgressTracker);
+} else {
+  initProgressTracker();
+}
+
+// === Charts ===
+const isReady=()=>typeof Chart!=='undefined';
+function mkChart(){
+  if(!isReady()){setTimeout(mkChart,100);return}
+  Chart.defaults.color='#8a93ad';
+  Chart.defaults.borderColor='rgba(255,255,255,.06)';
+  Chart.defaults.font.family='Inter, system-ui, sans-serif';
+
+  // Salary chart
+  const sc=document.getElementById('salaryChart');
+  if(sc){
+    new Chart(sc,{
+      type:'line',
+      data:{
+        labels:['Mes 0','M6','M12','M18','M24','M36','M48','M60','M72','M84+'],
+        datasets:[
+          {label:'Salario USD/mes (realista)',data:[0,1800,3500,5500,7500,10000,13000,16000,19000,22000],
+            borderColor:'#7c5cff',backgroundColor:'rgba(124,92,255,.15)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#7c5cff'},
+          {label:'Salario USD/mes (agresivo top)',data:[0,2500,4500,7500,11000,15000,19000,23000,28000,35000],
+            borderColor:'#22d3ee',backgroundColor:'rgba(34,211,238,.10)',fill:true,tension:.4,borderWidth:2,borderDash:[5,5],pointRadius:3}
+        ]
+      },
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{position:'bottom',labels:{boxWidth:10}}},
+        scales:{y:{beginAtZero:true,grid:{color:'rgba(255,255,255,.04)'}},x:{grid:{display:false}}}}
+    });
+  }
+
+  // Skills pay bar chart
+  const spc=document.getElementById('skillsPay');
+  if(spc){
+    new Chart(spc,{
+      type:'bar',
+      data:{
+        labels:['AI Eng (LLMs/RAG)','Sr Data Eng','ML Eng','Cloud DE (AWS)','Analytics Eng','Big Data Eng','Data Architect','Data Analyst','BI Analyst (PowerBI)','Data Scientist genérico'],
+        datasets:[{
+          label:'USD/mes mid-range (remoto LATAM)',
+          data:[14000,12000,11000,9000,7000,11000,15000,3500,2500,5000],
+          backgroundColor:['#7c5cff','#22d3ee','#10b981','#22d3ee','#22d3ee','#7c5cff','#ec4899','#64748b','#64748b','#94a3b8'],
+          borderRadius:6
+        }]
+      },
+      options:{
+        indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{
+          x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{callback:(v)=>'$'+(v/1000)+'k'}},
+          y:{grid:{display:false}}
+        }
+      }
+    });
+  }
+
+  // Time chart
+  const tc=document.getElementById('timeChart');
+  if(tc){
+    new Chart(tc,{
+      type:'doughnut',
+      data:{
+        labels:['SQL + Python (40%)','Cloud + Tools (15%)','Proyectos / Portfolio (20%)','Inglés (10%)','Networking + LinkedIn (5%)','Algoritmos / LeetCode (10%)'],
+        datasets:[{
+          data:[40,15,20,10,5,10],
+          backgroundColor:['#7c5cff','#22d3ee','#10b981','#f59e0b','#ec4899','#64748b'],
+          borderColor:'#0c1020',borderWidth:2
+        }]
+      },
+      options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
+        plugins:{legend:{position:'bottom',labels:{boxWidth:10,padding:10,font:{size:11}}}}}
+    });
+  }
+}
+mkChart();
+</script>
+</body>
+</html>
