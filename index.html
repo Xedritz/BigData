@@ -473,6 +473,7 @@ ul.task-list{padding-left:0;list-style:none;margin:.4em 0}
   <div class="nav-section">Visión</div>
   <div class="nav-item active" data-target="dashboard"><span class="ic">◉</span> Dashboard</div>
   <div class="nav-item" data-target="roadmap"><span class="ic">⛰</span> Roadmap Maestro</div>
+  <div class="nav-item" data-target="treeresources"><span class="ic">📚</span> Recursos del Árbol</div>
   <div class="nav-item" data-target="phases"><span class="ic">▤</span> 11 Fases</div>
   <div class="nav-item" data-target="study"><span class="ic">▦</span> Plan de Estudio</div>
 
@@ -773,6 +774,379 @@ ul.task-list{padding-left:0;list-style:none;margin:.4em 0}
   </div>
 
   <div class="note warn">⚠️ <b>Trampa común:</b> querer aprender todo en paralelo. Una habilidad bien aprendida en 8 semanas vale más que 5 habilidades aprendidas a medias. <b>Profundidad &gt; amplitud</b> hasta llegar a mid-level.</div>
+</section>
+
+<!-- ===================== TREE RESOURCES ===================== -->
+<section id="treeresources">
+  <div class="section-header">
+    <h1>📚 Recursos del Árbol de Dependencias</h1>
+    <p>Cada nivel del roadmap tiene aquí 2–3 recursos curados — los mejores que existen para esa habilidad. Prioridad: gratis. Solo aparecen recursos premium cuando son brutalmente superiores. Marca cada uno cuando lo completes.</p>
+  </div>
+
+  <div class="note">
+    <b>Cómo leer los recursos:</b> 📺 = curso/video · 📖 = libro · 📄 = docs oficiales · 🎮 = interactivo/práctica · 🎙 = podcast · 🛠 = proyecto/práctica guiada. <span class="badge b-easy">FREE</span> = gratis · <span class="badge b-mid">PAID</span> = de pago (vale la pena) · <span class="badge b-elite">ELITE</span> = top mundial en su categoría.
+  </div>
+
+  <details class="expand" open>
+    <summary>🌱 Nivel 0 · Fundamentos Universales</summary>
+    <div class="body">
+      <h4 style="margin-top:6px">🐧 Linux / Bash / Terminal</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://missing.csail.mit.edu/" target="_blank"><b>The Missing Semester of Your CS Education</b></a> — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · MIT · 11 clases (~15h). Lo que la universidad no te enseña: terminal, vim, bash, git, dotfiles. <b>Empieza por aquí, punto.</b></li>
+        <li>📖 <a href="https://linuxcommand.org/tlcl.php" target="_blank"><b>The Linux Command Line</b></a> (William Shotts) — <span class="badge b-easy">FREE</span> · ~550 pp. PDF gratis. El libro canónico de Linux para mortales. Léelo en paralelo a Missing Semester.</li>
+        <li>🎮 <a href="https://overthewire.org/wargames/bandit/" target="_blank"><b>OverTheWire: Bandit</b></a> — <span class="badge b-easy">FREE</span> · 34 niveles CTF. Aprendes bash haciendo, no leyendo. Una hora al día durante 2 semanas y dominas la terminal.</li>
+      </ul>
+
+      <h4>⎇ Git & GitHub</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://git-scm.com/book/en/v2" target="_blank"><b>Pro Git</b></a> (Scott Chacon) — <span class="badge b-easy">FREE</span> · Libro oficial de Git, lectura completa en ~2 semanas. Capítulos 1–3 son suficientes para empezar.</li>
+        <li>🎮 <a href="https://learngitbranching.js.org/" target="_blank"><b>Learn Git Branching</b></a> — <span class="badge b-easy">FREE</span> · Tutorial visual interactivo. Entiendes branches/merges/rebase en 2h jugando.</li>
+        <li>📺 <a href="https://skills.github.com/" target="_blank"><b>GitHub Skills</b></a> — <span class="badge b-easy">FREE</span> · Cursos oficiales hands-on: pull requests, code review, GitHub Actions. ~30 min cada uno.</li>
+      </ul>
+
+      <h4>🌐 Inglés técnico (B2 → C1)</h4>
+      <ul class="tight">
+        <li>🎙 <a href="https://www.bbc.co.uk/learningenglish" target="_blank"><b>BBC Learning English</b></a> — <span class="badge b-easy">FREE</span> · Podcasts diarios "6 Minute English". Input pasivo mientras cocinas o caminas.</li>
+        <li>📺 <a href="https://www.italki.com/" target="_blank"><b>iTalki</b></a> — <span class="badge b-mid">PAID</span> ($5–15/clase) <span class="badge b-elite">ELITE</span> · Profesor nativo 2–3 veces por semana. Lo ÚNICO que mueve la aguja en speaking. Vale cada dólar.</li>
+        <li>📺 <a href="https://www.youtube.com/@dreamingspanish" target="_blank"><b>Cambridge English (YouTube)</b></a> + <a href="https://apps.ankiweb.net/" target="_blank">Anki con deck "English Vocab for Programmers"</a> — <span class="badge b-easy">FREE</span> · Vocabulario técnico vía espaciado.</li>
+      </ul>
+
+      <h4>🧠 Pensamiento computacional</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://cs50.harvard.edu/x/" target="_blank"><b>CS50x</b></a> (Harvard, edX) — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · 11 semanas. El curso introductorio más respetado del mundo. C → Python → SQL. David Malan es referente mundial.</li>
+        <li>📖 <a href="https://htdp.org/" target="_blank"><b>How to Design Programs</b></a> — <span class="badge b-easy">FREE</span> · Libro online sobre cómo PIENSAN los buenos programadores. Más profundo que CS50.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>💻 Nivel 1 · Lenguajes Núcleo</summary>
+    <div class="body">
+      <h4>◇ SQL (básico → ventanas, CTEs, optimización)</h4>
+      <ul class="tight">
+        <li>🎮 <a href="https://sqlbolt.com/" target="_blank"><b>SQLBolt</b></a> — <span class="badge b-easy">FREE</span> · 18 lecciones interactivas, de SELECT a joins. 4–6h. Empieza aquí.</li>
+        <li>📺 <a href="https://mode.com/sql-tutorial/" target="_blank"><b>Mode SQL Tutorial</b></a> — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · El mejor tutorial gratis para SQL intermedio-avanzado: CTEs, window functions, performance. ~20h.</li>
+        <li>🎮 <a href="https://datalemur.com/" target="_blank"><b>DataLemur</b></a> / <a href="https://www.stratascratch.com/" target="_blank"><b>StrataScratch</b></a> — <span class="badge b-mid">PAID</span> ($20–30/mes) · Problemas reales de entrevistas FAANG. Tier 1 para prepararte para entrevistas. Free tier disponible.</li>
+        <li>📖 <a href="https://use-the-index-luke.com/" target="_blank"><b>Use The Index, Luke!</b></a> (Markus Winand) — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · El único recurso sobre optimización e índices que vas a necesitar. Versión web gratis del libro "SQL Performance Explained".</li>
+      </ul>
+
+      <h4>🐍 Python (básico → OOP → APIs → async → testing)</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://ehmatthes.github.io/pcc_3e/" target="_blank"><b>Python Crash Course</b> 3rd ed</a> (Eric Matthes) — <span class="badge b-mid">PAID</span> (~$30 físico, ejercicios free online) <span class="badge b-elite">ELITE</span> · El mejor primer libro de Python. Hands-on desde la página 1.</li>
+        <li>📺 <a href="https://realpython.com/" target="_blank"><b>Real Python</b></a> — <span class="badge b-easy">FREE</span> + opcional Premium · Artículos avanzados de altísima calidad. Free cover el 70%, premium ($25/mes) si quieres todo.</li>
+        <li>📖 <a href="https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/" target="_blank"><b>Fluent Python</b> 2nd ed</a> (Luciano Ramalho) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · Lo que separa intermedios de avanzados. Léelo tras 6 meses de Python básico.</li>
+        <li>📺 <a href="https://www.youtube.com/@CoreyMSchafer" target="_blank"><b>Corey Schafer (YouTube)</b></a> — <span class="badge b-easy">FREE</span> · Las mejores tutoriales gratis de Python intermedio (OOP, decorators, generators). Calidad de producción brutal.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>📊 Nivel 2 · Datos Aplicados</summary>
+    <div class="body">
+      <h4>🐼 Pandas / NumPy / Polars</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://wesmckinney.com/book/" target="_blank"><b>Python for Data Analysis</b> 3rd ed</a> (Wes McKinney, creador de pandas) — <span class="badge b-easy">FREE online</span> <span class="badge b-elite">ELITE</span> · Versión 3 está gratis online. El libro escrito por el creador de la librería.</li>
+        <li>🎮 <a href="https://www.kaggle.com/learn/pandas" target="_blank"><b>Kaggle Learn: Pandas</b></a> — <span class="badge b-easy">FREE</span> · 6 lecciones hands-on con datasets reales. Complemento perfecto al libro.</li>
+        <li>📄 <a href="https://docs.pola.rs/user-guide/" target="_blank"><b>Polars User Guide</b></a> — <span class="badge b-easy">FREE</span> · Docs increíblemente bien escritos. Polars es el sucesor moderno de pandas (10-100x más rápido). Aprende ambos.</li>
+      </ul>
+
+      <h4>📈 Visualización (Matplotlib, Plotly, BI tools)</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.storytellingwithdata.com/books" target="_blank"><b>Storytelling with Data</b></a> (Cole Knaflic) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · El único libro de data viz que necesitas. Cambia cómo presentas datos para siempre.</li>
+        <li>📄 <a href="https://matplotlib.org/stable/tutorials/index.html" target="_blank"><b>Matplotlib Tutorials</b></a> (oficial) — <span class="badge b-easy">FREE</span> · Docs y galería oficial. Suficiente para 90% de casos.</li>
+        <li>📄 <a href="https://plotly.com/python/" target="_blank"><b>Plotly Python</b></a> — <span class="badge b-easy">FREE</span> · Para gráficos interactivos. Mucho mejor docs que Matplotlib.</li>
+      </ul>
+
+      <h4>📐 Estadística aplicada</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://www.youtube.com/@statquest" target="_blank"><b>StatQuest with Josh Starmer</b></a> — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · La mejor explicación visual de stats/ML en internet. "BAM!". Empieza por "Statistics Fundamentals".</li>
+        <li>📖 <a href="https://www.oreilly.com/library/view/practical-statistics-for/9781492072935/" target="_blank"><b>Practical Statistics for Data Scientists</b></a> 2nd ed (O'Reilly) — <span class="badge b-mid">PAID</span> · Stats sin background matemático denso. Hands-on con Python y R.</li>
+        <li>📺 <a href="https://www.khanacademy.org/math/statistics-probability" target="_blank"><b>Khan Academy: Statistics & Probability</b></a> — <span class="badge b-easy">FREE</span> · Si necesitas reforzar fundamentos. Empieza si nunca tomaste stats en el colegio.</li>
+      </ul>
+
+      <h4>⭐ Modelado dimensional (star, snowflake)</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/books/" target="_blank"><b>The Data Warehouse Toolkit</b> 3rd ed</a> (Kimball &amp; Ross) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · La BIBLIA del modelado dimensional. Imprescindible para Analytics Engineer +. Léelo dos veces.</li>
+        <li>📖 <a href="https://www.holistics.io/books/setup-analytics/" target="_blank"><b>The Analytics Setup Guidebook</b></a> (Holistics) — <span class="badge b-easy">FREE</span> · PDF gratis. Resume Kimball moderno aplicado a la stack actual (dbt, warehouse cloud).</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>🔧 Nivel 3 · Analytics Engineering</summary>
+    <div class="body">
+      <h4>⚙️ dbt (modelos, tests, docs, lineage)</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://learn.getdbt.com/" target="_blank"><b>dbt Learn</b></a> (oficial) — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · 4 cursos: Fundamentals, Jinja/Macros, Advanced, Analyses. El path canónico. Cert gratuita.</li>
+        <li>📖 <a href="https://www.oreilly.com/library/view/analytics-engineering-with/9781098142377/" target="_blank"><b>Analytics Engineering with SQL and dbt</b></a> (O'Reilly, 2023) — <span class="badge b-mid">PAID</span> · El primer libro completo y serio de dbt. Lee tras dbt Learn.</li>
+        <li>🎙 <a href="https://www.getdbt.com/podcast" target="_blank"><b>The Analytics Engineering Podcast</b></a> + <a href="https://discourse.getdbt.com/" target="_blank">dbt Discourse</a> — <span class="badge b-easy">FREE</span> · Community engagement. Oro puro para casos reales.</li>
+      </ul>
+
+      <h4>🏢 Warehouses (Snowflake, BigQuery, Redshift)</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://www.snowflake.com/en/data-cloud/learn/" target="_blank"><b>Snowflake University</b></a> — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · Hands-on Essentials gratis. Trial de Snowflake con $400 USD para experimentar.</li>
+        <li>📄 <a href="https://cloud.google.com/bigquery/docs/sandbox" target="_blank"><b>BigQuery Sandbox</b></a> + <a href="https://cloud.google.com/bigquery/docs/tutorials" target="_blank">Tutorials</a> — <span class="badge b-easy">FREE</span> · Sandbox gratis sin tarjeta de crédito. 10GB storage + 1TB queries/mes free.</li>
+        <li>📖 <a href="https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/" target="_blank"><b>Fundamentals of Data Engineering</b></a> (Joe Reis & Matt Housley) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · Contexto general indispensable. Léelo COMPLETO antes de saltarte a tools.</li>
+      </ul>
+
+      <h4>🏗 Data Modeling avanzado</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://dataintensive.net/" target="_blank"><b>Designing Data-Intensive Applications</b></a> (Martin Kleppmann) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · TOP 3 LIBROS DE TU CARRERA. No es exagerado decir que define un antes y después.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>🛠 Nivel 4 · Data Engineering</summary>
+    <div class="body">
+      <h4>🌬 Orquestación (Airflow / Prefect / Dagster)</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://academy.astronomer.io/" target="_blank"><b>Astronomer Academy</b></a> — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · El mejor curso de Airflow, hecho por la empresa principal detrás del proyecto. Tiene certificación.</li>
+        <li>📖 <a href="https://www.manning.com/books/data-pipelines-with-apache-airflow" target="_blank"><b>Data Pipelines with Apache Airflow</b></a> (Manning) — <span class="badge b-mid">PAID</span> · Libro profundo, complemento ideal al curso.</li>
+        <li>📺 <a href="https://courses.dagster.io/" target="_blank"><b>Dagster University</b></a> — <span class="badge b-easy">FREE</span> · Si quieres aprender Dagster (mejor diseñado que Airflow, mercado más pequeño aún).</li>
+      </ul>
+
+      <h4>🔄 ETL/ELT patterns</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://github.com/andkret/Cookbook" target="_blank"><b>The Data Engineering Cookbook</b></a> (Andreas Kretz) — <span class="badge b-easy">FREE</span> · PDF gratis en GitHub. Roadmap completo + patrones. Pesado pero gratis.</li>
+        <li>📖 Fundamentals of Data Engineering (ya mencionado) — Cubre patrones ETL/ELT en profundidad. Capítulos 5–8.</li>
+      </ul>
+
+      <h4>✓ Data Quality (Great Expectations, dbt tests)</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://docs.greatexpectations.io/" target="_blank"><b>Great Expectations Docs</b></a> — <span class="badge b-easy">FREE</span> · Tool líder en data quality. Docs hands-on.</li>
+        <li>📄 <a href="https://docs.getdbt.com/docs/build/data-tests" target="_blank"><b>dbt Tests docs</b></a> + <a href="https://github.com/calogica/dbt-expectations" target="_blank">dbt-expectations</a> — <span class="badge b-easy">FREE</span> · Si ya usas dbt, esto cubre 80% de necesidades.</li>
+      </ul>
+
+      <h4>⚡ Spark (PySpark, optimización)</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.databricks.com/resources/ebook/learning-spark" target="_blank"><b>Learning Spark</b> 2nd ed</a> (Databricks) — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · PDF gratis con tu email. Libro oficial de Spark. Primer libro que debes leer.</li>
+        <li>📺 <a href="https://www.databricks.com/learn/training/home" target="_blank"><b>Databricks Academy</b></a> — <span class="badge b-easy">FREE</span> · Cursos oficiales gratuitos con community edition.</li>
+        <li>📺 <a href="https://www.youtube.com/@AfaqueAhmad" target="_blank"><b>Afaque Ahmad (YouTube): PySpark Deep Dive</b></a> — <span class="badge b-easy">FREE</span> · Series brutales sobre internals de Spark.</li>
+      </ul>
+
+      <h4>📦 Storage: Parquet, Delta, Iceberg</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://iceberg.apache.org/docs/latest/" target="_blank"><b>Apache Iceberg Docs</b></a> — <span class="badge b-easy">FREE</span> · Docs muy bien escritos. Iceberg está ganando la guerra de formatos.</li>
+        <li>📄 <a href="https://docs.delta.io/" target="_blank"><b>Delta Lake Docs</b></a> — <span class="badge b-easy">FREE</span> · Si trabajas con Databricks, este es el estándar.</li>
+        <li>📖 <a href="https://www.oreilly.com/library/view/apache-iceberg-the/9781098148614/" target="_blank"><b>Apache Iceberg: The Definitive Guide</b></a> (O'Reilly) — <span class="badge b-easy">FREE</span> · Versión gratis sponsoreada por Dremio.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>☁️ Nivel 5 · Cloud Data Engineering</summary>
+    <div class="body">
+      <h4>🌩 AWS (S3, Glue, EMR, Redshift, Lambda, Step Functions)</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://skillbuilder.aws/" target="_blank"><b>AWS Skill Builder</b></a> — <span class="badge b-easy">FREE</span> · Training oficial AWS. Cientos de cursos gratis. Empieza por "AWS Cloud Practitioner Essentials".</li>
+        <li>📺 <a href="https://www.udemy.com/user/stephane-maarek/" target="_blank"><b>Stéphane Maarek (Udemy): AWS Data Engineer Associate</b></a> — <span class="badge b-mid">PAID</span> (~$15 en oferta) <span class="badge b-elite">ELITE</span> · El MEJOR curso de cert AWS. Las ofertas de Udemy bajan a $11–15 cada 2-3 semanas.</li>
+        <li>🛠 <a href="https://catalog.workshops.aws/" target="_blank"><b>AWS Workshops Catalog</b></a> — <span class="badge b-easy">FREE</span> · Cientos de labs hands-on oficiales. Lo mejor para aprender haciendo.</li>
+      </ul>
+
+      <h4>🔐 IAM / Networking básico</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://www.youtube.com/@beaucarnes" target="_blank">AWS Skill Builder: IAM fundamentals</a> + <a href="https://aws.amazon.com/training/learn-about/networking/" target="_blank"><b>AWS Networking Training Path</b></a> — <span class="badge b-easy">FREE</span> · Necesario para no destruir producción con permisos rotos.</li>
+      </ul>
+
+      <h4>🏗 Terraform (IaC)</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://developer.hashicorp.com/terraform/tutorials" target="_blank"><b>HashiCorp Learn: Terraform</b></a> — <span class="badge b-easy">FREE</span> · Oficial. ~10h. Suficiente para empezar.</li>
+        <li>📖 <a href="https://www.terraformupandrunning.com/" target="_blank"><b>Terraform: Up & Running</b> 3rd ed</a> (Yevgeniy Brikman) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · El estándar de oro para Terraform real en producción.</li>
+      </ul>
+
+      <h4>💰 Cost optimization</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://aws.amazon.com/aws-cost-management/" target="_blank"><b>AWS Cost Optimization Workshops</b></a> + <a href="https://www.vantage.sh/blog" target="_blank">Vantage blog</a> — <span class="badge b-easy">FREE</span> · Casos reales de optimización. Vantage publica análisis brutales.</li>
+        <li>📺 <a href="https://www.finops.org/introduction/what-is-finops/" target="_blank"><b>FinOps Foundation</b></a> — <span class="badge b-easy">FREE</span> · Framework canónico para cost optimization en cloud.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>∞ Nivel 6 · Big Data / Streaming / Distribuido</summary>
+    <div class="body">
+      <h4>⚡ Spark profundo (Catalyst, particionado, shuffle)</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.databricks.com/resources/ebook/spark-the-definitive-guide" target="_blank"><b>Spark: The Definitive Guide</b></a> (Databricks) — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · PDF gratis con email. Cubre internals: Catalyst, Tungsten, particionado físico.</li>
+        <li>📖 <a href="https://www.oreilly.com/library/view/high-performance-spark/9781491943199/" target="_blank"><b>High Performance Spark</b></a> (Holden Karau) — <span class="badge b-mid">PAID</span> · Cómo NO destruir un cluster. Lectura obligada para Sr DE.</li>
+        <li>📺 <a href="https://www.databricks.com/learn/training/home" target="_blank"><b>Databricks Performance Optimization</b></a> — <span class="badge b-easy">FREE</span> · Sesiones técnicas profundas. Hands-on con métricas reales.</li>
+      </ul>
+
+      <h4>🔊 Kafka (productores, consumidores, schema registry)</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://developer.confluent.io/" target="_blank"><b>Confluent Developer</b></a> — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · Plataforma oficial Confluent. Cursos, tutoriales, certificaciones. El mejor recurso de Kafka.</li>
+        <li>📖 <a href="https://www.confluent.io/resources/kafka-the-definitive-guide/" target="_blank"><b>Kafka: The Definitive Guide</b> 2nd ed</a> — <span class="badge b-easy">FREE</span> · PDF gratis de Confluent. Escrito por los creadores.</li>
+        <li>📖 <a href="https://www.confluent.io/designing-event-driven-systems/" target="_blank"><b>Designing Event-Driven Systems</b></a> (Ben Stopford) — <span class="badge b-easy">FREE</span> · PDF gratis. Patterns de event-driven arch. Lectura rápida (~150 pp).</li>
+      </ul>
+
+      <h4>🌊 Flink / Spark Streaming</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://nightlies.apache.org/flink/flink-docs-stable/" target="_blank"><b>Apache Flink Docs</b></a> + <a href="https://www.ververica.com/academy" target="_blank">Ververica Academy</a> — <span class="badge b-easy">FREE</span> · Ververica es la empresa detrás de Flink. Trainings oficiales.</li>
+      </ul>
+
+      <h4>🕸 Sistemas distribuidos (CAP, consensus, replication)</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://dataintensive.net/" target="_blank"><b>Designing Data-Intensive Applications</b></a> (Kleppmann) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · Ya lo mencioné en Nivel 3. Aquí es CRÍTICO. Léelo TRES veces a lo largo de tu carrera.</li>
+        <li>📺 <a href="https://pdos.csail.mit.edu/6.824/" target="_blank"><b>MIT 6.824: Distributed Systems</b></a> — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · Lectures de Robert Morris en YouTube. Top tier mundial. Si quieres rol Staff+, ESTO.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>🏛 Nivel 7 · Data Architecture</summary>
+    <div class="body">
+      <h4>🏞 Lakehouse (Delta/Iceberg/Hudi)</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.databricks.com/resources/ebook/big-book-of-data-engineering" target="_blank"><b>The Big Book of Data Engineering</b></a> (Databricks) — <span class="badge b-easy">FREE</span> · Compendio de patrones lakehouse. ~150 pp.</li>
+        <li>📺 <a href="https://www.databricks.com/blog" target="_blank"><b>Databricks Engineering Blog</b></a> + <a href="https://www.dremio.com/blog/" target="_blank">Dremio Blog</a> — <span class="badge b-easy">FREE</span> · Casos reales en producción.</li>
+      </ul>
+
+      <h4>🥇🥈🥉 Medallion architecture</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://docs.databricks.com/aws/en/lakehouse/medallion" target="_blank"><b>Databricks Medallion Architecture Docs</b></a> — <span class="badge b-easy">FREE</span> · La definición canónica del patrón Bronze/Silver/Gold.</li>
+      </ul>
+
+      <h4>🕸 Data Mesh / Data Contracts</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.oreilly.com/library/view/data-mesh/9781492092384/" target="_blank"><b>Data Mesh</b></a> (Zhamak Dehghani, la creadora del concepto) — <span class="badge b-mid">PAID</span> · Si trabajas en empresa con datos descentralizados, esto es la biblia.</li>
+        <li>📄 <a href="https://datacontract.com/" target="_blank"><b>Data Contract Specification</b></a> — <span class="badge b-easy">FREE</span> · Spec abierta, ejemplos, tooling. Tema caliente 2024-2026.</li>
+      </ul>
+
+      <h4>🗺 Governance, lineage, observability</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://openlineage.io/docs/" target="_blank"><b>OpenLineage Docs</b></a> — <span class="badge b-easy">FREE</span> · Estándar abierto de lineage. Apache project.</li>
+        <li>📖 <a href="https://www.oreilly.com/library/view/data-quality-fundamentals/9781098112035/" target="_blank"><b>Data Quality Fundamentals</b></a> (Monte Carlo) — <span class="badge b-mid">PAID</span> · Observabilidad de datos como disciplina.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>🧮 Nivel 8 · ML Foundations</summary>
+    <div class="body">
+      <h4>➗ Matemáticas aplicadas (álgebra lineal, cálculo, probabilidad)</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://mml-book.github.io/" target="_blank"><b>Mathematics for Machine Learning</b></a> (Deisenroth) — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · PDF gratis. EL libro de matemáticas para ML. Solo lo que necesitas, nada más.</li>
+        <li>📺 <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" target="_blank"><b>3Blue1Brown: Essence of Linear Algebra</b></a> — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · INDISPENSABLE visualmente. 15 videos. Entiendes álgebra lineal de verdad.</li>
+        <li>📺 <a href="https://www.khanacademy.org/math" target="_blank"><b>Khan Academy: Linear Algebra, Calculus, Probability</b></a> — <span class="badge b-easy">FREE</span> · Si necesitas reforzar lo del colegio.</li>
+      </ul>
+
+      <h4>🤖 ML clásico (scikit-learn)</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/" target="_blank"><b>Hands-On Machine Learning with Scikit-Learn, Keras &amp; TensorFlow</b> 3rd ed</a> (Aurélien Géron) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · EL LIBRO de ML aplicado. Si compras solo uno, este.</li>
+        <li>📺 <a href="https://www.coursera.org/specializations/machine-learning-introduction" target="_blank"><b>Andrew Ng: Machine Learning Specialization</b></a> (Coursera, audit free) — <span class="badge b-easy">FREE</span> · El curso clásico que formó a una generación. Audit gratis.</li>
+        <li>📺 <a href="https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF" target="_blank"><b>StatQuest: Machine Learning playlist</b></a> — <span class="badge b-easy">FREE</span> · Repaso visual de cada algoritmo. Complemento perfecto al Géron.</li>
+      </ul>
+
+      <h4>🧪 Feature engineering</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.oreilly.com/library/view/feature-engineering-for/9781491953235/" target="_blank"><b>Feature Engineering for Machine Learning</b></a> (O'Reilly) — <span class="badge b-mid">PAID</span> · El único libro dedicado al tema.</li>
+        <li>🎮 <a href="https://www.kaggle.com/learn/feature-engineering" target="_blank"><b>Kaggle Learn: Feature Engineering</b></a> — <span class="badge b-easy">FREE</span> · Hands-on, ~5h.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>⚙️ Nivel 9 · MLOps &amp; AI Infra</summary>
+    <div class="body">
+      <h4>📊 MLflow / Weights & Biases</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://mlflow.org/docs/latest/index.html" target="_blank"><b>MLflow Docs</b></a> — <span class="badge b-easy">FREE</span> · Standard de facto. Empieza por "Getting Started".</li>
+        <li>📖 <a href="https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/" target="_blank"><b>Designing Machine Learning Systems</b></a> (Chip Huyen) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · EL libro de MLOps moderno. Top 3 libros del área.</li>
+        <li>📺 <a href="https://madewithml.com/" target="_blank"><b>Made With ML</b></a> (Goku Mohandas) — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · Curriculum completo, hands-on, GRATIS. Cubre training pipelines, serving, monitoring.</li>
+      </ul>
+
+      <h4>🐳 Docker / Kubernetes</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.amazon.com/Docker-Deep-Dive-Nigel-Poulton/dp/1916585256" target="_blank"><b>Docker Deep Dive</b></a> (Nigel Poulton) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · El libro de Docker, actualizado cada año.</li>
+        <li>📄 <a href="https://kubernetes.io/docs/tutorials/" target="_blank"><b>Kubernetes Tutorials</b></a> (oficial) + <a href="https://www.katacoda.com/" target="_blank">interactive scenarios</a> — <span class="badge b-easy">FREE</span> · Empieza por "Kubernetes Basics".</li>
+        <li>📖 <a href="https://www.manning.com/books/kubernetes-in-action-second-edition" target="_blank"><b>Kubernetes in Action</b> 2nd ed</a> (Marko Lukša, Manning) — <span class="badge b-mid">PAID</span> · El libro estándar.</li>
+      </ul>
+
+      <h4>🚀 Model serving (FastAPI, BentoML, Triton)</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://fastapi.tiangolo.com/" target="_blank"><b>FastAPI Docs</b></a> — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · Gold standard. Los mejores docs de cualquier framework Python. Empieza por "Tutorial".</li>
+        <li>📄 <a href="https://docs.bentoml.com/" target="_blank"><b>BentoML Docs</b></a> — <span class="badge b-easy">FREE</span> · Standard moderno para serving de ML.</li>
+      </ul>
+
+      <h4>🔁 CI/CD para ML</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.oreilly.com/library/view/practical-mlops/9781098103002/" target="_blank"><b>Practical MLOps</b></a> (O'Reilly) — <span class="badge b-mid">PAID</span> · Aplicado, sin teoría innecesaria.</li>
+        <li>📄 <a href="https://docs.github.com/en/actions" target="_blank"><b>GitHub Actions Docs</b></a> + <a href="https://github.com/GokuMohandas/Made-With-ML" target="_blank">ejemplos en Made With ML</a> — <span class="badge b-easy">FREE</span> · CI/CD práctico para ML.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>✨ Nivel 10 · AI Engineering Moderno</summary>
+    <div class="body">
+      <h4>🤖 LLMs (OpenAI, Anthropic, open-source)</h4>
+      <ul class="tight">
+        <li>📺 <a href="https://www.deeplearning.ai/short-courses/" target="_blank"><b>DeepLearning.AI Short Courses</b></a> (con Andrew Ng) — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · ~40 cursos cortos (1–2h) sobre LLMs, RAG, agents. Empieza por "ChatGPT Prompt Engineering for Developers".</li>
+        <li>📄 <a href="https://github.com/openai/openai-cookbook" target="_blank"><b>OpenAI Cookbook</b></a> — <span class="badge b-easy">FREE</span> · Recetas oficiales en GitHub. Mejor que la doc.</li>
+        <li>📄 <a href="https://docs.claude.com/" target="_blank"><b>Anthropic Docs + Prompt Engineering Course</b></a> — <span class="badge b-easy">FREE</span> · Tutorial completo de prompt engineering. Aplica a cualquier LLM, no solo Claude.</li>
+      </ul>
+
+      <h4>📚 RAG (vector DBs, embeddings, retrieval)</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://python.langchain.com/docs/introduction/" target="_blank"><b>LangChain Docs</b></a> — <span class="badge b-easy">FREE</span> · Framework dominante. Empieza por "RAG" tutorial.</li>
+        <li>📄 <a href="https://docs.llamaindex.ai/" target="_blank"><b>LlamaIndex Docs</b></a> — <span class="badge b-easy">FREE</span> · Alternativa más enfocada en RAG. Mejor para empezar.</li>
+        <li>📺 <a href="https://github.com/mlabonne/llm-course" target="_blank"><b>Maxime Labonne: LLM Course</b></a> — <span class="badge b-easy">FREE</span> · Curso completo en GitHub, 28k+ stars. Cubre fine-tuning y RAG.</li>
+      </ul>
+
+      <h4>🦾 Agents (tool-use, orchestration)</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://www.anthropic.com/research/building-effective-agents" target="_blank"><b>Anthropic: Building Effective Agents</b></a> — <span class="badge b-easy">FREE</span> <span class="badge b-elite">ELITE</span> · El must-read sobre agents. Define patrones que la industria adoptó.</li>
+        <li>📺 <a href="https://www.deeplearning.ai/short-courses/" target="_blank"><b>DeepLearning.AI: Agent Design Patterns</b></a> + cursos relacionados — <span class="badge b-easy">FREE</span> · Hands-on con frameworks reales.</li>
+      </ul>
+
+      <h4>🚀 Inference at scale</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://docs.vllm.ai/" target="_blank"><b>vLLM Docs</b></a> — <span class="badge b-easy">FREE</span> · Library más usada para serving de LLMs eficiente.</li>
+        <li>📖 <a href="https://www.oreilly.com/library/view/ai-engineering/9781098166298/" target="_blank"><b>AI Engineering</b></a> (Chip Huyen, 2025) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · El mejor libro de AI Engineering, recién salido. Léelo en cuanto puedas.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="expand">
+    <summary>👑 Nivel 11 · Staff / Principal</summary>
+    <div class="body">
+      <h4>🏗 System Design (data platforms)</h4>
+      <ul class="tight">
+        <li>📖 Designing Data-Intensive Applications (Kleppmann) — Ya mencionado. Lectura crítica aquí.</li>
+        <li>📖 <a href="https://bytebytego.com/" target="_blank"><b>System Design Interview</b> Vol 1 &amp; 2</a> (Alex Xu) — <span class="badge b-mid">PAID</span> · Los libros más vendidos del tema. Compactos y aplicados.</li>
+        <li>📺 <a href="https://www.youtube.com/@ByteByteGo" target="_blank"><b>ByteByteGo YouTube</b></a> — <span class="badge b-easy">FREE</span> · Diagramas excelentes. ~10 min cada video.</li>
+      </ul>
+
+      <h4>👥 Tech leadership / mentoring</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://www.oreilly.com/library/view/the-managers-path/9781491973882/" target="_blank"><b>The Manager's Path</b></a> (Camille Fournier) — <span class="badge b-mid">PAID</span> <span class="badge b-elite">ELITE</span> · El libro canónico para growth de IC a líder técnico.</li>
+        <li>📖 <a href="https://staffeng.com/book" target="_blank"><b>Staff Engineer</b></a> (Will Larson) — <span class="badge b-mid">PAID</span> · Cómo se ve un Staff Engineer real.</li>
+        <li>📺 <a href="https://staffeng.com/stories" target="_blank"><b>StaffEng.com Stories</b></a> — <span class="badge b-easy">FREE</span> · Entrevistas con Staff engineers de FAANG. Patrones reales de carrera.</li>
+      </ul>
+
+      <h4>🔀 Cross-functional influence</h4>
+      <ul class="tight">
+        <li>📖 <a href="https://lethain.com/elegant-puzzle/" target="_blank"><b>An Elegant Puzzle</b></a> (Will Larson) — <span class="badge b-mid">PAID</span> · Cómo resolver problemas organizacionales como ingeniero senior.</li>
+      </ul>
+
+      <h4>📋 Architectural decision making (ADRs)</h4>
+      <ul class="tight">
+        <li>📄 <a href="https://github.com/joelparkerhenderson/architecture-decision-record" target="_blank"><b>ADR templates (Michael Nygard + variantes)</b></a> — <span class="badge b-easy">FREE</span> · El template canónico + ejemplos reales.</li>
+        <li>📺 <a href="https://www.thoughtworks.com/radar" target="_blank"><b>ThoughtWorks Technology Radar</b></a> — <span class="badge b-easy">FREE</span> · Publicado cada 6 meses. Te mantiene al día con tendencias arquitectónicas.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="divider"></div>
+
+  <div class="note ok">
+    <b>📌 Reglas para no perderte:</b> No abras 11 niveles a la vez. Trabaja UN nivel hasta que el progreso de esa sección esté en 80%+ antes de moverte al siguiente. La excepción: <b>Inglés</b> (Nivel 0) corre en paralelo con TODO durante 2+ años. <b>SQL + Python</b> también corren en paralelo desde el día 1.
+  </div>
+
+  <div class="note warn" style="margin-top:14px">
+    <b>⚠️ Trampas a evitar:</b> 1) Comprar libros que no vas a leer (el síndrome del bookshelf). 2) Cursos de Udemy a $11 que se acumulan: 1 curso terminado &gt; 5 comprados. 3) Saltarse Kleppmann porque "es muy grueso" — lo vas a tener que leer eventualmente. Mejor empezar mes 8 que mes 20.
+  </div>
 </section>
 
 <!-- ===================== PHASES ===================== -->
@@ -2949,7 +3323,8 @@ navItems.forEach(n=>{
    ========================================================= */
 const STORAGE_KEY = 'careerOS_v1_progress';
 const SECTION_META = {
-  dashboard:'Dashboard', roadmap:'Roadmap Maestro', phases:'11 Fases',
+  dashboard:'Dashboard', roadmap:'Roadmap Maestro',
+  treeresources:'Recursos del Árbol', phases:'11 Fases',
   study:'Plan de Estudio', python:'Python', sql:'SQL',
   de:'Data Engineering', cloud:'Cloud', bigdata:'Big Data',
   ai:'AI & ML', mlops:'MLOps & AI Infra', git:'Git & GitHub',
